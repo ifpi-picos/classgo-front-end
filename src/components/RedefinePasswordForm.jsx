@@ -11,7 +11,7 @@ export default function RedefinePasswordForm() {
 
     const router = useRouter()
 
-    const forgotPasswordUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/"
+    const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
 
     const changePassword = () => {
         if (!email) {

@@ -11,7 +11,7 @@ export default function CourseForm() {
 
     const router = useRouter()
     
-    const courseUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/courses"
+    const courseUrl = "https://reverse-time-back-end.vercel.app/courses"
 
     const create = () => {
         if (!description) {
