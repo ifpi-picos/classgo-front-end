@@ -11,7 +11,7 @@ export default function CourseForm() {
 
     const router = useRouter()
     
-    const courseUrl = "http://localhost:3030/courses"
+    const courseUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/courses"
 
     const create = () => {
         if (!description) {
@@ -43,7 +43,7 @@ export default function CourseForm() {
             })
             .catch((err) => {
                 if (err.response.status === 401) {
-                    localStorage.removeItem("token")
+                    localStorage.clear()
                     return router.replace("/")
                 }
                 

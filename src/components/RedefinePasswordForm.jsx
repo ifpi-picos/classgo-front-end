@@ -4,14 +4,14 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-export default function ForgotPasswordForm() {
+export default function RedefinePasswordForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassword] = useState()
 
     const router = useRouter()
 
-    const forgotPasswordUrl = "http://localhost:3030/"
+    const forgotPasswordUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/"
 
     const changePassword = () => {
         if (!email) {

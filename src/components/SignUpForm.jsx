@@ -13,7 +13,7 @@ export default function SignUpForm() {
 
     const type = "Professor"
 
-    const signUpUrl = "http://localhost:3030/signup"
+    const signUpUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/signup"
 
     const router = useRouter()
 

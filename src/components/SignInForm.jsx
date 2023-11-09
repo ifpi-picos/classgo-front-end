@@ -9,7 +9,7 @@ export default function SignInForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const signInUrl = "http://localhost:3030/"
+    const signInUrl = "https://reverse-time-back-ew8bs6dt4-landeilsonvelosos-projects.vercel.app/"
 
     const router = useRouter()
 
@@ -70,7 +70,7 @@ export default function SignInForm() {
                         <label className="mb-3" htmlFor="password">Senha</label>
                         <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="password" name="password" type="password" placeholder="Digite sua senha" required onChange={(e) => setPassword(e.currentTarget.value)}/>
 
-                        <Link className="mt-3 underline flex justify-end" href="/forgotpassword">esqueceu senha?</Link>
+                        <Link className="mt-3 underline flex justify-end" href="/redefinepassword">esqueceu senha?</Link>
                     </div>
                 </div>
 
