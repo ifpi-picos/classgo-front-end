@@ -4,6 +4,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { crossOrigin } from "../../next.config"
 
 export default function SignInForm() {
     const [email, setEmail] = useState()
