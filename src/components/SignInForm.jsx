@@ -1,16 +1,15 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import axios from "axios"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { crossOrigin } from "../../next.config"
 
 export default function SignInForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const signInUrl = "https://reverse-time-back-end.vercel.app/"
+    const signInUrl = "https://reverse-time-back-end.vercel.app"
 
     const router = useRouter()
 
@@ -28,7 +27,6 @@ export default function SignInForm() {
             .then((res) => {
                 if (res.status === 200) {
                     localStorage.setItem("token", res.data.token)
-                    localStorage.setItem("userId", res.data.userId)
 
                     if (res.data.userType === "administrador") {
                         return router.replace("/users")
