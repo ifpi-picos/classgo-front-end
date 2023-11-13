@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation"
 
 export default function CourseForm() {
     const [description, setDescription] = useState()
-    const [userId, setUserId] = useState()
 
     const router = useRouter()
     
@@ -18,12 +17,8 @@ export default function CourseForm() {
             return alert("Campo Nome do Curso vazio!")
         }
 
-        else if (!userId) {
-            return alert("Campo Id do Usuário vazio")
-        }
-
         axios
-            .post(courseUrl, {description, userId}, {headers: {
+            .post(courseUrl, {description}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token"),               
@@ -64,12 +59,7 @@ export default function CourseForm() {
                     <div className="flex flex-col items-center">
                         <div className="w-5/6 mb-5 flex flex-col">
                             <label htmlFor="description" className="mb-3">Nome do Curso</label>
-                            <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="description" name="description" type="text" placeholder="Digite o nome do Curso" required onChange={(e) => setDescription(e.currentTarget.value)}/>
-                        </div>
-
-                        <div className="w-5/6 mb-5 flex flex-col">
-                            <label htmlFor="userId" className="mb-3">Id do Usuário</label>
-                            <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="userId" name="userId" type="number" placeholder="Digite seu id" required onChange={(e) => setUserId(e.currentTarget.value)}/>
+                            <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="description" name="description" type="text" placeholder="Digite o nome do curso" required onChange={(e) => setDescription(e.currentTarget.value)}/>
                         </div>
                     </div>
 
