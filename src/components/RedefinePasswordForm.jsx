@@ -6,8 +6,8 @@ import { useState } from "react"
 
 export default function RedefinePasswordForm() {
     const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
     const [newPassword, setNewPassword] = useState()
-    const [confirmNewPassword, setNewConfirmPassword] = useState()
 
     const router = useRouter()
 
@@ -18,16 +18,16 @@ export default function RedefinePasswordForm() {
             alert("Campo Email vazio!")
         }
 
+        else if (!password) {
+            alert("Campo Senha Atual vazio!")
+        }
+
         else if (!newPassword) {
             alert("Campo Nova Senha vazio!")
         }
 
-        else if (!confirmNewPassword) {
-            alert("Campo Confirmar Nova Senha vazio!")
-        }
-
         axios
-            .put(redefinePasswordUrl, {email, newPassword, confirmNewPassword})
+            .put(redefinePasswordUrl, {email, password, newPassword})
             .then((res) => {
                 if (res.status === 200) {
                     alert("Senha redefinada com sucesso!")
@@ -61,13 +61,13 @@ export default function RedefinePasswordForm() {
                     </div>
 
                     <div className="w-5/6 mb-5 flex flex-col">
-                        <label htmlFor="newPassword" className="mb-3">Nova Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="newPassword" name="newPassword" type="password" placeholder="Digite sua nova senha" required onChange={(e) => setNewPassword(e.currentTarget.value)}/>
+                        <label htmlFor="password" className="mb-3">Senha Atual</label>
+                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="password" name="password" type="password" placeholder="Digite sua senha atual" required onChange={(e) => setPassword(e.currentTarget.value)}/>
                     </div>
 
                     <div className="w-5/6 mb-5 flex flex-col">
-                        <label htmlFor="confirmNewPassword" className="mb-3">Confirma Nova Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="confirmNewPassword" name="confirmNewPassword" type="password" placeholder="Confirme sua nova senha" required onChange={(e) => setNewConfirmPassword(e.currentTarget.value)}/>
+                        <label htmlFor="newPassword" className="mb-3">Nova Senha</label>
+                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="newPassword" name="newPassword" type="password" placeholder="Digite sua nova senha" required onChange={(e) => setNewPassword(e.currentTarget.value)}/>
                     </div>
                 </div>
 
