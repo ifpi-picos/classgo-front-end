@@ -42,10 +42,10 @@ export default function RedefinePasswordForm() {
             })
             .catch ((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.message)
+                    return alert(err.response.data)
                 }
 
-                return console.log(err.response.message)
+                return console.log(err.response.data)
             })
     }
 
