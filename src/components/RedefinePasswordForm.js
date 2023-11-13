@@ -6,25 +6,43 @@ import { useState } from "react"
 
 export default function RedefinePasswordForm() {
     const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassword] = useState()
+    const [newPassword, setNewPassword] = useState()
+    const [confirmNewPassword, setNewConfirmPassword] = useState()
 
     const router = useRouter()
 
-    const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
+    const redefinePasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
 
-    const changePassword = () => {
+    const redefinePassword = () => {
         if (!email) {
-            alert("Campo Emailvazio!")
+            alert("Campo Email vazio!")
         }
 
-        else if (!password) {
+        else if (!newPassword) {
             alert("Campo Nova Senha vazio!")
         }
 
-        else if (!confirmPassword) {
-            alert("Campo Confirmar Nova Senha vazio")
+        else if (!confirmNewPassword) {
+            alert("Campo Confirmar Nova Senha vazio!")
         }
+
+        axios
+            .put(redefinePasswordUrl, {email, newPassword, confirmNewPassword})
+            .then((res) => {
+                if (res.status === 200) {
+                    alert("Senha redefinada com sucesso!")
+                    return router.replace("/")
+                }
+
+                else if (res.status === 400) {
+                    return alert(res.data)
+                }
+
+                return console.log(res.data)
+            })
+            .catch ((err) => {
+                return console.log(err.response.message)
+            })
     }
 
     return (
@@ -44,17 +62,17 @@ export default function RedefinePasswordForm() {
 
                     <div className="w-5/6 mb-5 flex flex-col">
                         <label htmlFor="newPassword" className="mb-3">Nova Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="newPassword" name="newPassword" type="password" placeholder="Digite sua nova senha" required onChange={(e) => setPassword(e.currentTarget.value)}/>
+                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="newPassword" name="newPassword" type="password" placeholder="Digite sua nova senha" required onChange={(e) => setNewPassword(e.currentTarget.value)}/>
                     </div>
 
                     <div className="w-5/6 mb-5 flex flex-col">
                         <label htmlFor="confirmNewPassword" className="mb-3">Confirma Nova Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="confirmNewPassword" name="confirmNewPassword" type="password" placeholder="Confirme sua nova senha" required onChange={(e) => setConfirmPassword(e.currentTarget.value)}/>
+                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="confirmNewPassword" name="confirmNewPassword" type="password" placeholder="Confirme sua nova senha" required onChange={(e) => setNewConfirmPassword(e.currentTarget.value)}/>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-sm" type="button">Redefinir</button>
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-sm" type="button" onClick={() => {redefinePassword()}}>Redefinir</button>
                 </div>
             </fieldset>
         </form>
