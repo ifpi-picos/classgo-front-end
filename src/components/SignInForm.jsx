@@ -53,37 +53,35 @@ export default function SignInForm() {
     return (
         <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
-                <div className="h-28 flex justify-center items-center">
+                <div className="my-10 flex justify-center items-center">
                     <span className="text-xl">Login</span>
                 </div>
 
-                <div className="h-40 flex flex-col justify-evenly items-center">
-                        <input
-                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            required
-                            onChange={(e) => setEmail(e.currentTarget.value)}
-                        />
+                <div className="flex flex-col items-center">
+                    <input
+                        className="w-5/6 mb-5 px-4 py-2 text-gray-800 rounded-xl"
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        required
+                        onChange={(e) => setEmail(e.currentTarget.value)}
+                    />
 
-                        <input
-                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
-                            id="password"
-                            name="password"
-                            type="password"
-                            placeholder="Senha"
-                            required
-                            onChange={(e) => setPassword(e.currentTarget.value)}
-                        />
+                    <input
+                        className="w-5/6 px-4 py-2 text-gray-800 rounded-xl"
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Senha"
+                        required
+                        onChange={(e) => setPassword(e.currentTarget.value)}
+                    />
+                    
+                    <Link className="w-5/6 mt-2 flex justify-end underline" href="/redefinepassword">esqueceu senha?</Link>
                 </div>
 
-                <div className="mb-5 flex justify-center">
-                    <Link className="w-5/6 flex justify-end underline" href="/redefinepassword">esqueceu senha?</Link>
-                </div>
-
-                <div className="h-32 flex flex-col justify-center items-center">
+                <div className="my-10 flex flex-col items-center">
                     <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signIn()}}>Entrar</button>
                     <Link className="underline" href="/signup">Cadastrar-se</Link>
                 </div>

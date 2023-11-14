@@ -6,29 +6,28 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 export default function RedefinePasswordForm() {
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
     const [newPassword, setNewPassword] = useState()
+    const [confirmNewPassword, setConfirmNewPassword] = useState()
 
     const router = useRouter()
 
     const redefinePasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
 
     const redefinePassword = () => {
-        if (!email) {
-            alert("Campo Email obrigatório!")
-        }
-
-        else if (!password) {
+        if (!newPassword) {
             alert("Campo Senha Atual obrigatório!")
         }
 
-        else if (!newPassword) {
+        else if (!confirmNewPassword) {
             alert("Campo Nova Senha obrigatório!")
         }
 
+        else if (newPassword != confirmNewPassword) {
+            alert("Campos Nova senha e Confirmar Nova Senha distintos!")
+        }
+
         axios
-            .put(redefinePasswordUrl, {email, password, newPassword})
+            .put(redefinePasswordUrl, {newPassword, confirmNewPassword})
             .then((res) => {
                 if (res.status === 200) {
                     alert("Senha redefinada com sucesso!")
@@ -53,44 +52,34 @@ export default function RedefinePasswordForm() {
     return (
         <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                <div className="h-20 flex justify-center items-end">
+                <div className="my-10 flex justify-center items-center">
                     <span className="text-xl">Aterar Senha</span>
                 </div>
 
-                <div className="h-72 flex flex-col justify-evenly items-center">
+                <div className="flex flex-col justify-evenly items-center">
                         <input
-                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            required
-                            onChange={(e) => setEmail(e.currentTarget.value)}
-                        />
-
-                        <input
-                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                            className="w-5/6 mb-5 text-gray-800 px-4 py-2 rounded-xl"
                             id="password"
                             name="password"
-                            type="password"
-                            placeholder="Senha Atual"
-                            required
-                            onChange={(e) => setPassword(e.currentTarget.value)}
-                        />
-
-                        <input
-                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
-                            id="newPassword"
-                            name="newPassword"
                             type="password"
                             placeholder="Nova Senha"
                             required
                             onChange={(e) => setNewPassword(e.currentTarget.value)}
                         />
+
+                        <input
+                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                            id="confirmNewPassword"
+                            name="confirmNewPassword"
+                            type="password"
+                            placeholder="Confirmar Nova Senha"
+                            required
+                            onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
+                        />
                 </div>
 
-                <div className="h-32 flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {redefinePassword()}}>Redefinir</button>
+                <div className="my-10 flex flex-col justify-center items-center">
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {redefinePassword()}}>Redefinir</button>
                     <Link className="underline" href="/">Voltar</Link>
                 </div>
             </fieldset>
