@@ -16,11 +16,11 @@ export default function RedefinePasswordForm() {
 
     const redefinePassword = () => {
         if (!newPassword) {
-            alert("Campo Senha Atual obrigatório!")
+            alert("Campo Nova Senha obrigatório!")
         }
 
         else if (!confirmNewPassword) {
-            alert("Campo Nova Senha obrigatório!")
+            alert("Campo Confirmar Nova Senha obrigatório!")
         }
 
         else if (newPassword != confirmNewPassword) {
