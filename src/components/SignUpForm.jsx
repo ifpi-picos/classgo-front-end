@@ -66,7 +66,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <form className="w-2/5 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
                 <div className="h-16 flex justify-center items-end">
                     <span className="text-xl">Novo Usuário</span>
