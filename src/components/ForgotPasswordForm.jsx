@@ -13,9 +13,10 @@ export default function ForgotPasswordForm() {
         axios
             .post(forgotPasswordUrl, {email})
             .then((res) => {
+                localStorage.setItem("token", res.data.token)
+                
                 if (res.status === 200) {
-                    alert(res.data.message)
-                    return localStorage.setItem("token", res.data.token)
+                    return alert(res.data.message)
                 }
     
                 else if(res.status === 400) {

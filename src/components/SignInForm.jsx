@@ -36,7 +36,7 @@ export default function SignInForm() {
                 }
 
                 else if (res.status === 400) {
-                    alert(res.data)
+                    return alert(res.data)
                 }
 
                 return console.log(res.data)
