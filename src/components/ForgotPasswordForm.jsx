@@ -10,12 +10,16 @@ export default function ForgotPasswordForm() {
     const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/forgotpassword"
 
     const requestNewPassword = () => {
+        if (!email) {
+            return alert("Campo Email obrigatório!")
+        }
+
         axios
             .post(forgotPasswordUrl, {email})
             .then((res) => {
-                localStorage.setItem("token", res.data.token)
                 
                 if (res.status === 200) {
+                    localStorage.setItem("token", res.data.token)
                     return alert(res.data.message)
                 }
     
