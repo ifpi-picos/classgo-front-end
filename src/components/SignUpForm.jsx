@@ -66,9 +66,9 @@ export default function SignUpForm() {
     }
 
     return (
-        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-            <fieldset className="w-5/6 my-16 border border-gray-100 flex flex-col rounded-xl">
-                <div className="h-16 mt-5 flex justify-center items-center">
+        <form className="w-2/5 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+            <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
+                <div className="h-16 flex justify-center items-end">
                     <span className="text-xl">Novo Usuário</span>
                 </div>
 
@@ -114,7 +114,7 @@ export default function SignUpForm() {
                     />
                 </div>
 
-                <div className="h-32 mb-5 flex flex-col justify-center items-center">
+                <div className="h-32 flex flex-col justify-center items-center">
                     <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signUp()}}>Cadastrar-se</button>
                     <Link className="underline" href="/">Entrar</Link>
                 </div>
