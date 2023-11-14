@@ -9,9 +9,9 @@ export default function SignInForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const signInUrl = "https://reverse-time-back-end.vercel.app"
-
     const router = useRouter()
+
+    const signInUrl = "https://reverse-time-back-end.vercel.app"
 
     const signIn = () => {
         if (!email) {

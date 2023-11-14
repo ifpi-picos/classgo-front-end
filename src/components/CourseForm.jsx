@@ -21,7 +21,7 @@ export default function CourseForm() {
             .post(courseUrl, {description}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("token"),               
+                "Authorization": localStorage.getItem("token")              
             }})
             .then((res) => {
                 if (res.status === 201) {

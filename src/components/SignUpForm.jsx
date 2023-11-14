@@ -12,10 +12,11 @@ export default function SignUpForm() {
     const [confirmPassword, setConfirmPassword] = useState()
 
     const type = "Professor"
+    
+    const router = useRouter()
 
     const signUpUrl = "https://reverse-time-back-end.vercel.app/signup"
 
-    const router = useRouter()
 
     const signUp = () => {
         if (!name) {
