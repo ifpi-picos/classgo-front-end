@@ -48,23 +48,26 @@ export default function CourseForm() {
 
     return (
         <PrivateRoute>
-            <form className="w-1/3 h-3/5 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-                <fieldset className="w-5/6 h-5/6 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                    <legend className="m-auto px-6 py-3 border border-gray-100 rounded-sm">idCurso</legend>
-
-                    <div className="flex justify-center">
+            <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+                <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
+                    <div className="h-28 flex justify-center items-center">
                         <span className="text-xl">Novo Curso</span>
                     </div>
 
-                    <div className="flex flex-col items-center">
-                        <div className="w-5/6 mb-5 flex flex-col">
-                            <label htmlFor="description" className="mb-3">Nome do Curso</label>
-                            <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="description" name="description" type="text" placeholder="Digite o nome do curso" required onChange={(e) => setDescription(e.currentTarget.value)}/>
-                        </div>
+                    <div className="h-28 flex justify-center items-center">
+                        <input
+                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                            id="description"
+                            name="description"
+                            type="text"
+                            placeholder="Nome do Curso"
+                            required
+                            onChange={(e) => setDescription(e.currentTarget.value)}
+                        />
                     </div>
 
-                    <div className="flex flex-col items-center">
-                        <button className="px-7 py-3 mb-5 border border-gray-100 rounded-sm" type="button" onClick={() => {create()}}>Criar</button>
+                    <div className="h-28 flex justify-center items-center">
+                        <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {create()}}>Criar</button>
                     </div>
                 </fieldset>
             </form>

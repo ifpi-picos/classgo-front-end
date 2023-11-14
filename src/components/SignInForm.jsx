@@ -15,11 +15,11 @@ export default function SignInForm() {
 
     const signIn = () => {
         if (!email) {
-            return alert("Campo Email vazio!")
+            return alert("Campo Email obrigatório!")
         }
 
         else if (!password) {
-            return alert("Campo Senha vazio!")
+            return alert("Campo Senha obrigatório!")
         }
 
         axios
@@ -65,7 +65,9 @@ export default function SignInForm() {
                             type="email"
                             placeholder="Email"
                             required
-                            onChange={(e) => setEmail(e.currentTarget.value)}/>
+                            onChange={(e) => setEmail(e.currentTarget.value)}
+                        />
+
                         <input
                             className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
                             id="password"
@@ -73,15 +75,16 @@ export default function SignInForm() {
                             type="password"
                             placeholder="Senha"
                             required
-                            onChange={(e) => setPassword(e.currentTarget.value)}/>
+                            onChange={(e) => setPassword(e.currentTarget.value)}
+                        />
                 </div>
 
-                <div className="h-10 flex justify-center">
+                <div className="mb-5 flex justify-center">
                     <Link className="w-5/6 flex justify-end underline" href="/redefinepassword">esqueceu senha?</Link>
                 </div>
 
                 <div className="h-32 flex flex-col justify-center items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lx" type="button" onClick={() => {signIn()}}>Entrar</button>
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signIn()}}>Entrar</button>
                     <Link className="underline" href="/signup">Cadastrar-se</Link>
                 </div>
             </fieldset>
