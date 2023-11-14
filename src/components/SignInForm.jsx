@@ -51,30 +51,37 @@ export default function SignInForm() {
     }
 
     return (
-        <form className="w-1/3 h-3/5 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-            <fieldset className="w-5/6 h-5/6 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                <legend className="m-auto px-6 py-3 border border-gray-100 rounded-sm">idCurso</legend>
-
-                <div className="flex justify-center">
+        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+            <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
+                <div className="h-28 flex justify-center items-center">
                     <span className="text-xl">Login</span>
                 </div>
 
-                <div className="flex flex-col items-center">
-                    <div className="w-5/6 mb-5 flex flex-col">
-                        <label htmlFor="email" className="mb-3">Email</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="email" name="email" type="email" placeholder="Digite seu email" required onChange={(e) => setEmail(e.currentTarget.value)}/>
-                    </div>
-
-                    <div className="w-5/6 flex flex-col">
-                        <label className="mb-3" htmlFor="password">Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="password" name="password" type="password" placeholder="Digite sua senha" required onChange={(e) => setPassword(e.currentTarget.value)}/>
-
-                        <Link className="mt-3 underline flex justify-end" href="/redefinepassword">esqueceu senha?</Link>
-                    </div>
+                <div className="h-40 flex flex-col justify-evenly items-center">
+                        <input
+                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                            onChange={(e) => setEmail(e.currentTarget.value)}/>
+                        <input
+                            className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Senha"
+                            required
+                            onChange={(e) => setPassword(e.currentTarget.value)}/>
                 </div>
 
-                <div className="flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-sm" type="button" onClick={() => {signIn()}}>Entrar</button>
+                <div className="h-10 flex justify-center">
+                    <Link className="w-5/6 flex justify-end underline" href="/redefinepassword">esqueceu senha?</Link>
+                </div>
+
+                <div className="h-32 flex flex-col justify-center items-center">
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lx" type="button" onClick={() => {signIn()}}>Entrar</button>
                     <Link className="underline" href="/signup">Cadastrar-se</Link>
                 </div>
             </fieldset>
