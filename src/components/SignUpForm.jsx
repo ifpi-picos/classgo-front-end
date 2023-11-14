@@ -19,19 +19,19 @@ export default function SignUpForm() {
 
     const signUp = () => {
         if (!name) {
-            return alert("Campo Nome vazio!")
+            return alert("Campo Nome Obrigatório!")
         }
 
         else if (!email) {
-            return alert("Campo Email vazio!")
+            return alert("Campo Email Obrigatório!")
         }
 
         else if (!password) {
-            return alert("Campo Senha vazio!")
+            return alert("Campo Senha Obrigatório!")
         }
 
         else if (!confirmPassword) {
-            return alert("Campo Confirmar Senha vazio!")
+            return alert("Campo Confirmar Senha Obrigatório!")
         }
 
         if (password != confirmPassword) {
@@ -66,38 +66,56 @@ export default function SignUpForm() {
     }
 
     return (
-        <form className="w-1/3 h-4/5 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form className="w-1/3 h-2/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 h-5/6 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                <legend className="m-auto px-6 py-3 border border-gray-100 rounded-sm">idCurso</legend>
-
                 <div className="flex justify-center">
-                    <span className="text-xl">Cadastro</span>
+                    <span className="text-xl">Novo Usuário</span>
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <div className="w-5/6 mb-5 flex flex-col">
-                        <label className="mb-3" htmlFor="name">Nome</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="name" name="name" type="text" placeholder="Digite seu nome" required onChange={(e) => setName(e.currentTarget.value)}/>
-                    </div>
+                    <input
+                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Nome"
+                        required
+                        onChange={(e) => setName(e.currentTarget.value)}
+                    />
 
-                    <div className="w-5/6 mb-5 flex flex-col">
-                        <label className="mb-3" htmlFor="email">Email</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="email" name="email" type="email" placeholder="Digite seu email" required onChange={(e) => setEmail(e.currentTarget.value)}/>
-                    </div>
+                    <input
+                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        required
+                        onChange={(e) => setEmail(e.currentTarget.value)}
+                    />
 
-                    <div className="w-5/6 mb-5 flex flex-col">
-                        <label className="mb-3" htmlFor="password">Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="password" name="password" type="password" placeholder="Digite sua senha" required onChange={(e) => setPassword(e.currentTarget.value)}/>
-                    </div>
+                    <input
+                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Senha"
+                        required
+                        onChange={(e) => setPassword(e.currentTarget.value)}
+                    />
 
-                    <div className="w-5/6 mb-5 flex flex-col">
-                        <label className="mb-3" htmlFor="confirmPassword">Confirmar Senha</label>
-                        <input className="text-gray-800 px-2 py-1 border border-gray-100 rounded-sm" id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirme sua senha" required onChange={(e) => setConfirmPassword(e.currentTarget.value)}/>
-                    </div>
+                    <input
+                        className="w-5/6 text-gray-800 px-4 py-2 rounded-lg"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="Confirmar Senha"
+                        required
+                        onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+                    />
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-sm" type="button" onClick={() => {signUp()}}>Cadastrar-se</button>
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signUp()}}>Cadastrar-se</button>
                     <Link className="underline" href="/">Entrar</Link>
                 </div>
             </fieldset>
