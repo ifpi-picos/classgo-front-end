@@ -14,7 +14,7 @@ export default function CourseForm() {
 
     const create = () => {
         if (!description) {
-            return alert("Campo Nome do Curso vazio!")
+            return alert("Campo Nome do Curso obrigatório!")
         }
 
         axios
