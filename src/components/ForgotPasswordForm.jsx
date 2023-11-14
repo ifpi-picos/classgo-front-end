@@ -14,8 +14,8 @@ export default function ForgotPasswordForm() {
             .post(forgotPasswordUrl, {email})
             .then((res) => {
                 if (res.status === 200) {
-                    localStorage.setItem("token", res.data.token)
-                    return alert(res.data.message)
+                    alert(res.data.message)
+                    return localStorage.setItem("token", res.data.token)
                 }
     
                 else if(res.status === 400) {
