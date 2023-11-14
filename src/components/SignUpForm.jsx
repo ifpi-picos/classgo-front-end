@@ -66,15 +66,15 @@ export default function SignUpForm() {
     }
 
     return (
-        <form className="w-1/3 h-2/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-            <fieldset className="w-5/6 h-5/6 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                <div className="flex justify-center">
+        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+            <fieldset className="w-5/6 my-16 border border-gray-100 flex flex-col rounded-xl">
+                <div className="h-16 mt-5 flex justify-center items-center">
                     <span className="text-xl">Novo Usuário</span>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="h-80 flex flex-col justify-evenly items-center">
                     <input
-                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        className="w-5/6 text-gray-800 px-4 py-2 rounded-lg"
                         id="name"
                         name="name"
                         type="text"
@@ -84,7 +84,7 @@ export default function SignUpForm() {
                     />
 
                     <input
-                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        className="w-5/6 text-gray-800 px-4 py-2 rounded-lg"
                         id="email"
                         name="email"
                         type="email"
@@ -94,7 +94,7 @@ export default function SignUpForm() {
                     />
 
                     <input
-                        className="w-5/6 text-gray-800 mb-7 px-4 py-2 rounded-lg"
+                        className="w-5/6 text-gray-800 px-4 py-2 rounded-lg"
                         id="password"
                         name="password"
                         type="password"
@@ -114,7 +114,7 @@ export default function SignUpForm() {
                     />
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="h-32 mb-5 flex flex-col justify-center items-center">
                     <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signUp()}}>Cadastrar-se</button>
                     <Link className="underline" href="/">Entrar</Link>
                 </div>
