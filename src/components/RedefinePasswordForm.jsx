@@ -80,7 +80,6 @@ export default function RedefinePasswordForm() {
 
                 <div className="my-10 flex flex-col justify-center items-center">
                     <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {redefinePassword()}}>Redefinir</button>
-                    <Link className="underline" href="/">Voltar</Link>
                 </div>
             </fieldset>
         </form>

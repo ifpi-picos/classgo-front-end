@@ -53,7 +53,7 @@ export default function SignInForm() {
     return (
         <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
-                <div className="my-10 flex justify-center items-center">
+                <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Login</span>
                 </div>
 
@@ -78,7 +78,7 @@ export default function SignInForm() {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                     />
                     
-                    <Link className="w-5/6 mt-2 flex justify-end underline" href="/redefinepassword">esqueceu senha?</Link>
+                    <Link className="w-5/6 mt-2 flex justify-end underline" href="/forgotpassword">esqueceu senha?</Link>
                 </div>
 
                 <div className="my-10 flex flex-col items-center">
