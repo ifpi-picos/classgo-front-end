@@ -44,11 +44,21 @@ export default function RedefinePasswordForm() {
                     return alert(res.data)
                 }
 
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+
                 return console.log(res.data)
             })
             .catch ((err) => {
                 if (err.response.status === 400) {
                     return alert(err.response.data)
+                }
+
+                else if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
                 }
 
                 return console.log(err.response.data)
