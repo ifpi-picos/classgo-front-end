@@ -36,7 +36,7 @@ export default function SignUpForm() {
         }
 
         if (password != confirmPassword) {
-            return alert("Campos Senha e Confirmar Senha distintos!")
+            return alert("Campos Senha e Confirmar Senha Distintos!")
         }
 
         axios
@@ -47,18 +47,10 @@ export default function SignUpForm() {
                     return router.replace("/")
                 }
 
-                if (res.status === 400) {
-                    return alert(res.data)
-                }
-
                 return console.log(res.data)
             })
             .catch((err) => {
-                if (err.response.status === 200) {
-                    return alert(err.response.data)
-                }
-
-                else if (err.response.status === 400) {
+                if (err.response.status === 400) {
                     return alert(err.response.data)
                 }
 
@@ -116,7 +108,7 @@ export default function SignUpForm() {
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">
-                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {signUp()}}>Cadastrar-se</button>
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={signUp}>Cadastrar-se</button>
                     <Link className="underline" href="/">Entrar</Link>
                 </div>
             </fieldset>

@@ -15,11 +15,11 @@ export default function SignInForm() {
 
     const signIn = () => {
         if (!email) {
-            return alert("Campo Email obrigatório!")
+            return alert("Campo Email Obrigatório!")
         }
 
         else if (!password) {
-            return alert("Campo Senha obrigatório!")
+            return alert("Campo Senha Obrigatório!")
         }
 
         axios
@@ -32,11 +32,7 @@ export default function SignInForm() {
                         return router.replace("/users")
                     }
 
-                    return router.replace("/courses")
-                }
-
-                else if (res.status === 400) {
-                    return alert(res.data)
+                    return router.replace("/coursecreate")
                 }
 
                 return console.log(res.data)
@@ -82,7 +78,7 @@ export default function SignInForm() {
                 </div>
 
                 <div className="my-10 flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={() => {signIn()}}>Entrar</button>
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={signIn}>Entrar</button>
                     <Link className="underline" href="/signup">Cadastrar-se</Link>
                 </div>
             </fieldset>

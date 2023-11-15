@@ -5,7 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-export default function CourseForm() {
+export default function CourseCreateForm() {
     const [description, setDescription] = useState()
 
     const router = useRouter()
@@ -14,7 +14,7 @@ export default function CourseForm() {
 
     const create = () => {
         if (!description) {
-            return alert("Campo Nome do Curso obrigatório!")
+            return alert("Campo Nome do Curso Obrigatório!")
         }
 
         axios
@@ -25,10 +25,6 @@ export default function CourseForm() {
             }})
             .then((res) => {
                 if (res.status === 201) {
-                    return alert(res.data)
-                }
-
-                else if (res.status === 400) {
                     return alert(res.data)
                 }
                 
@@ -74,7 +70,7 @@ export default function CourseForm() {
                     </div>
 
                     <div className="my-10 flex justify-center items-center">
-                        <button className="px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {create()}}>Criar</button>
+                        <button className="px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={create}>Criar</button>
                     </div>
                 </fieldset>
             </form>

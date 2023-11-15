@@ -20,11 +20,11 @@ export default function RedefinePasswordForm() {
         }
 
         else if (!confirmNewPassword) {
-            alert("Campo Confirmar Nova Senha obrigatório!")
+            alert("Campo Confirmar Nova Senha Obrigatório!")
         }
 
         else if (newPassword != confirmNewPassword) {
-            alert("Campos Nova senha e Confirmar Nova Senha distintos!")
+            alert("Campos Nova senha e Confirmar Nova Senha Distintos!")
         }
 
         axios
@@ -38,10 +38,6 @@ export default function RedefinePasswordForm() {
                     alert("Senha redefinada com sucesso!")
                     localStorage.clear()
                     return router.replace("/")
-                }
-
-                else if (res.status === 400) {
-                    return alert(res.data)
                 }
 
                 else if (res.status === 401) {
@@ -96,7 +92,7 @@ export default function RedefinePasswordForm() {
                     </div>
 
                     <div className="my-10 flex flex-col justify-center items-center">
-                        <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {redefinePassword()}}>Redefinir</button>
+                        <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={redefinePassword}>Redefinir</button>
                     </div>
                 </fieldset>
             </form>

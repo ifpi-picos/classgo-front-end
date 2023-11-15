@@ -11,20 +11,15 @@ export default function ForgotPasswordForm() {
 
     const requestNewPassword = () => {
         if (!email) {
-            return alert("Campo Email obrigatório!")
+            return alert("Campo Email Obrigatório!")
         }
 
         axios
             .post(forgotPasswordUrl, {email})
-            .then((res) => {
-                
+            .then((res) => {               
                 if (res.status === 200) {
                     localStorage.setItem("token", res.data.token)
                     return alert(res.data.message)
-                }
-    
-                else if(res.status === 400) {
-                    return alert(res.data)
                 }
     
                 return console.log(res.data)
@@ -58,7 +53,7 @@ export default function ForgotPasswordForm() {
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">
-                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={() => {requestNewPassword()}}>Solicitar</button>
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={requestNewPassword}>Solicitar</button>
                     <Link className="underline" href="/">Voltar</Link>
                 </div>
             </fieldset>
