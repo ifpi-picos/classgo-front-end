@@ -35,8 +35,8 @@ export default function RedefinePasswordForm() {
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    alert("Senha redefinada com sucesso!")
                     localStorage.clear()
+                    alert("Senha redefinada com sucesso!")
                     return router.replace("/")
                 }
 
