@@ -18,7 +18,7 @@ export default function ForgotPasswordForm() {
             .post(forgotPasswordUrl, {email})
             .then((res) => {               
                 if (res.status === 200) {
-                    return alert(res.data)
+                    return alert(res.data.code)
                 }
     
                 return console.log(res.data)
