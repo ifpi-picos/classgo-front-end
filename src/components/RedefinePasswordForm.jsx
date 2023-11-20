@@ -15,17 +15,7 @@ export default function RedefinePasswordForm() {
     const redefinePasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
 
     const redefinePassword = () => {
-        if (!newPassword) {
-            alert("Campo Nova Senha obrigatório!")
-        }
-
-        else if (!confirmNewPassword) {
-            alert("Campo Confirmar Nova Senha Obrigatório!")
-        }
-
-        else if (newPassword != confirmNewPassword) {
-            alert("Campos Nova senha e Confirmar Nova Senha Distintos!")
-        }
+        e.preventDefault()
 
         axios
             .put(redefinePasswordUrl, {newPassword, confirmNewPassword}, {headers: {
@@ -63,7 +53,7 @@ export default function RedefinePasswordForm() {
 
     return (
         <PrivateRoute>
-            <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+            <form onSubmit={redefinePassword} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
                 <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
                     <div className="my-10 flex justify-center items-center">
                         <span className="text-xl">Aterar Senha</span>
@@ -76,8 +66,10 @@ export default function RedefinePasswordForm() {
                                 name="password"
                                 type="password"
                                 placeholder="Nova Senha"
-                                required
+                                minLength={8}
+                                maxLength={16}
                                 onChange={(e) => setNewPassword(e.currentTarget.value)}
+                                required
                             />
 
                             <input
@@ -86,13 +78,15 @@ export default function RedefinePasswordForm() {
                                 name="confirmNewPassword"
                                 type="password"
                                 placeholder="Confirmar Nova Senha"
-                                required
+                                minLength={8}
+                                maxLength={16}
                                 onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
+                                required
                             />
                     </div>
 
                     <div className="my-10 flex flex-col justify-center items-center">
-                        <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={redefinePassword}>Redefinir</button>
+                        <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg">Redefinir</button>
                     </div>
                 </fieldset>
             </form>

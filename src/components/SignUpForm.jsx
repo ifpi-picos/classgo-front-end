@@ -18,26 +18,8 @@ export default function SignUpForm() {
     const signUpUrl = "https://reverse-time-back-end.vercel.app/signup"
 
 
-    const signUp = () => {
-        if (!name) {
-            return alert("Campo Nome Obrigatório!")
-        }
-
-        else if (!email) {
-            return alert("Campo Email Obrigatório!")
-        }
-
-        else if (!password) {
-            return alert("Campo Senha Obrigatório!")
-        }
-
-        else if (!confirmPassword) {
-            return alert("Campo Confirmar Senha Obrigatório!")
-        }
-
-        if (password != confirmPassword) {
-            return alert("Campos Senha e Confirmar Senha Distintos!")
-        }
+    const signUp = (e) => {
+        e.preventDefaulf()
 
         axios
             .post(signUpUrl, {name, email, type, password, confirmPassword})
@@ -59,7 +41,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form onSubmit={signUp} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
                 <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Novo Usuário</span>
@@ -72,8 +54,10 @@ export default function SignUpForm() {
                         name="name"
                         type="text"
                         placeholder="Nome"
-                        required
+                        minLength={3}
+                        maxLength={20}
                         onChange={(e) => setName(e.currentTarget.value)}
+                        required
                     />
 
                     <input
@@ -82,8 +66,10 @@ export default function SignUpForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        required
+                        minLength={7}
+                        maxLength={50}
                         onChange={(e) => setEmail(e.currentTarget.value)}
+                        required
                     />
 
                     <input
@@ -92,8 +78,10 @@ export default function SignUpForm() {
                         name="password"
                         type="password"
                         placeholder="Senha"
-                        required
+                        minLength={8}
+                        maxLength={16}
                         onChange={(e) => setPassword(e.currentTarget.value)}
+                        required
                     />
 
                     <input
@@ -102,13 +90,15 @@ export default function SignUpForm() {
                         name="confirmPassword"
                         type="password"
                         placeholder="Confirmar Senha"
-                        required
+                        minLength={8}
+                        maxLength={16}
                         onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+                        required
                     />
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">
-                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={signUp}>Cadastrar-se</button>
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg">Cadastrar-se</button>
                     <Link className="underline" href="/">Entrar</Link>
                 </div>
             </fieldset>

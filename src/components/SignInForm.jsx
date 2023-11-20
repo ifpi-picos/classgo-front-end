@@ -13,14 +13,8 @@ export default function SignInForm() {
 
     const signInUrl = "https://reverse-time-back-end.vercel.app"
 
-    const signIn = () => {
-        if (!email) {
-            return alert("Campo Email Obrigatório!")
-        }
-
-        else if (!password) {
-            return alert("Campo Senha Obrigatório!")
-        }
+    const signIn = (e) => {
+        e.preventDefault()
 
         axios
             .post(signInUrl, {email, password})
@@ -47,7 +41,7 @@ export default function SignInForm() {
     }
 
     return (
-        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form onSubmit={signIn} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
                 <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Login</span>
@@ -60,8 +54,10 @@ export default function SignInForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        required
+                        minLength={7}
+                        maxLength={50}
                         onChange={(e) => setEmail(e.currentTarget.value)}
+                        required
                     />
 
                     <input
@@ -70,15 +66,17 @@ export default function SignInForm() {
                         name="password"
                         type="password"
                         placeholder="Senha"
-                        required
+                        minLength={8}
+                        maxLength={16}
                         onChange={(e) => setPassword(e.currentTarget.value)}
+                        required
                     />
                     
                     <Link className="w-5/6 mt-2 flex justify-end underline" href="/forgotpassword">esqueceu senha?</Link>
                 </div>
 
                 <div className="my-10 flex flex-col items-center">
-                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg" type="button" onClick={signIn}>Entrar</button>
+                    <button className="px-7 py-3 mb-5 border border-gray-100 rounded-lg">Entrar</button>
                     <Link className="underline" href="/signup">Cadastrar-se</Link>
                 </div>
             </fieldset>

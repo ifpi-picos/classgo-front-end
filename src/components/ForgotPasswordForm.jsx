@@ -10,9 +10,7 @@ export default function ForgotPasswordForm() {
     const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/forgotpassword"
 
     const requestNewPassword = () => {
-        if (!email) {
-            return alert("Campo Email Obrigatório!")
-        }
+        e.preventDefault()
 
         axios
             .post(forgotPasswordUrl, {email})
@@ -34,7 +32,7 @@ export default function ForgotPasswordForm() {
     }
 
     return (
-        <form className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form onSubmit={requestNewPassword} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
                 <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Solicitar Nova Senha</span>
@@ -47,13 +45,15 @@ export default function ForgotPasswordForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        required
+                        minLength={7}
+                        maxLength={50}
                         onChange={(e) => setEmail(e.currentTarget.value)}
+                        required
                     />
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">
-                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg" type="button" onClick={requestNewPassword}>Solicitar</button>
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg">Solicitar</button>
                     <Link className="underline" href="/">Voltar</Link>
                 </div>
             </fieldset>
