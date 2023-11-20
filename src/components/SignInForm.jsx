@@ -54,7 +54,6 @@ export default function SignInForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        minLength={7}
                         maxLength={50}
                         onChange={(e) => setEmail(e.currentTarget.value)}
                         required
@@ -66,7 +65,6 @@ export default function SignInForm() {
                         name="password"
                         type="password"
                         placeholder="Senha"
-                        minLength={8}
                         maxLength={16}
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         required

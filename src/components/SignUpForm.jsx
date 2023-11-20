@@ -19,7 +19,7 @@ export default function SignUpForm() {
 
 
     const signUp = (e) => {
-        e.preventDefaulf()
+        e.preventDefault()
 
         axios
             .post(signUpUrl, {name, email, type, password, confirmPassword})
@@ -66,7 +66,6 @@ export default function SignUpForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        minLength={7}
                         maxLength={50}
                         onChange={(e) => setEmail(e.currentTarget.value)}
                         required
@@ -90,7 +89,6 @@ export default function SignUpForm() {
                         name="confirmPassword"
                         type="password"
                         placeholder="Confirmar Senha"
-                        minLength={8}
                         maxLength={16}
                         onChange={(e) => setConfirmPassword(e.currentTarget.value)}
                         required

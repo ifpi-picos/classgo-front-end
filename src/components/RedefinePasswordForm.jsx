@@ -78,7 +78,6 @@ export default function RedefinePasswordForm() {
                                 name="confirmNewPassword"
                                 type="password"
                                 placeholder="Confirmar Nova Senha"
-                                minLength={8}
                                 maxLength={16}
                                 onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
                                 required
