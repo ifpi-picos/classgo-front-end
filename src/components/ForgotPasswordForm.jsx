@@ -9,7 +9,7 @@ export default function ForgotPasswordForm() {
 
     const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/forgotpassword"
 
-    const requestNewPassword = () => {
+    const requestNewPassword = (e) => {
         e.preventDefault()
 
         axios

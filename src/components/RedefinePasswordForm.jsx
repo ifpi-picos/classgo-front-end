@@ -14,7 +14,7 @@ export default function RedefinePasswordForm() {
 
     const redefinePasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
 
-    const redefinePassword = () => {
+    const redefinePassword = (e) => {
         e.preventDefault()
 
         axios
