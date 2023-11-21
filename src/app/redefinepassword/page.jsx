@@ -1,3 +1,5 @@
+"use client"
+
 import PrivateRoute from "@/components/PrivateRoute"
 import RedefinePasswordForm from "@/components/RedefinePasswordForm"
 
