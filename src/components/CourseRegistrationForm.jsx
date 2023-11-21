@@ -22,7 +22,8 @@ export default function CourseRegistrationForm() {
             }})
             .then((res) => {
                 if (res.status === 201) {
-                    return alert(res.data)
+                    alert(res.data)
+                    return router.replace("/home")
                 }
                 
                 else if (res.status === 401) {
