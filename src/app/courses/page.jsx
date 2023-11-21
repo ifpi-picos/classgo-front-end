@@ -1,4 +1,4 @@
-import CourseCreateForm from "@/components/CourseCreateForm";
+import CourseCreateForm from "@/components/CourseCreateForm"
 
 export default function CourseCreatePage() {
     return (
