@@ -17,7 +17,6 @@ export default function SignUpForm() {
 
     const signUpUrl = "https://reverse-time-back-end.vercel.app/signup"
 
-
     const signUp = (e) => {
         e.preventDefault()
 
@@ -49,7 +48,7 @@ export default function SignUpForm() {
 
                 <div className="flex flex-col justify-evenly items-center">
                     <input
-                        className="w-5/6 mb-5 text-gray-800 px-4 py-2 rounded-lg"
+                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
                         id="name"
                         name="name"
                         type="text"
@@ -61,7 +60,7 @@ export default function SignUpForm() {
                     />
 
                     <input
-                        className="w-5/6 mb-5 text-gray-800 px-4 py-2 rounded-lg"
+                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
                         id="email"
                         name="email"
                         type="email"
@@ -72,7 +71,7 @@ export default function SignUpForm() {
                     />
 
                     <input
-                        className="w-5/6 mb-5 text-gray-800 px-4 py-2 rounded-lg"
+                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
                         id="password"
                         name="password"
                         type="password"
@@ -84,7 +83,7 @@ export default function SignUpForm() {
                     />
 
                     <input
-                        className="w-5/6 text-gray-800 px-4 py-2 rounded-lg"
+                        className="w-5/6 px-3 py-2 text-gray-800 rounded-lg"
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"

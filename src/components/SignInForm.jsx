@@ -49,7 +49,7 @@ export default function SignInForm() {
 
                 <div className="flex flex-col items-center">
                     <input
-                        className="w-5/6 mb-5 px-4 py-2 text-gray-800 rounded-xl"
+                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
                         id="email"
                         name="email"
                         type="email"
@@ -60,7 +60,7 @@ export default function SignInForm() {
                     />
 
                     <input
-                        className="w-5/6 px-4 py-2 text-gray-800 rounded-xl"
+                        className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
                         id="password"
                         name="password"
                         type="password"

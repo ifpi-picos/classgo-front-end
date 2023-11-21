@@ -61,7 +61,7 @@ export default function RedefinePasswordForm() {
 
                     <div className="flex flex-col justify-evenly items-center">
                             <input
-                                className="w-5/6 mb-5 text-gray-800 px-4 py-2 rounded-xl"
+                                className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
                                 id="password"
                                 name="password"
                                 type="password"
@@ -73,7 +73,7 @@ export default function RedefinePasswordForm() {
                             />
 
                             <input
-                                className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                                className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
                                 id="confirmNewPassword"
                                 name="confirmNewPassword"
                                 type="password"

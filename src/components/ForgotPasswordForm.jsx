@@ -40,7 +40,7 @@ export default function ForgotPasswordForm() {
 
                 <div className="flex justify-center items-center">
                     <input
-                        className="w-5/6 text-gray-800 px-4 py-2 rounded-xl"
+                        className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
                         id="email"
                         name="email"
                         type="email"
