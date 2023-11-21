@@ -26,7 +26,9 @@ export default function SignInForm() {
                         return router.replace("/users")
                     }
 
-                    return router.replace("/courses")
+                    console.log(res.data.course)
+
+                    return router.replace("/courseregistration")
                 }
 
                 return console.log(res.data)
