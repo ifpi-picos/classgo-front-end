@@ -5,7 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-export default function CourseCreateForm() {
+export default function CourseRegistrationForm() {
     const [description, setDescription] = useState()
 
     const router = useRouter()
