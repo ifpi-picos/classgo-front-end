@@ -1,10 +1,8 @@
 "use client"
 
 import axios from "axios"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import PrivateRoute from "./PrivateRoute"
 
 export default function RedefinePasswordForm() {
     const [newPassword, setNewPassword] = useState()
@@ -52,43 +50,41 @@ export default function RedefinePasswordForm() {
     }
 
     return (
-        <PrivateRoute>
-            <form onSubmit={redefinePassword} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-                <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
-                    <div className="my-10 flex justify-center items-center">
-                        <span className="text-xl">Aterar Senha</span>
-                    </div>
+        <form onSubmit={redefinePassword} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+            <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
+                <div className="my-10 flex justify-center items-center">
+                    <span className="text-xl">Aterar Senha</span>
+                </div>
 
-                    <div className="flex flex-col justify-evenly items-center">
-                            <input
-                                className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
-                                id="password"
-                                name="password"
-                                type="password"
-                                placeholder="Nova Senha"
-                                minLength={8}
-                                maxLength={16}
-                                onChange={(e) => setNewPassword(e.currentTarget.value)}
-                                required
-                            />
+                <div className="flex flex-col justify-evenly items-center">
+                        <input
+                            className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Nova Senha"
+                            minLength={8}
+                            maxLength={16}
+                            onChange={(e) => setNewPassword(e.currentTarget.value)}
+                            required
+                        />
 
-                            <input
-                                className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
-                                id="confirmNewPassword"
-                                name="confirmNewPassword"
-                                type="password"
-                                placeholder="Confirmar Nova Senha"
-                                maxLength={16}
-                                onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
-                                required
-                            />
-                    </div>
+                        <input
+                            className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
+                            id="confirmNewPassword"
+                            name="confirmNewPassword"
+                            type="password"
+                            placeholder="Confirmar Nova Senha"
+                            maxLength={16}
+                            onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
+                            required
+                        />
+                </div>
 
-                    <div className="my-10 flex flex-col justify-center items-center">
-                        <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg">Redefinir</button>
-                    </div>
-                </fieldset>
-            </form>
-        </PrivateRoute>
+                <div className="my-10 flex flex-col justify-center items-center">
+                    <button className="mb-5 px-7 py-3 border border-gray-100 rounded-lg">Redefinir</button>
+                </div>
+            </fieldset>
+        </form>
     )
 }
