@@ -12,7 +12,7 @@ export default function CourseCreateForm() {
     
     const courseUrl = "https://reverse-time-back-end.vercel.app/courses"
 
-    const create = (E) => {
+    const create = (e) => {
         e.preventDefault()
 
         axios

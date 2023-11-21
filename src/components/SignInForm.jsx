@@ -70,7 +70,9 @@ export default function SignInForm() {
                         required
                     />
                     
-                    <Link className="w-5/6 mt-2 flex justify-end underline" href="/forgotpassword">esqueceu senha?</Link>
+                    <div className="w-5/6 mt-2 flex justify-end">
+                        <Link className="underline" href="/forgotpassword">esqueceu senha?</Link>
+                    </div>
                 </div>
 
                 <div className="my-10 flex flex-col items-center">
