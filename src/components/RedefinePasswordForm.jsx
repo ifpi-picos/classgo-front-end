@@ -49,7 +49,7 @@ export default function RedefinePasswordForm() {
         <form onSubmit={redefinePassword} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col justify-evenly rounded-xl">
                 <div className="my-10 flex justify-center items-center">
-                    <span className="text-xl">Aterar Senha</span>
+                    <span className="text-xl">Alterar Senha</span>
                 </div>
 
                 <div className="flex flex-col justify-evenly items-center">
@@ -62,6 +62,7 @@ export default function RedefinePasswordForm() {
                             minLength={8}
                             maxLength={16}
                             onChange={(e) => setNewPassword(e.currentTarget.value)}
+                            
                             required
                         />
 
