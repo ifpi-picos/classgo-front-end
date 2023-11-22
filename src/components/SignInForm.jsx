@@ -32,15 +32,11 @@ export default function SignInForm() {
                     
                     return router.replace("/home")
                 }
-
-                return console.log(res.data)
             })
             .catch((err) => {
                 if (err.response.status === 400) {
                     return alert(err.response.data)
                 }
-
-                return console.log(err.response.data)
             })
     }
 

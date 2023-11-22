@@ -13,20 +13,23 @@ export default function Main() {
     const coursesUrl = "https://reverse-time-back-end.vercel.app/courses"
 
     useEffect(() => {
-        axios.get(coursesUrl, {headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": localStorage.getItem("token")              
-        }}).then((res) => {
-            if (res.status === 200) {
-                return setCourse(res.data.description)
-            }
-        }).catch((err) => {
-            if (err.response.status === 401) {
-                localStorage.clear()
-                return router.replace("/")
-            }
-        })
+        axios
+            .get(coursesUrl, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")              
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    return setCourse(res.data.description)
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
     })
 
     const logout = () => {

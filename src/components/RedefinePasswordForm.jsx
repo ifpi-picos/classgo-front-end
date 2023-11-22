@@ -32,8 +32,6 @@ export default function RedefinePasswordForm() {
                     localStorage.clear()
                     return router.replace("/")
                 }
-
-                return console.log(res.data)
             })
             .catch ((err) => {
                 if (err.response.status === 400) {
@@ -44,8 +42,6 @@ export default function RedefinePasswordForm() {
                     localStorage.clear()
                     return router.replace("/")
                 }
-
-                return console.log(err.response.data)
             })
     }
 

@@ -27,15 +27,11 @@ export default function SignUpForm() {
                     alert(res.data)
                     return router.replace("/")
                 }
-
-                return console.log(res.data)
             })
             .catch((err) => {
                 if (err.response.status === 400) {
                     return alert(err.response.data)
                 }
-
-                return console.log(err.response.data)
             })
     }
 

@@ -19,15 +19,11 @@ export default function ForgotPasswordForm() {
                     localStorage.setItem("token", res.data.token)
                     return alert(res.data.message)
                 }
-    
-                return console.log(res.data)
             })
             .catch((err) => {
                 if (err.response.status === 400) {
                     return alert(err.response.data)
                 }
-    
-                return console.log(err.response.data)
             })
     }
 
