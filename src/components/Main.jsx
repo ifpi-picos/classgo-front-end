@@ -3,10 +3,11 @@
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { iconHome, iconLogout } from "./Icons"
+import { iconEdit, iconHome, iconLogout } from "./Icons"
 
 export default function Main() {
-    const [course, setCourse] = useState()
+    const [course, setCourse] = useState("Nome do Curso")
+    const [courseButtonBg, setCourseButtonBg] = useState("bg-blue-400")
 
     const router = useRouter()
 
@@ -50,7 +51,7 @@ export default function Main() {
                     </div>
 
                     <div className="mb-8 flex justify-center items-center">
-                        <button className="w-11/12 py-4 pr-4 rounded-lg hover:bg-blue-400 flex" type="button">
+                        <button className={`w-11/12 py-4 pr-4 ${courseButtonBg} rounded-lg hover:bg-blue-400 focus:bg-blue-400 active:bg-blue-500 flex`} type="button">
                             <span className="pl-4">{iconHome}</span>
                             <span className="pl-2">{course}</span>
                         </button>
@@ -63,7 +64,7 @@ export default function Main() {
                     </div>
 
                     <div className="mb-8 flex justify-center items-center">
-                        <button className="w-11/12 py-4 pr-4 rounded-lg hover:bg-blue-400 flex" type="button" onClick={logout}>
+                        <button className="w-11/12 py-4 pr-4 rounded-lg hover:bg-red-400 active:bg-blue-500 flex" type="button" onClick={logout}>
                             <span className="pl-4">{iconLogout}</span>
                             <span className="pl-2">Sair</span>
                         </button>
@@ -73,7 +74,15 @@ export default function Main() {
 
             <div className="w-4/5 h-screen bg-gray-100 text-gray-800 flex flex-col">
                 <div className="w-full h-32 border-2 border-gray-300 flex justify-center items-center">
-                    <span className="text-xl">{course}</span>
+                    <div className="w-1/3 flex justify-center items-center">
+                        <span className="text-xl">{course}</span>
+                    </div>
+                </div>
+
+                <div className="flex flex-grow justify-center items-center">
+                    <div className="flex justify-center items-center">
+                        <span>Turmas</span>
+                    </div>
                 </div>
             </div>
         </main>
