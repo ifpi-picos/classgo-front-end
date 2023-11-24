@@ -2,12 +2,14 @@
 
 import axios from "axios"
 import Link from "next/link"
+import { HiEye, HiEyeOff } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 export default function SignInForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [visiblePassoword, setVisiblePassword] = useState(false)
 
     const router = useRouter()
 
@@ -27,7 +29,7 @@ export default function SignInForm() {
                     }
 
                     if (!res.data.course) {
-                        return router.replace("/courseregistration")
+                        return router.replace("/")
                     }
                     
                     return router.replace("/home")
@@ -42,35 +44,55 @@ export default function SignInForm() {
 
     return (
         <form onSubmit={signIn} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
-            <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
+            <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col items-center rounded-xl">
                 <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Login</span>
                 </div>
 
-                <div className="flex flex-col items-center">
-                    <input
-                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        maxLength={50}
-                        onChange={(e) => setEmail(e.currentTarget.value)}
-                        required
-                    />
+                <div className="w-5/6 flex flex-col items-center">
+                    <div className="mb-5 w-full flex justify-center items-center">
+                        <input
+                            className="w-full px-3 py-2 text-gray-800 rounded-xl"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            maxLength="50"
+                            onChange={(e) => setEmail(e.currentTarget.value)}
+                            required
+                        />
+                    </div>
 
-                    <input
-                        className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="Senha"
-                        maxLength={16}
-                        onChange={(e) => setPassword(e.currentTarget.value)}
-                        required
-                    />
+                    <div className="w-full flex justify-center items-center">
+                        <input
+                            className="w-full pl-3 pr-12 py-2 text-gray-800 rounded-xl"
+                            id="password"
+                            name="password"
+                            placeholder="Senha"
+                            maxLength="16"
+                            type={!visiblePassoword ? "password" : "text"}
+                            onChange={(e) => setPassword(e.currentTarget.value)}
+                            required
+                        />
+
+                        <div className="flex justify-end items-center">
+                            <div className="w-12 h-8 absolute flex justify-center items-center">
+                                {!visiblePassoword ? (
+                                    <HiEye
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisiblePassword(true)}
+                                    />
+                                ): (
+                                    <HiEyeOff
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisiblePassword(false)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div className="w-5/6 mt-2 flex justify-end">
+                    <div className="w-full mt-2 flex justify-end">
                         <Link className="underline" href="/forgotpassword">esqueceu senha?</Link>
                     </div>
                 </div>

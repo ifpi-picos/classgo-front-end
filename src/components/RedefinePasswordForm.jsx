@@ -1,12 +1,16 @@
 "use client"
 
 import axios from "axios"
+import { HiEye, HiEyeOff } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 export default function RedefinePasswordForm() {
     const [newPassword, setNewPassword] = useState()
     const [confirmNewPassword, setConfirmNewPassword] = useState()
+    const [visibleNewPassoword, setVisibleNewPassword] = useState(false)
+    const [visibleConfirmNewPassword, setVisibleConfirmNewPassword] = useState(false)
+
 
     const router = useRouter()
 
@@ -52,30 +56,66 @@ export default function RedefinePasswordForm() {
                     <span className="text-xl">Alterar Senha</span>
                 </div>
 
-                <div className="flex flex-col justify-evenly items-center">
+                <div className="w-full flex flex-col justify-evenly items-center">
+                    <div className="w-full mb-5 flex justify-center items-center">
                         <input
-                            className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-xl"
+                            className="w-5/6 pl-3 pr-12 py-2 text-gray-800 rounded-xl"
                             id="password"
                             name="password"
-                            type="password"
                             placeholder="Nova Senha"
-                            minLength={8}
-                            maxLength={16}
-                            onChange={(e) => setNewPassword(e.currentTarget.value)}
-                            
+                            minLength="8"
+                            maxLength="16"
+                            type={!visibleNewPassoword ? "password" : "text"}
+                            onChange={(e) => setNewPassword(e.currentTarget.value)} 
                             required
                         />
 
+                        <div className="flex justify-end items-center">
+                            <div className="w-12 h-8 absolute flex justify-center items-center">
+                                {!visibleNewPassoword ? (
+                                    <HiEye
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleNewPassword(true)}
+                                    />
+                                ): (
+                                    <HiEyeOff
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleNewPassword(false)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="w-full mb-5 flex justify-center items-center">
                         <input
-                            className="w-5/6 px-3 py-2 text-gray-800 rounded-xl"
+                            className="w-5/6 pl-3 pr-12 py-2 text-gray-800 rounded-xl"
                             id="confirmNewPassword"
                             name="confirmNewPassword"
-                            type="password"
                             placeholder="Confirmar Nova Senha"
-                            maxLength={16}
+                            maxLength="16"
+                            type={!visibleConfirmNewPassword ? "password" : "text"}
                             onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
                             required
                         />
+
+                        <div className="flex justify-end items-center">
+                            <div className="w-12 h-8 absolute flex justify-center items-center">
+                                {!visibleConfirmNewPassword ? (
+                                    <HiEye
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleConfirmNewPassword(true)}
+                                    />
+                                ): (
+                                    <HiEyeOff
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleConfirmNewPassword(false)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">

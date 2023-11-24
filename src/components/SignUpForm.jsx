@@ -2,6 +2,7 @@
 
 import axios from "axios"
 import Link from "next/link"
+import { HiEye, HiEyeOff } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -10,6 +11,8 @@ export default function SignUpForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassword] = useState()
+    const [visiblePassoword, setVisiblePassword] = useState(false)
+    const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false)
 
     const type = "Professor"
     
@@ -42,52 +45,92 @@ export default function SignUpForm() {
                     <span className="text-xl">Novo Usuário</span>
                 </div>
 
-                <div className="flex flex-col justify-evenly items-center">
-                    <input
-                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Nome"
-                        minLength={3}
-                        maxLength={20}
-                        onChange={(e) => setName(e.currentTarget.value)}
-                        required
-                    />
+                <div className="w-full flex flex-col justify-evenly items-center">
+                    <div className="w-full mb-5 flex justify-center items-center">
+                        <input
+                            className="w-5/6 px-3 py-2 text-gray-800 rounded-lg"
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Nome"
+                            minLength={3}
+                            maxLength={20}
+                            onChange={(e) => setName(e.currentTarget.value)}
+                            required
+                        />
+                    </div>
 
-                    <input
-                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        maxLength={50}
-                        onChange={(e) => setEmail(e.currentTarget.value)}
-                        required
-                    />
+                    <div className=" w-full mb-5 flex justify-center items-center">
+                        <input
+                            className="w-5/6 px-3 py-2 text-gray-800 rounded-lg"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            maxLength={50}
+                            onChange={(e) => setEmail(e.currentTarget.value)}
+                            required
+                        />
+                    </div>
 
-                    <input
-                        className="w-5/6 mb-5 px-3 py-2 text-gray-800 rounded-lg"
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="Senha"
-                        minLength={8}
-                        maxLength={16}
-                        onChange={(e) => setPassword(e.currentTarget.value)}
-                        required
-                    />
+                    <div className=" w-full mb-5 flex justify-center items-center">
+                        <input
+                            className="w-5/6 pl-3 pr-12 py-2 text-gray-800 rounded-lg"
+                            id="password"
+                            name="password"
+                            placeholder="Senha"
+                            minLength="8"
+                            maxLength="16"
+                            type={!visiblePassoword ? "password" : "text"}
+                            onChange={(e) => setPassword(e.currentTarget.value)}
+                            required
+                        />
 
-                    <input
-                        className="w-5/6 px-3 py-2 text-gray-800 rounded-lg"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Confirmar Senha"
-                        maxLength={16}
-                        onChange={(e) => setConfirmPassword(e.currentTarget.value)}
-                        required
-                    />
+                        <div className="flex justify-end items-center">
+                            <div className="w-12 h-8 absolute flex justify-center items-center">
+                                {!visiblePassoword ? (
+                                    <HiEye
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisiblePassword(true)}
+                                    />
+                                ): (
+                                    <HiEyeOff
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisiblePassword(false)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="w-full flex justify-center items-center">
+                        <input
+                            className="w-5/6 pl-3 pr-12 py-2 text-gray-800 rounded-lg"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Confirmar Senha"
+                            maxLength="16"
+                            type={!visibleConfirmPassword ? "password" : "text"}
+                            onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+                            required
+                        />
+
+                        <div className="flex justify-end items-center">
+                            <div className="w-12 h-8 absolute flex justify-center items-center">
+                                {!visibleConfirmPassword ? (
+                                    <HiEye
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleConfirmPassword(true)}
+                                    />
+                                ): (
+                                    <HiEyeOff
+                                        className="text-gray-500 absolute text-xl cursor-pointer"
+                                        onClick={() => setVisibleConfirmPassword(false)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="my-10 flex flex-col justify-center items-center">

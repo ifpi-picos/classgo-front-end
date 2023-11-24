@@ -41,7 +41,7 @@ export default function ForgotPasswordForm() {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        maxLength={50}
+                        maxLength="50"
                         onChange={(e) => setEmail(e.currentTarget.value)}
                         required
                     />

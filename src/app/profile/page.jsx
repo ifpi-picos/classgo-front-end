@@ -1,5 +1,5 @@
-import Teladeperfil from "@/components/UserFomr"
+import UserProfile from "@/components/UserProfile"
 
-export default function tela(){
-    return <Teladeperfil></Teladeperfil>
+export default function UserProfilePage() {
+    return <UserProfile/>
 }

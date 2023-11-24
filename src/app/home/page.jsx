@@ -1,12 +1,16 @@
 "use client"
 
-import Main from "@/components/Main"
+import Section from "@/components/Section"
 import PrivateRoute from "@/components/PrivateRoute"
+import SideBar from "@/components/SideBar"
 
 export default function HomePage() {
     return (
         <PrivateRoute>
-            <Main/>
+            <main className="w-full h-screen flex">
+                <SideBar/>
+                <Section/>
+            </main>
         </PrivateRoute>
     )
 }
