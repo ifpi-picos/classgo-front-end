@@ -27,10 +27,6 @@ export default function SignInForm() {
                     if (res.data.userType === "administrador") {
                         return router.replace("/users")
                     }
-
-                    if (!res.data.course) {
-                        return router.replace("/")
-                    }
                     
                     return router.replace("/home")
                 }
