@@ -39,7 +39,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <form onSubmit={signUp} className="w-1/3 bg-blue-500 text-gray-100 font-semibold border-gray-100 border rounded-xl flex justify-center items-center">
+        <form onSubmit={signUp} className="w-1/3 bg-blue-500 text-gray-100 rounded-xl shadow-xl flex justify-center items-center">
             <fieldset className="w-5/6 my-10 border border-gray-100 flex flex-col rounded-xl">
                 <div className="my-14 flex justify-center items-center">
                     <span className="text-xl">Novo Usuário</span>
