@@ -63,8 +63,8 @@ export default function RedefinePasswordForm() {
                             id="password"
                             name="password"
                             placeholder="Nova Senha"
-                            minLength="8"
-                            maxLength="16"
+                            minLength="6"
+                            maxLength="15"
                             type={!visibleNewPassoword ? "password" : "text"}
                             onChange={(e) => setNewPassword(e.currentTarget.value)} 
                             required
@@ -93,7 +93,7 @@ export default function RedefinePasswordForm() {
                             id="confirmNewPassword"
                             name="confirmNewPassword"
                             placeholder="Confirmar Nova Senha"
-                            maxLength="16"
+                            maxLength="15"
                             type={!visibleConfirmNewPassword ? "password" : "text"}
                             onChange={(e) => setConfirmNewPassword(e.currentTarget.value)}
                             required

@@ -53,21 +53,21 @@ export default function SignUpForm() {
                             name="name"
                             type="text"
                             placeholder="Nome"
-                            minLength={3}
-                            maxLength={20}
+                            minLength="3"
+                            maxLength="30"
                             onChange={(e) => setName(e.currentTarget.value)}
                             required
                         />
                     </div>
 
-                    <div className=" w-full mb-5 flex justify-center items-center">
+                    <div className="w-full mb-5 flex justify-center items-center">
                         <input
                             className="w-5/6 px-3 py-2 text-gray-800 rounded-lg"
                             id="email"
                             name="email"
                             type="email"
                             placeholder="Email"
-                            maxLength={50}
+                            maxLength="45"
                             onChange={(e) => setEmail(e.currentTarget.value)}
                             required
                         />
@@ -79,8 +79,8 @@ export default function SignUpForm() {
                             id="password"
                             name="password"
                             placeholder="Senha"
-                            minLength="8"
-                            maxLength="16"
+                            minLength="6"
+                            maxLength="15"
                             type={!visiblePassoword ? "password" : "text"}
                             onChange={(e) => setPassword(e.currentTarget.value)}
                             required
@@ -109,7 +109,7 @@ export default function SignUpForm() {
                             id="confirmPassword"
                             name="confirmPassword"
                             placeholder="Confirmar Senha"
-                            maxLength="16"
+                            maxLength="15"
                             type={!visibleConfirmPassword ? "password" : "text"}
                             onChange={(e) => setConfirmPassword(e.currentTarget.value)}
                             required
