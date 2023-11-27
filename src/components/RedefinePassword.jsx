@@ -24,7 +24,7 @@ export default function RedefinePassword() {
 
     const router = useRouter()
 
-    const redefinePasswordUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
+    const redefinePasswordUrl = `https://reverse-time-back-end.vercel.app/redefinepassword/${2}`
 
     const redefinePassword = (e) => {
         e.preventDefault()

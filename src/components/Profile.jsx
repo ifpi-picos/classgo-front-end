@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios"
 import Button from "./Button"
 import ButtonName from "./ButtonName"
 import DivButtons from "./DivButtons"
@@ -15,21 +16,87 @@ import PrivateRoute from "./PrivateRoute"
 import Section from "./Section"
 import SideBar from "./SideBar"
 import Title from "./Title"
-import VisiblePassword from "./VisiblePassword"
 import { HiUser } from "react-icons/hi"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function Profile() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [visiblePassoword, setVisiblePassword] = useState(false)
     const [visibleButtonEdit, setVisibleButtonEdit] = useState(true)
 
-    const usersUrl = "https://reverse-time-back-end.vercel.app/redefinepassword"
+    const router = useRouter()
+
+    const getUserUrl = `https://reverse-time-back-end.vercel.app/users/${1}`
+    const updateUserUrl = `https://reverse-time-back-end.vercel.app/users/update/${1}`
+
+    useEffect(() => {
+        axios.get(getUserUrl, { headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }})
+        .then((res) => {
+            if (res.status === 200) {
+                setName(res.data.name)
+                setEmail(res.data.email)
+                return null
+            }
+
+            if (res.status === 401) {
+                localStorage.clear()
+                return router.replace("/")
+            }
+        })
+        .catch((err) => {
+            if (err.response.status === 401) {
+                localStorage.clear()
+                return router.replace("/")
+            }
+        })
+    })
+
+    const editButtonClicked = () => {
+        setVisibleButtonEdit(false)
+    }
+
+    const cancelButtonClicked = () => {
+        setVisibleButtonEdit(true)
+    }
+
+    const update = (e) => {
+        e.preventDefault()
+
+        axios
+            .put(updateUserUrl, {name, email}, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    return alert(res.data)
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    return alert(err.response.data)
+                }
+
+                else if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    }
 
     return (
-        <PrivateRoute url={usersUrl}>
+        <>
             <SideBar/>
 
             <Main>
@@ -46,59 +113,57 @@ export default function Profile() {
                         <HiUser className="mt-16" size="135"/>
                     </div>
 
-                    <Form className="w-2/5 border border-t-0 shadow-md rounded-t-none rounded-xl flex justify-center items-center">
+                    <Form className="w-2/5 border border-t-0 shadow-md rounded-t-none rounded-xl flex justify-center items-center" onSubimit={update}>
                         <Fieldset className="w-5/6 my-10 flex flex-col items-center">
                             <DivInputs>
-                                <DivInput>
-                                    <Input
-                                        className="w-full px-3 py-2 border-b-2 border-b-gray-300"
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        placeholder="Nome"
-                                        minLength="3"
-                                        maxLength="30"
-                                        onChange={setName}
-                                        required
-                                    />
-                                </DivInput>
+                                {visibleButtonEdit ? (
+                                    <>
+                                        <DivInput>
+                                            <div className="w-full px-3 py-2 border-b-2 border-b-gray-300">
+                                                {name}
+                                            </div>
+                                        </DivInput>
 
-                                <DivInput>
-                                    <Input
-                                        className="w-full px-3 py-2 border-b-2 border-b-gray-300"
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        placeholder="Email"
-                                        maxLength="60"
-                                        onChange={setEmail}
-                                        required
-                                    />
-                                </DivInput>
+                                        <DivInput>
+                                        <div className="w-full px-3 py-2 border-b-2 border-b-gray-300">
+                                                {email}
+                                            </div>
+                                        </DivInput>
+                                    </>
+                                ) : (
+                                    <>
+                                        <DivInput>
+                                            <Input
+                                                className="w-full px-3 py-2 border-b-2 border-b-gray-300"
+                                                id="name"
+                                                name="name"
+                                                type="text"
+                                                placeholder="Nome"
+                                                maxLength="60"
+                                                onChange={setName}
+                                                required
+                                            />
+                                        </DivInput>
 
-                                <DivInput>
-                                    <Input
-                                        className="w-full pl-3 pr-12 py-2 border-b-2 border-b-gray-300"
-                                        id="password"
-                                        name="password"
-                                        placeholder="Senha"
-                                        minLength="6"
-                                        maxLength="15"
-                                        type={!visiblePassoword ? "password" : "text"}
-                                        onChange={setPassword}
-                                        required
-                                    />
-
-                                    <VisiblePassword
-                                        visiblePassoword={visiblePassoword}
-                                        setVisiblePassword={setVisiblePassword}
-                                    />
-                                </DivInput>
+                                        <DivInput>
+                                            <Input
+                                                className="w-full px-3 py-2 border-b-2 border-b-gray-300"
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                placeholder="Email"
+                                                maxLength="60"
+                                                onChange={setEmail}
+                                                required
+                                            />
+                                        </DivInput>
+                                    </>
+                                )}                               
                             </DivInputs>
 
                             {visibleButtonEdit ? (
                                     <DivButtons className="w-full my-5 text-gray-50 flex justify-center items-center">
-                                        <Button className="px-6 py-3 bg-blue-500 rounded-lg" onClick={() => setVisibleButtonEdit(false)}>
+                                        <Button className="px-6 py-3 bg-blue-500 rounded-lg" onClick={editButtonClicked}>
                                             <ButtonName>
                                                 Editar
                                             </ButtonName>
@@ -106,13 +171,13 @@ export default function Profile() {
                                     </DivButtons>
                                 ) : (
                                     <DivButtons className="w-4/5 my-5 text-gray-50 flex justify-evenly items-center">
-                                        <Button className="px-6 py-3 bg-blue-500 rounded-xl" onClick={() => setVisibleButtonEdit(true)}>
+                                        <Button className="px-6 py-3 bg-blue-500 rounded-xl">
                                             <ButtonName>
                                                 Salvar
                                             </ButtonName>
                                         </Button>
 
-                                        <Button className="px-6 py-3 bg-red-500 rounded-xl" onClick={() => setVisibleButtonEdit(true)}>
+                                        <Button className="px-6 py-3 bg-red-500 rounded-xl" type="button" onClick={cancelButtonClicked}>
                                             <ButtonName>
                                                 Cancelar
                                             </ButtonName>
@@ -123,6 +188,6 @@ export default function Profile() {
                     </Form>
                 </Section>
             </Main>
-        </PrivateRoute>
+        </>
     )
 }
