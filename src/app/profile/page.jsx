@@ -1,10 +1,10 @@
 import Body from "@/components/Body"
-import UserProfile from "@/components/UserProfile"
+import Profile from "@/components/Profile"
 
-export default function UserProfilePage() {
+export default function ProfilePage() {
     return (
-        <Body>
-            <UserProfile/>
+         <Body>
+            <Profile/>
         </Body>
     )
 }

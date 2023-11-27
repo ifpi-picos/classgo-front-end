@@ -1,15 +1,10 @@
-"use client"
-
 import Body from "@/components/Body"
-import PrivateRoute from "@/components/PrivateRoute"
-import RedefinePasswordForm from "@/components/RedefinePasswordForm"
+import RedefinePassword from "@/components/RedefinePassword"
 
 export default function RedefinePasswordPage() {
     return (
-        <PrivateRoute>
-            <Body>
-                <RedefinePasswordForm/>
-            </Body>
-        </PrivateRoute>
+        <Body>
+            <RedefinePassword/>
+        </Body>
     )
 }

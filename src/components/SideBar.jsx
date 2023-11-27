@@ -1,61 +1,102 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import Aside from "./Aside"
+import Button from "./Button"
+import ButtonName from "./ButtonName"
+import ButtonIcon from "./ButtonIcon"
+import DivAside from "./DivAside"
+import DivButtons from "./DivButtons"
+import DivTitle from "./DivTitle"
+import Title from "./Title"
 import { HiHome, HiOutlineLogin, HiUser } from "react-icons/hi"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function SideBar() {
-    const [homeButtonBg, setHomeButtonBg] = useState("bg-blue-400")
-
     const router = useRouter()
-
+    
+    const homeButtonClicked = (e) => {
+        router.push("/home")
+    }
+    
     const profileButtonClicked = () => {
         router.push("/profile")
     }
 
-    const logout = () => {
+    const logoutButtonClicked = () => {
         localStorage.clear()
         router.replace("/")
     }
 
     return (
-        <div className="w-1/5 h-screen bg-blue-500 text-gray-100 flex flex-col">
-            <div className="w-full h-32 mb-4 flex justify-center items-center">
-                <span className="text-xl">idCurso</span>
-            </div>
+        <Aside>
+            <DivTitle className="w-full h-32 text-xl text-gray-50 flex justify-center items-center">
+                <Title>
+                    idCurso
+                </Title>
+            </DivTitle>
 
-            <div className="w-full mb-8 flex flex-col">
-                <div className="ml-4 mb-4 flex items-center">
-                    <span>Início</span>
-                </div>
+            <DivAside>
+                <DivTitle className="ml-4 mb-4">
+                    <Title>
+                        Início
+                    </Title>
+                </DivTitle>
 
-                <div className="flex justify-center items-center">
-                    <button className={`w-11/12 p-4 ${homeButtonBg} rounded-lg hover:bg-blue-400 focus:bg-blue-400 active:bg-blue-500 flex items-center`} type="button">
-                        <HiHome size="24"/>
-                        <span className="pl-2">Home</span>
-                    </button>
-                </div>
-            </div>
+                <DivButtons className="flex justify-center items-center">
+                    <Button
+                        className={`w-11/12 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500 flex items-center`}
+                        type="button"
+                        onClick={homeButtonClicked}
+                    >
+                        <ButtonIcon className="mr-2 mb-1 text-2xl">
+                            <HiHome/>
+                        </ButtonIcon>
 
-            <div className="w-full my-2 flex flex-col">
-                <div className="ml-4 mb-4 flex items-center">
-                    <span>Configurações</span>
-                </div>
+                        <ButtonName>
+                            Home
+                        </ButtonName>
+                    </Button>
+                </DivButtons>
+            </DivAside>
 
-                <div className="mb-2 flex justify-center items-center">
-                    <button className="w-11/12 p-4 rounded-lg hover:bg-blue-400 active:bg-blue-500 flex items-center" type="button" onClick={profileButtonClicked}>
-                        <HiUser size="24"/>
-                        <span className="pl-2">Perfil</span>
-                    </button>
-                </div>
+            <DivAside>
+                <DivTitle className="ml-4 mb-4">
+                    <Title>
+                        Configuraçoes
+                    </Title>
+                </DivTitle>
 
-                <div className="flex justify-center items-center">
-                    <button className="w-11/12 p-4 rounded-lg hover:bg-red-400 active:bg-blue-500 flex items-center" type="button" onClick={logout}>
-                        <HiOutlineLogin size="24"/>
-                            <span className="pl-2">Sair</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+                <DivButtons className="flex flex-col justify-center items-center">
+                    <Button
+                        className={`w-11/12 mb-2 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500 flex items-center`}
+                        type="button"
+                        onClick={profileButtonClicked}
+                    >
+                        <ButtonIcon className="mr-2 mb-1 text-2xl">
+                            <HiUser/>
+                        </ButtonIcon>
+
+                        <ButtonName>
+                            Perfil
+                        </ButtonName>
+                    </Button>
+
+                    <Button
+                        className={`w-11/12 p-4 rounded-xl hover:bg-red-400 active:bg-blue-500 flex items-center`}
+                        type="button"
+                        onClick={logoutButtonClicked}
+                    >
+                        <ButtonIcon className="mr-2 text-2xl">
+                            <HiOutlineLogin/>
+                        </ButtonIcon>
+
+                        <ButtonName>
+                            Sair
+                        </ButtonName>
+                    </Button>
+                </DivButtons>
+            </DivAside>
+        </Aside>
     )
 }

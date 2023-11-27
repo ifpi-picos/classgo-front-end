@@ -1,10 +1,10 @@
 import Body from "@/components/Body"
-import SignInForm from "@/components/SignInForm"
+import SignIn from "@/components/SignIn"
 
 export default function SignInPage() {
   return (
     <Body>
-      <SignInForm/>
+      <SignIn/>
     </Body>
   )
 }

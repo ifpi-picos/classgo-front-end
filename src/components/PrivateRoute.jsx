@@ -1,8 +1,9 @@
+import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export default function PrivateRoute({children}) {
-    const [redirecting, setRedirecting] = useState(true)
+export default function PrivateRoute({url, children}) {
+    const [redirecting, setRedirecting] = useState(false)
     
     const router = useRouter()
 
@@ -10,14 +11,27 @@ export default function PrivateRoute({children}) {
         const token = localStorage.getItem("token")
         
         if (!token) {
-            return router.push("/")
+            return router.replace("/")
         }
 
-        return setRedirecting(false)
-        
-    }, []);
+        axios
+            .get(url, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": token
+            }})
+            .catch((err) => {
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
 
-    if (redirecting) {
+        return setRedirecting(true)
+        
+    }, [])
+
+    if (!redirecting) {
         return null
     }
         

@@ -1,14 +1,10 @@
-"use client"
-
 import Body from "@/components/Body"
-import Main from "@/components/Main"
-import SideBar from "@/components/SideBar"
+import Home from "@/components/Home"
 
 export default function HomePage() {
     return (
         <Body>
-            <SideBar/>
-            <Main/>
+            <Home/>
         </Body>
     )
 }
