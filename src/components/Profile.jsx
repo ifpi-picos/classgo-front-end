@@ -17,18 +17,23 @@ import Section from "./Section"
 import SideBar from "./SideBar"
 import Title from "./Title"
 import { HiUser } from "react-icons/hi"
+import { jwtDecode } from "jwt-decode"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function Profile() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
+    const [newName, setNewName] = useState()
+    const [newEmail, setNewEmail] = useState()
     const [visibleButtonEdit, setVisibleButtonEdit] = useState(true)
+
+    const {id} = jwtDecode(localStorage.getItem("token"))
 
     const router = useRouter()
 
-    const getUserUrl = `https://reverse-time-back-end.vercel.app/users/${1}`
-    const updateUserUrl = `https://reverse-time-back-end.vercel.app/users/update/${1}`
+    const getUserUrl = `https://reverse-time-back-end.vercel.app/users/${id}`
+    const updateUserUrl = `https://reverse-time-back-end.vercel.app/users/update/${id}`
 
     useEffect(() => {
         axios.get(getUserUrl, { headers: {
@@ -68,13 +73,18 @@ export default function Profile() {
         e.preventDefault()
 
         axios
-            .put(updateUserUrl, {name, email}, {headers: {
+            .put(updateUserUrl, {newName, newEmail}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
             }})
             .then((res) => {
                 if (res.status === 200) {
+                    setVisibleButtonEdit(true)
+                    return alert(res.data)
+                }
+
+                if (res.status === 400) {
                     return alert(res.data)
                 }
 
@@ -96,7 +106,7 @@ export default function Profile() {
     }
 
     return (
-        <>
+        <PrivateRoute url={getUserUrl}>
             <SideBar/>
 
             <Main>
@@ -139,8 +149,8 @@ export default function Profile() {
                                                 name="name"
                                                 type="text"
                                                 placeholder="Nome"
-                                                maxLength="60"
-                                                onChange={setName}
+                                                maxLength="30"
+                                                onChange={setNewName}
                                                 required
                                             />
                                         </DivInput>
@@ -153,7 +163,7 @@ export default function Profile() {
                                                 type="email"
                                                 placeholder="Email"
                                                 maxLength="60"
-                                                onChange={setEmail}
+                                                onChange={setNewEmail}
                                                 required
                                             />
                                         </DivInput>
@@ -188,6 +198,6 @@ export default function Profile() {
                     </Form>
                 </Section>
             </Main>
-        </>
+        </PrivateRoute>
     )
 }

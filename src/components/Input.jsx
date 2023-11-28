@@ -1,6 +1,6 @@
 "use client"
 
-export default function Input({className, id, name, type, placeholder, minLength, maxLength, onChange = (e) => {}, required, readOnly}) {
+export default function Input({className, id, name, type, placeholder, minLength, maxLength, onChange = () => {}, required, readOnly}) {
     return (
         <input
             className={className}

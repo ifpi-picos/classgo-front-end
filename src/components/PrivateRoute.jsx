@@ -20,6 +20,12 @@ export default function PrivateRoute({url, children}) {
                 "Content-Type": "application/json",
                 "Authorization": token
             }})
+            .then((res) => {
+                if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
             .catch((err) => {
                 if (err.response.status === 401) {
                     localStorage.clear()
