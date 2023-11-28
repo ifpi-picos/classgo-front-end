@@ -17,9 +17,9 @@ import Section from "./Section"
 import SideBar from "./SideBar"
 import Title from "./Title"
 import { HiUser } from "react-icons/hi"
-import { jwtDecode } from "jwt-decode"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { jwtDecode } from "jwt-decode"
 
 export default function Profile() {
     const [name, setName] = useState()
@@ -27,8 +27,12 @@ export default function Profile() {
     const [newName, setNewName] = useState()
     const [newEmail, setNewEmail] = useState()
     const [visibleButtonEdit, setVisibleButtonEdit] = useState(true)
+    const [id, setId] = useState(0)
 
-    const {id} = jwtDecode(localStorage.getItem("token"))
+    useEffect(() => {
+        const {id} = jwtDecode(localStorage.getItem("token"))
+        setId(id)
+    })
 
     const router = useRouter()
 
@@ -45,7 +49,7 @@ export default function Profile() {
             if (res.status === 200) {
                 setName(res.data.name)
                 setEmail(res.data.email)
-                return null
+                return
             }
 
             if (res.status === 401) {
