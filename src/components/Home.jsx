@@ -31,11 +31,11 @@ export default function Home() {
                             <Modal visibleModal={showModal}/>
                         </div>
 
-                        <div className="w-full h-36 flex justify-end">
-                            <div className="mr-24">
-                                <button className="cursor-pointer" onClick={() => setShowModal(true)}>
+                        <div className="w-full h-48 flex justify-end">
+                            <div className="flex items-center mr-20">
+                                <button className="cursor-pointer border border-gray-800 rounded-full" onClick={() => setShowModal(true)}>
                                     <span>
-                                        <HiPlusCircle className="text-7xl text-gray-700"/>
+                                        <HiPlusCircle className="text-7xl text-green-500"/>
                                     </span>
                                 </button>
                             </div>
