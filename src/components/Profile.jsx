@@ -55,7 +55,32 @@ export default function Profile() {
     }
 
     const cancelButtonClicked = () => {
-        setVisibleButtonEdit(true)
+
+        axios.get(getUserUrl, { headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }})
+        .then((res) => {
+            if (res.status === 200) {
+                setId(res.data.id)
+                setName(res.data.name)
+                setEmail(res.data.email)
+                setVisibleButtonEdit(true)
+                return
+            }
+
+            if (res.status === 401) {
+                localStorage.clear()
+                return router.replace("/")
+            }
+        })
+        .catch((err) => {
+            if (err.response.status === 401) {
+                localStorage.clear()
+                return router.replace("/")
+            }
+        })
     }
 
     const updateUser = (e) => {

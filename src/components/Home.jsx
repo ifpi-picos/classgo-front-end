@@ -12,10 +12,10 @@ import { useState } from "react"
 export default function Home() {
     const [showModal, setShowModal] = useState(false)
     
-    const classesUrl = "https://idcurso-back-end.vercel.app/classes"
+    const getClassesUrl = "https://idcurso-back-end.vercel.app/classes"
 
     return (
-        <>
+        <PrivateRoute url={getClassesUrl}>
             <SideBar/>
 
             <Main>
@@ -43,6 +43,6 @@ export default function Home() {
                     </div>
                 </Section>
             </Main>
-        </>
+        </PrivateRoute>
     )
 }
