@@ -13,8 +13,6 @@ import { useRouter } from "next/navigation"
 export default function Profile() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
-    const [verifyName, setVerifyName] = useState("")
-    const [verifyEmail, setVerifyEmail] = useState("")
     const [visibleEditButton, setVisibleEditButton] = useState(true)
     const [id, setId] = useState()
 
@@ -85,13 +83,6 @@ export default function Profile() {
 
     const updateUser = (e) => {
         e.preventDefault()
-
-        setVerifyName(name)
-        setVerifyEmail(email)
-
-        if (name === verifyName || email === verifyEmail) {
-            return setVisibleEditButton(true)
-        }
 
         axios
             .put(updateUserUrl, {name, email}, {headers: {
