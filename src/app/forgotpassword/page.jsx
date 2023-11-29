@@ -1,10 +1,10 @@
 import Body from "@/components/Body"
-import ForgotPassword from "@/components/ForgotPassword"
+import ForgotPasswordForm from "@/components/ForgotPasswordForm"
 
 export default function ForgotPasswordPage() {
     return (
         <Body>
-            <ForgotPassword/>
+            <ForgotPasswordForm/>
         </Body>
     )
 }

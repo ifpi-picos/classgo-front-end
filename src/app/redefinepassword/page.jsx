@@ -1,10 +1,10 @@
 import Body from "@/components/Body"
-import RedefinePassword from "@/components/RedefinePassword"
+import RedefinePasswordForm from "@/components/RedefinePasswordForm"
 
 export default function RedefinePasswordPage() {
     return (
         <Body>
-            <RedefinePassword/>
+            <RedefinePasswordForm/>
         </Body>
     )
 }
