@@ -13,8 +13,9 @@ import { useRouter } from "next/navigation"
 export default function Profile() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
-
-    const [visibleButtonEdit, setVisibleButtonEdit] = useState(true)
+    const [verifyName, setVerifyName] = useState("")
+    const [verifyEmail, setVerifyEmail] = useState("")
+    const [visibleEditButton, setVisibleEditButton] = useState(true)
     const [id, setId] = useState()
 
     const router = useRouter()
@@ -51,11 +52,10 @@ export default function Profile() {
 
     const editButtonClicked = (e) => {
         e.preventDefault()
-        setVisibleButtonEdit(false)
+        setVisibleEditButton(false)
     }
 
     const cancelButtonClicked = () => {
-
         axios.get(getUserUrl, { headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Profile() {
                 setId(res.data.id)
                 setName(res.data.name)
                 setEmail(res.data.email)
-                setVisibleButtonEdit(true)
+                setVisibleEditButton(true)
                 return
             }
 
@@ -86,6 +86,13 @@ export default function Profile() {
     const updateUser = (e) => {
         e.preventDefault()
 
+        setVerifyName(name)
+        setVerifyEmail(email)
+
+        if (name === verifyName || email === verifyEmail) {
+            return setVisibleEditButton(true)
+        }
+
         axios
             .put(updateUserUrl, {name, email}, {headers: {
             "Accept": "application/json",
@@ -94,7 +101,7 @@ export default function Profile() {
         }})
             .then((res) => {
                 if (res.status === 200) {
-                    setVisibleButtonEdit(true)
+                    setVisibleEditButton(true)
                     return alert(res.data)
                 }
 
@@ -134,7 +141,7 @@ export default function Profile() {
                     <form className="flex justify-center items-center w-2/5 border border-t-0 shadow-md rounded-t-none rounded-xl" onSubmit={updateUser}>
                         <fieldset className="flex flex-col items-center w-5/6 my-10">
                             <div className="flex flex-col items-center w-5/6 my-5">
-                                {visibleButtonEdit ? (
+                                {visibleEditButton ? (
                                     <>
                                         <div className="flex justify-center items-center w-full mb-5">
                                             <input
