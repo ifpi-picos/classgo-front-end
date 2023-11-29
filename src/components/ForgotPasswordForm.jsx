@@ -7,7 +7,7 @@ import { useState } from "react"
 export default function ForgotPasswordForm() {
     const [email, setEmail] = useState()
 
-    const forgotPasswordUrl = "https://reverse-time-back-end.vercel.app/forgotpassword"
+    const forgotPasswordUrl = "https://idcurso-back-end.vercel.app/forgotpassword"
 
     const forgotPassword = (e) => {
         e.preventDefault()

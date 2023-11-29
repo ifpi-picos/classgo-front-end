@@ -19,8 +19,8 @@ export default function Profile() {
 
     const router = useRouter()
 
-    const getUserUrl = `https://reverse-time-back-end.vercel.app/users/self`
-    const updateUserUrl = `https://reverse-time-back-end.vercel.app/users/update/${id}`
+    const getUserUrl = `https://idcurso-back-end.vercel.app/users/self`
+    const updateUserUrl = `https://idcurso-back-end.vercel.app/users/update/${id}`
 
     useEffect(() => {
         axios.get(getUserUrl, { headers: {
@@ -60,8 +60,7 @@ export default function Profile() {
 
     const updateUser = (e) => {
         e.preventDefault()
-        console.log("entrou")
-        
+
         axios
             .put(updateUserUrl, {name, email}, {headers: {
             "Accept": "application/json",

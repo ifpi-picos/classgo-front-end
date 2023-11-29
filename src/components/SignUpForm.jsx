@@ -18,7 +18,7 @@ export default function SignUpForm() {
     
     const router = useRouter()
 
-    const signUpUrl = "https://reverse-time-back-end.vercel.app/auth/signup"
+    const signUpUrl = "https://idcurso-back-end.vercel.app/auth/signup"
 
     const signUp = (e) => {
         e.preventDefault()

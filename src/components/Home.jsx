@@ -11,7 +11,8 @@ import { useState } from "react"
 
 export default function Home() {
     const [showModal, setShowModal] = useState(false)
-    const classesUrl = "https://reverse-time-back-end.vercel.app/classes"
+    
+    const classesUrl = "https://idcurso-back-end.vercel.app/classes"
 
     return (
         <>
