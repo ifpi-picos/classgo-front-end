@@ -47,7 +47,7 @@ export default function SignUpForm() {
                     </div>
 
                     <div className="flex flex-col items-center w-5/6 my-5">
-                        <div className="mb-5 flex flex-col items-center w-full">
+                        <div className="flex flex-col items-center w-full mb-5">
                             <input
                                 className="w-full px-3 py-2 rounded-xl"
                                 id="name"

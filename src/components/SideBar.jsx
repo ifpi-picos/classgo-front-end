@@ -1,10 +1,47 @@
 "use client"
 
-import { HiHome, HiOutlineLogin, HiUser } from "react-icons/hi"
+import { HiAcademicCap, HiHome, HiOutlineLogin, HiUser } from "react-icons/hi"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function SideBar() {
+    const [myClasses, setMyClasses] = useState([])
+
     const router = useRouter()
+
+    const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes"
+
+    useEffect(() => {
+        axios
+            .get(getMyClassesUrl, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    return setMyClasses(res.data)
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    })
+
+    const myClassesList = myClasses.map((myClass) => 
+        <button key={myClass.id} className="flex items-center w-11/12 mb-2 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" type="button">
+            <HiAcademicCap className="mr-2" size="24"/> <span>{myClass.description}</span>
+        </button>
+    )
     
     const homeButtonClicked = (e) => {
         router.push("/home")
@@ -20,7 +57,7 @@ export default function SideBar() {
     }
 
     return (
-        <aside className="w-1/5 h-screen bg-blue-500 text-gray-50 border-r-2 shadow-md flex flex-col items-center">
+        <aside className="flex flex-col items-center fixed left-0 w-1/5 h-screen bg-blue-500 text-gray-50 shadow-md">
             <div className="flex justify-center items-center w-full h-32 text-xl text-gray-50">
                 <span>idCurso</span>
             </div>
@@ -32,10 +69,24 @@ export default function SideBar() {
 
                 <div className="flex justify-center items-center">
                     <button className="flex items-center w-11/12 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" type="button"onClick={homeButtonClicked}>
-                        <HiHome className="mr-2 mb-1 text-2xl"/> <span>Home</span>
+                        <HiHome className="mr-2 mb-1" size="24"/> <span>Home</span>
                     </button>
                 </div>
             </div>
+
+            {myClasses.length > 0 ? (
+                <div className="flex flex-col w-full mb-8">
+                    <div className="ml-4 mb-4">
+                        <span>Turmas</span>
+                    </div>
+
+                    <div className="flex flex-col justify-center items-center">
+                        {myClassesList}
+                    </div>
+                </div>
+            ) : (
+                null
+            )}
 
             <div className="flex flex-col w-full mb-8">
                 <div className="ml-4 mb-4">
@@ -43,12 +94,12 @@ export default function SideBar() {
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <button className="flex items-center w-11/12 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" type="button"onClick={profileButtonClicked}>
-                        <HiUser className="mr-2 mb-1 text-2xl"/> <span>Perfil</span>
+                    <button className="flex items-center w-11/12 mb-2 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" type="button" onClick={profileButtonClicked}>
+                        <HiUser className="mr-2 mb-1" size="24"/> <span>Perfil</span>
                     </button>
 
-                    <button className="flex items-center w-11/12 p-4 rounded-xl hover:bg-red-400 active:bg-blue-500" type="button"onClick={logoutButtonClicked}>
-                        <HiOutlineLogin className="mr-2 text-2xl"/> <span>Sair</span>
+                    <button className="flex items-center w-11/12 p-4 rounded-xl hover:bg-red-400 active:bg-blue-500" type="button" onClick={logoutButtonClicked}>
+                        <HiOutlineLogin className="mr-2" size="24"/> <span>Sair</span>
                     </button>
                 </div>
             </div>

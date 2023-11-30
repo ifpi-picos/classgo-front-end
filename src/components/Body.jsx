@@ -1,6 +1,6 @@
 export default function Body({children}) {
     return (
-        <div className="w-full h-screen bg-gray-50 text-gray-950 flex justify-center items-center">
+        <div className="flex justify-end items-center w-full h-screen bg-gray-50 text-gray-950 border-gray-300">
             {children}
         </div>
     )
