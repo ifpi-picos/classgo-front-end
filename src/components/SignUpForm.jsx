@@ -61,7 +61,7 @@ export default function SignUpForm() {
                             />
                         </div>
 
-                        <div className="w-fulflex flex-col items-center l mb-5">
+                        <div className="flex flex-col items-center w-full mb-5">
                             <input
                                 className="w-full px-3 py-2 rounded-xl"
                                 id="email"
@@ -74,7 +74,7 @@ export default function SignUpForm() {
                             />
                         </div>
 
-                        <div className="w-fulflex flex-col items-center l mb-5">
+                        <div className="flex justify-center items-center w-full mb-5">
                             <input
                                 className="w-full pl-3 pr-12 py-2 rounded-xl"
                                 id="password"
@@ -92,7 +92,7 @@ export default function SignUpForm() {
                             />
                         </div>
 
-                        <div className="flex flex-col items-center w-full">
+                        <div className="flex justify-center items-center w-full">
                             <input
                                 className="w-full pl-3 pr-12 py-2 rounded-xl"
                                 id="newPassword"
