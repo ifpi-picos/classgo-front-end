@@ -15,6 +15,7 @@ export default function Home() {
     const [description, setDescription] = useState("")
     const [myClasses, setMyClasses] = useState([])
     const [showModal, setShowModal] = useState(false)
+    const [createClassButtonDisabled, setCreateClassButtonDisabled] = useState(false)
 
     const router = useRouter()
 
@@ -49,6 +50,8 @@ export default function Home() {
     const createClass = (e) => {
         e.preventDefault()
 
+        setCreateClassButtonDisabled(true)
+
         axios
             .post(createMyClasseUrl, {description}, {headers: {
                 "Accept": "application/json",
@@ -58,7 +61,9 @@ export default function Home() {
             .then((res) => {
                 if (res.status === 201) {
                     alert(res.data)
-                    return setShowModal(false)
+                    setShowModal(false)
+                    setCreateClassButtonDisabled(false)
+                    return
                 }
 
                 else if (res.status === 401) {
@@ -68,7 +73,9 @@ export default function Home() {
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.data)
+                    alert(err.response.data)
+                    setCreateClassButtonDisabled(false)
+                    return
                 }
 
                 else if (err.response.status === 401) {
@@ -76,11 +83,10 @@ export default function Home() {
                     return router.replace("/")
                 }
             })
-
     }
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-1/4 h-64 m-8 border-2  border-gray-300 rounded-xl shadow-md">
+        <div key={myClass.id} className="flex flex-col justify-between w-1/4 h-64 m-8 border-2 border-gray-300 rounded-xl shadow-md">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-gray-300">
                 <button className="px-4 hover:underline">
                     {myClass.description}
@@ -129,6 +135,7 @@ export default function Home() {
                                 onChange={setDescription}
                                 nameButton="Criar"
                                 onSubimit={createClass}
+                                disabled={createClassButtonDisabled}
                             />
                         </div>
                     ) : (

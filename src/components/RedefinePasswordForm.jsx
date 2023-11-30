@@ -7,10 +7,11 @@ import { useState } from "react"
 import VisiblePassword from "./VisiblePassword"
 
 export default function RedefinePasswordForm() {
-    const [newPassword, setNewPassword] = useState()
-    const [confirmNewPassword, setConfirmNewPassword] = useState()
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmNewPassword, setConfirmNewPassword] = useState("")
     const [visibleNewPassoword, setVisibleNewPassword] = useState(false)
     const [visibleConfirmNewPassword, setVisibleConfirmNewPassword] = useState(false)
+    const [redefinePasswordButtonDisabled, setRedefinePasswordButtonDisabled] = useState(false)
 
     const router = useRouter()
 
@@ -18,6 +19,8 @@ export default function RedefinePasswordForm() {
 
     const redefinePassword = (e) => {
         e.preventDefault()
+
+        setRedefinePasswordButtonDisabled(true)
 
         axios
             .put(redefinePasswordUrl, {newPassword, confirmNewPassword}, {headers: {
@@ -97,7 +100,7 @@ export default function RedefinePasswordForm() {
                         </div>
 
                         <div className="flex flex-col items-center my-10 text-gray-50">
-                            <button className="px-6 py-3 border border-gray-50 rounded-xl">
+                            <button className="px-6 py-3 border border-gray-50 rounded-xl" disabled={redefinePasswordButtonDisabled}>
                                 Redefinir
                             </button>
                         </div>

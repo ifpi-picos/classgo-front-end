@@ -1,4 +1,4 @@
-export default function Modal({openModal, closeModal, onChange, onSubimit, nameButton}) {
+export default function Modal({openModal, closeModal, onChange, nameButton, onSubimit, disabled}) {
 
     if (!openModal) {
         return null
@@ -20,14 +20,14 @@ export default function Modal({openModal, closeModal, onChange, onSubimit, nameB
                                 type="text"
                                 placeholder="Nome da Turma"
                                 minLength="3"
-                                maxLength="30"
+                                maxLength="18"
                                 onChange={(e) => onChange(e.target.value)}
                                 required
                             />
                         </div>
 
                         <div className="flex justify-evenly items-center w-4/5">
-                            <button className="bg-green-500 px-6 py-3 text-gray-50 rounded-xl">
+                            <button className="bg-green-500 px-6 py-3 text-gray-50 rounded-xl" disabled={disabled}>
                                 {nameButton}
                             </button>
 

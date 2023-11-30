@@ -5,12 +5,15 @@ import Link from "next/link"
 import { useState } from "react"
 
 export default function ForgotPasswordForm() {
-    const [email, setEmail] = useState()
+    const [email, setEmail] = useState("")
+    const [forgotPasswordButtonDisabled, setForgotPasswordButtonDisabled] = useState(false)
 
     const forgotPasswordUrl = "https://idcurso-back-end.vercel.app/forgotpassword"
 
     const forgotPassword = (e) => {
         e.preventDefault()
+
+        setForgotPasswordButtonDisabled(true)
 
         axios
             .post(forgotPasswordUrl, {email})
@@ -51,7 +54,7 @@ export default function ForgotPasswordForm() {
                     </div>
 
                     <div className="flex flex-col items-center my-10 text-gray-50">
-                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl">
+                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl" disabled={forgotPasswordButtonDisabled}>
                             Solicitar
                         </button>
 

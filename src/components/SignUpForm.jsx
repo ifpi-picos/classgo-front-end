@@ -7,12 +7,13 @@ import VisiblePassword from "./VisiblePassword"
 import Link from "next/link"
 
 export default function SignUpForm() {
-    const [name, setName] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassword] = useState()
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [visiblePassoword, setVisiblePassword] = useState(false)
     const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false)
+    const [signUpButtonDisabled, setSignUpButtonDisabled] = useState(false)
 
     const type = "Professor"
     
@@ -22,6 +23,8 @@ export default function SignUpForm() {
 
     const signUp = (e) => {
         e.preventDefault()
+
+        setSignUpButtonDisabled(true)
 
         axios
             .post(signUpUrl, {name, email, type, password, confirmPassword})
@@ -112,7 +115,7 @@ export default function SignUpForm() {
                     </div>
 
                     <div className="flex flex-col items-center my-10 text-gray-50">
-                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl">
+                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl" disabled={signUpButtonDisabled}>
                             Cadastrar-se
                         </button>
 

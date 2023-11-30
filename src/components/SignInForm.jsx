@@ -7,9 +7,10 @@ import { useState } from "react"
 import VisiblePassword from "./VisiblePassword"
 
 export default function SignInForm() {
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [visiblePassoword, setVisiblePassword] = useState(false)
+    const [signInButtonDisabled, setSignInButtonDisabled] = useState(false)
 
     const router = useRouter()
 
@@ -17,6 +18,8 @@ export default function SignInForm() {
 
     const signIn = (e) => {
         e.preventDefault()
+
+        setSignInButtonDisabled(true)
 
         axios
             .post(signInUrl, {email, password})
@@ -86,7 +89,7 @@ export default function SignInForm() {
                     </div>
 
                     <div className="flex flex-col items-center my-10 text-gray-50">
-                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl">
+                        <button className="mb-5 px-6 py-3 border border-gray-50 rounded-xl" disabled={signInButtonDisabled}>
                             Entrar
                         </button>
 

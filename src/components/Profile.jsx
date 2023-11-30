@@ -11,10 +11,11 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function Profile() {
+    const [id, setId] = useState(null)
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [visibleEditButton, setVisibleEditButton] = useState(true)
-    const [id, setId] = useState()
+    const [saveButtonDisabled, setSaveButtonDisabled] = useState(false)
 
     const router = useRouter()
 
@@ -83,6 +84,8 @@ export default function Profile() {
 
     const updateUser = (e) => {
         e.preventDefault()
+
+        setSaveButtonDisabled(true)
 
         axios
             .put(updateUserUrl, {name, email}, {headers: {
@@ -194,7 +197,7 @@ export default function Profile() {
                                         </div>
 
                                         <div className="flex justify-evenly items-center w-4/5 my-5 text-gray-50">
-                                            <button className="px-6 py-3 bg-blue-500 rounded-xl">
+                                            <button className="px-6 py-3 bg-blue-500 rounded-xl" disabled={saveButtonDisabled}>
                                                 Salvar
                                             </button>
 
