@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios"
 import Header from "./Header"
 import {  HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi"
 import Main from "./Main"
@@ -8,9 +9,7 @@ import PrivateRoute from "./PrivateRoute"
 import Section from "./Section"
 import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { useRouter } from "next/navigation"
-import Loading from "./loading"
 
 export default function Home() {
     const [description, setDescription] = useState("")
@@ -140,9 +139,7 @@ export default function Home() {
                             />
                         </div>
                     ) : (
-                        <>
-                            <Loading/>
-                            
+                        <>                            
                             {showModal ? (
                                 <Modal
                                     openModal={showModal}
