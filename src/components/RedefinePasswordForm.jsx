@@ -30,19 +30,23 @@ export default function RedefinePasswordForm() {
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    localStorage.clear()
                     alert("Senha redefinada com sucesso!")
-                    return router.replace("/")
+                    localStorage.clear()
+                    router.replace("/")
+                    return
                 }
 
                 else if (res.status === 401) {
                     localStorage.clear()
-                    return router.replace("/")
+                    router.replace("/")
+                    return
                 }
             })
             .catch ((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.data)
+                    alert(err.response.data)
+                    setRedefinePasswordButtonDisabled(false)
+                    return
                 }
 
                 else if (err.response.status === 401) {

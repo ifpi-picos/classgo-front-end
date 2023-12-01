@@ -19,13 +19,17 @@ export default function ForgotPasswordForm() {
             .post(forgotPasswordUrl, {email})
             .then((res) => {               
                 if (res.status === 200) {
+                    alert(res.data.message)
+                    setForgotPasswordButtonDisabled(false)
                     localStorage.setItem("token", res.data.token)
-                    return alert(res.data.message)
+                    return
                 }
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.data)
+                    alert(err.response.data)
+                    setForgotPasswordButtonDisabled(false)
+                    return
                 }
             })
     }

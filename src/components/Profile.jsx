@@ -110,13 +110,14 @@ export default function Profile() {
             })
             .catch((err) => {
                 if (err.response.status === 400) {
+                    alert(err.response.data)
                     setSaveButtonDisabled(false)
-                    return alert(err.response.data)
                 }
 
                 else if (res.status === 401) {
                     localStorage.clear()
-                    return router.replace("/")
+                    router.replace("/")
+                    return
                 }
             })
     }

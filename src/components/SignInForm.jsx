@@ -25,6 +25,7 @@ export default function SignInForm() {
             .post(signInUrl, {email, password})
             .then((res) => {
                 if (res.status === 200) {
+                    setSignInButtonDisabled(false)
                     localStorage.setItem("token", res.data.token)
 
                     if (res.data.userType === "administrador") {
@@ -36,7 +37,9 @@ export default function SignInForm() {
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.data)
+                    alert(err.response.data)
+                    setSignInButtonDisabled(false)
+                    return
                 }
             })
     }

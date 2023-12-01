@@ -31,12 +31,16 @@ export default function SignUpForm() {
             .then((res) => {
                 if (res.status === 201) {
                     alert(res.data)
-                    return router.replace("/")
+                    setSignUpButtonDisabled(false)
+                    router.replace("/")
+                    return
                 }
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    return alert(err.response.data)
+                    alert(err.response.data)
+                    setSignUpButtonDisabled(false)
+                    return
                 }
             })
     }
