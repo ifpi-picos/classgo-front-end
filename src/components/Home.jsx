@@ -1,7 +1,7 @@
 "use client"
 
 import Header from "./Header"
-import {  HiOutlinePencilAlt, HiOutlineTrash, HiTrash } from "react-icons/hi"
+import {  HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi"
 import Main from "./Main"
 import Modal from "./Modal"
 import PrivateRoute from "./PrivateRoute"
@@ -10,6 +10,7 @@ import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import Loading from "./loading"
 
 export default function Home() {
     const [description, setDescription] = useState("")
@@ -45,7 +46,7 @@ export default function Home() {
                     return router.replace("/")
                 }
             })
-    })
+    }, [])
 
     const createClass = (e) => {
         e.preventDefault()
@@ -86,9 +87,9 @@ export default function Home() {
     }
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-1/4 h-64 m-8 border-2 border-gray-300 rounded-xl shadow-md">
+        <div key={myClass.id} className="flex flex-col justify-between w-1/4 h-64 m-8 border-2 border-gray-300 rounded-xl shadow-md break-all">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-gray-300">
-                <button className="px-4 hover:underline">
+                <button className="px-4 hover:underline break-words">
                     {myClass.description}
                 </button>
             </div>
@@ -140,6 +141,8 @@ export default function Home() {
                         </div>
                     ) : (
                         <>
+                            <Loading/>
+                            
                             {showModal ? (
                                 <Modal
                                     openModal={showModal}

@@ -1,9 +1,9 @@
 "use client"
 
-import { HiAcademicCap, HiHome, HiOutlineLogin, HiUser } from "react-icons/hi"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
 import axios from "axios"
+import { HiAcademicCap, HiHome, HiOutlineLogin, HiUser } from "react-icons/hi"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function SideBar() {
     const [myClasses, setMyClasses] = useState([])
@@ -21,7 +21,8 @@ export default function SideBar() {
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    return setMyClasses(res.data)
+                    setMyClasses(res.data)
+                    return
                 }
 
                 else if (res.status === 401) {
@@ -35,7 +36,7 @@ export default function SideBar() {
                     return router.replace("/")
                 }
             })
-    })
+    }, [])
 
     const myClassesList = myClasses.map((myClass) => 
         <button key={myClass.id} className="flex items-center w-11/12 mb-2 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" type="button">
