@@ -7,12 +7,12 @@ export default function Modal({openModal, closeModal, onChange, nameButton, onSu
     return (
         <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-25">
                 <form className="flex flex-col justify-center items-center w-1/3 h-80 bg-gray-50 rounded-xl" onSubmit={onSubimit}>
-                    <fieldset className="flex flex-col justify-evenly items-center w-11/12 h-72 rounded-xl">
-                        <div>
+                    <fieldset className="flex flex-col items-center w-11/12 h-72 rounded-xl">
+                        <div className="mt-10">
                             <span>Nova Turma</span>
                         </div>
 
-                        <div className="flex flex-col items-center w-4/5">
+                        <div className="flex flex-col items-center w-4/5 mt-10">
                             <input
                                 className="w-full px-3 py-2 border-b-2 border-b-gray-300"
                                 id="description"
@@ -26,7 +26,7 @@ export default function Modal({openModal, closeModal, onChange, nameButton, onSu
                             />
                         </div>
 
-                        <div className="flex justify-evenly items-center w-4/5">
+                        <div className="flex justify-evenly items-center w-4/5 mt-10">
                             <button className="bg-green-500 px-6 py-3 text-gray-50 rounded-xl" disabled={disabled}>
                                 {nameButton}
                             </button>
