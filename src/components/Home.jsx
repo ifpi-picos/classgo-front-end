@@ -12,6 +12,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
+    const [createClassNow, setCreateClassNow] = useState(false)
     const [description, setDescription] = useState("")
     const [myClasses, setMyClasses] = useState([])
     const [showModal, setShowModal] = useState(false)
@@ -31,6 +32,10 @@ export default function Home() {
             }})
             .then((res) => {
                 if (res.status === 200) {
+                    if (res.data.length < 1) {
+                        return setCreateClassNow(true)
+                    }
+
                     return setMyClasses(res.data)
                 }
 
@@ -63,6 +68,31 @@ export default function Home() {
                     alert(res.data)
                     setShowModal(false)
                     setCreateClassButtonDisabled(false)
+                    setCreateClassNow(false)
+
+                    axios
+                        .get(getMyClassesUrl, {headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": localStorage.getItem("token")
+                        }})
+                        .then((res) => {
+                            if (res.status === 200) {
+                                return setMyClasses(res.data)
+                            }
+            
+                            else if (res.status === 401) {
+                                localStorage.clear()
+                                return router.replace("/")
+                            }
+                        })
+                        .catch((err) => {
+                            if (err.response.status === 401) {
+                                localStorage.clear()
+                                return router.replace("/")
+                            }
+                        })
+
                     return
                 }
 
@@ -139,21 +169,27 @@ export default function Home() {
                             />
                         </div>
                     ) : (
-                        <>                            
-                            {showModal ? (
-                                <Modal
-                                    openModal={showModal}
-                                    closeModal={() => setShowModal(false)}
-                                    onChange={setDescription}
-                                    nameButton="Criar"
-                                    onSubimit={createClass}
-                                />
+                        <>
+                            {!createClassNow ? (
+                                null
                             ) : (
-                                <div>
-                                    <button className="py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowModal(true)}>
-                                        Crie uma Turma
-                                    </button>
-                                </div>
+                                <>
+                                    {showModal ? (
+                                        <Modal
+                                            openModal={showModal}
+                                            closeModal={() => setShowModal(false)}
+                                            onChange={setDescription}
+                                            nameButton="Criar"
+                                            onSubimit={createClass}
+                                        />
+                                    ) : (
+                                        <div>
+                                            <button className="py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowModal(true)}>
+                                                Crie uma Turma
+                                            </button>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </>
                     )}
