@@ -4,7 +4,7 @@ import axios from "axios"
 import Header from "./Header"
 import {  HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi"
 import Main from "./Main"
-import Modal from "./Modal"
+import ClassModal from "./ClassModal"
 import PrivateRoute from "./PrivateRoute"
 import Section from "./Section"
 import SideBar from "./SideBar"
@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation"
 export default function Home() {
     const [createClassNow, setCreateClassNow] = useState(false)
     const [description, setDescription] = useState("")
+    const [totalLessons, setTotalLessons] = useState(0)
     const [myClasses, setMyClasses] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [createClassButtonDisabled, setCreateClassButtonDisabled] = useState(false)
@@ -58,7 +59,7 @@ export default function Home() {
         setCreateClassButtonDisabled(true)
 
         axios
-            .post(createMyClasseUrl, {description}, {headers: {
+            .post(createMyClasseUrl, {description, totalLessons}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -124,11 +125,11 @@ export default function Home() {
             </div>
 
             <div className="flex justify-end items-center w-full">
-                <button className="mr-2 mb-2 text-green-700 rounded-full hover:bg-green-50 p-3" type="button">
+                <button className="mr-2 mb-2 text-green-700 rounded-full hover:bg-green-100 p-3" type="button">
                     <HiOutlinePencilAlt size="28"/>
                 </button>
 
-                <button className="mr-4 mb-2 text-red-700 rounded-full hover:bg-red-50 p-3" type="button">
+                <button className="mr-4 mb-2 text-red-500 rounded-full hover:bg-red-100 p-3" type="button">
                     <HiOutlineTrash size="28"/>
                 </button>
             </div>
@@ -159,10 +160,11 @@ export default function Home() {
                                 {myClassesList}
                             </div>
 
-                            <Modal
+                            <ClassModal
                                 openModal={showModal}
                                 closeModal={() => setShowModal(false)}
-                                onChange={setDescription}
+                                onChangeDescription={setDescription}
+                                onChangeLessons={setTotalLessons}
                                 nameButton="Criar"
                                 onSubimit={createClass}
                                 disabled={createClassButtonDisabled}
@@ -175,10 +177,11 @@ export default function Home() {
                             ) : (
                                 <>
                                     {showModal ? (
-                                        <Modal
+                                        <ClassModal
                                             openModal={showModal}
                                             closeModal={() => setShowModal(false)}
-                                            onChange={setDescription}
+                                            onChangeDescription={setDescription}
+                                            onChangeLessons={setTotalLessons}
                                             nameButton="Criar"
                                             onSubimit={createClass}
                                         />
