@@ -47,7 +47,7 @@ export default function SignInForm() {
     return (
         <div className="flex justify-center items-center w-full h-screen bg-blue-50">
             <form className="flex justify-center items-center w-1/3 bg-blue-500 rounded-xl shadow-md max-sm:w-11/12 max-md:w-3/4 max-lg:w-3/5 max-xl:w-1/2 max-2xl:w-2/5" onSubmit={signIn}>
-                <fieldset className="flex flex-col items-center w-5/6 my-10 border border-gray-50 rounded-xl max-sm:w-11/12 max-sm:my-4 max-sm:text-xs">
+                <fieldset className="flex flex-col items-center w-5/6 my-10 border border-gray-50 rounded-xl max-sm:my-6 max-sm:text-xs">
                     <div className="flex justify-center items-center my-16 text-gray-50 text-xl max-sm:my-12 max-sm:text-sm">
                         <span>Login</span>
                     </div>
