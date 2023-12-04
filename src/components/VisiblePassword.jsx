@@ -8,14 +8,12 @@ export default function VisiblePassword({visiblePassoword, setVisiblePassword}) 
             <div className="w-12 h-8 absolute flex justify-center items-center">
                 {!visiblePassoword ? (
                     <HiEye
-                        className="text-gray-500 absolute cursor-pointer"
-                        size="24"
+                        className="text-gray-500 text-xl absolute cursor-pointer max-sm:text-xs"
                         onClick={() => setVisiblePassword(true)}
                     />
                 ): (
                     <HiEyeOff
-                        className="text-gray-500 absolute cursor-pointer"
-                        size="24"
+                        className="text-gray-500 text-xl absolute cursor-pointer max-sm:text-xs"
                         onClick={() => setVisiblePassword(false)}
                     />
                 )}
