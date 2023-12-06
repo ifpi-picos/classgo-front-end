@@ -172,7 +172,7 @@ export default function Profile() {
                                                 </div>
 
                                                 <div className="flex justify-center items-center w-full my-5 text-gray-50">
-                                                    <button className="px-6 py-3 bg-blue-500 rounded-lg" type="button" onClick={editButtonClicked}>
+                                                    <button className="px-6 py-3 bg-green-600 rounded-lg" type="button" onClick={editButtonClicked}>
                                                         Editar
                                                     </button>
                                                 </div>

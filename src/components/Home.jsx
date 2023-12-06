@@ -13,16 +13,19 @@ import { useRouter } from "next/navigation"
 
 export default function Home() {
     const [createClassNow, setCreateClassNow] = useState(false)
+    const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
     const [totalLessons, setTotalLessons] = useState(0)
     const [myClasses, setMyClasses] = useState([])
-    const [showModal, setShowModal] = useState(false)
-    const [createClassButtonDisabled, setCreateClassButtonDisabled] = useState(false)
+    const [showClassModal, setShowClassModal] = useState(false)
+    const [classModalButtonName, setClassModalButtonName] = useState("")
+    const [classModalSubimitButtonDisabled, setClassModalSubimitButtonDisabled] = useState(false)
 
     const router = useRouter()
 
     const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes"
     const createMyClasseUrl = "https://idcurso-back-end.vercel.app/classes/create"
+    const updateMyClasseUrl = `https://idcurso-back-end.vercel.app/classes/update/${id}`
 
     useEffect(() => {
         axios
@@ -53,10 +56,15 @@ export default function Home() {
             })
     }, [])
 
+    const newClassButtonClicked = () => {
+        setShowClassModal(true)
+        setClassModalButtonName("Criar")
+    }
+
     const createClass = (e) => {
         e.preventDefault()
 
-        setCreateClassButtonDisabled(true)
+        setClassModalSubimitButtonDisabled(true)
 
         axios
             .post(createMyClasseUrl, {description, totalLessons}, {headers: {
@@ -67,8 +75,8 @@ export default function Home() {
             .then((res) => {
                 if (res.status === 201) {
                     alert(res.data)
-                    setShowModal(false)
-                    setCreateClassButtonDisabled(false)
+                    setShowClassModal(false)
+                    setClassModalSubimitButtonDisabled(false)
                     setCreateClassNow(false)
 
                     axios
@@ -101,11 +109,85 @@ export default function Home() {
                     localStorage.clear()
                     return router.replace("/")
                 }
+
+                return
             })
             .catch((err) => {
                 if (err.response.status === 400) {
                     alert(err.response.data)
-                    setCreateClassButtonDisabled(false)
+                    setClassModalSubimitButtonDisabled(false)
+                    return
+                }
+
+                else if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    }
+
+    const editClassButtonClicked = (myClass) => {
+        setId(myClass.id)
+        setDescription(myClass.description)
+        setTotalLessons(myClass.totalLessons)
+        setShowClassModal(true)
+        setClassModalButtonName("Salvar")
+    }
+
+    const updateClass = (e) => {
+        e.preventDefault()
+
+        setClassModalSubimitButtonDisabled(true)
+
+        axios
+            .put(updateMyClasseUrl, {description, totalLessons}, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    alert(res.data)
+                    setClassModalSubimitButtonDisabled(false)
+                    setShowClassModal(false)
+
+                    axios
+                        .get(getMyClassesUrl, {headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": localStorage.getItem("token")
+                        }})
+                        .then((res) => {
+                            if (res.status === 200) {
+                                return setMyClasses(res.data)
+                            }
+            
+                            else if (res.status === 401) {
+                                localStorage.clear()
+                                return router.replace("/")
+                            }
+                        })
+                        .catch((err) => {
+                            if (err.response.status === 401) {
+                                localStorage.clear()
+                                return router.replace("/")
+                            }
+                        })
+
+                    return
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+
+                return
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    alert(err.response.data)
+                    setClassModalSubimitButtonDisabled(false)
                     return
                 }
 
@@ -125,7 +207,7 @@ export default function Home() {
             </div>
 
             <div className="flex justify-end items-center w-full">
-                <button className="mr-2 mb-2 text-green-700 rounded-full hover:bg-green-100 p-3" type="button">
+                <button className="mr-2 mb-2 text-green-600 rounded-full hover:bg-green-100 p-3" type="button" onClick={() => editClassButtonClicked(myClass)}>
                     <HiOutlinePencilAlt size="28"/>
                 </button>
 
@@ -151,7 +233,7 @@ export default function Home() {
                     {myClasses.length > 0 ? (
                         <div className="flex flex-grow flex-col w-full">
                             <div className="flex justify-end items-center">
-                                <button className="my-6 mr-8 py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowModal(true)}>
+                                <button className="my-6 mr-8 py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={newClassButtonClicked}>
                                     Nova Turma
                                 </button>
                             </div>
@@ -160,15 +242,36 @@ export default function Home() {
                                 {myClassesList}
                             </div>
 
-                            <ClassModal
-                                openModal={showModal}
-                                closeModal={() => setShowModal(false)}
-                                onChangeDescription={setDescription}
-                                onChangeLessons={setTotalLessons}
-                                nameButton="Criar"
-                                onSubimit={createClass}
-                                disabled={createClassButtonDisabled}
-                            />
+                            {classModalButtonName === "Criar" ? (
+
+                                <ClassModal
+                                    openModal={showClassModal}
+                                    closeModal={() => setShowClassModal(false)}
+                                    title="Nova Turma"
+                                    buttonBg="bg-green-500"
+                                    nameButton={classModalButtonName}
+                                    onChangeDescription={setDescription}
+                                    onChangeLessons={setTotalLessons}
+                                    onSubimit={createClass}
+                                    disabled={classModalSubimitButtonDisabled}
+                                />
+                            ) : (
+                                <ClassModal
+                                    openModal={showClassModal}
+                                    closeModal={() => setShowClassModal(false)}
+                                    title="Editar Turma"
+                                    description={description}
+                                    totalLessons={totalLessons}
+                                    buttonBg="bg-blue-500"
+                                    nameButton={classModalButtonName}
+                                    onChangeDescription={setDescription}
+                                    onChangeLessons={setTotalLessons}
+                                    onSubimit={updateClass}
+                                    disabled={classModalSubimitButtonDisabled}
+                                />
+                            )}
+                            
+
                         </div>
                     ) : (
                         <>
@@ -178,12 +281,15 @@ export default function Home() {
                                 <>
                                     {showModal ? (
                                         <ClassModal
-                                            openModal={showModal}
-                                            closeModal={() => setShowModal(false)}
+                                            openModal={showClassModal}
+                                            closeModal={() => setShowClassModal(false)}
+                                            title="Nova Turma"
+                                            buttonBg="bg-green-500"
+                                            nameButton="Criar"
                                             onChangeDescription={setDescription}
                                             onChangeLessons={setTotalLessons}
-                                            nameButton="Criar"
                                             onSubimit={createClass}
+                                            disabled={classModalSubimitButtonDisabled}
                                         />
                                     ) : (
                                         <div>
