@@ -306,7 +306,7 @@ export default function Classes() {
                                 null
                             ) : (
                                 <>
-                                    {showModal ? (
+                                    {showClassModal ? (
                                         <ClassModal
                                             openModal={showClassModal}
                                             closeModal={() => setShowClassModal(false)}
