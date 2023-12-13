@@ -16,7 +16,7 @@ export default function SideBar() {
                 </div>
 
                 <div className="flex justify-center items-center">
-                    <Link className="flex items-center w-11/12 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/home">
+                    <Link className="flex items-center w-11/12 p-4 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/classes">
                         <HiAcademicCap className="mr-2" size="24"/> <span>Turmas</span>
                     </Link>
                 </div>

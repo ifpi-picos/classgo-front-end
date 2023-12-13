@@ -32,7 +32,7 @@ export default function SignInForm() {
                         return router.replace("/users")
                     }
                     
-                    return router.replace("/home")
+                    return router.replace("/classes")
                 }
             })
             .catch((err) => {

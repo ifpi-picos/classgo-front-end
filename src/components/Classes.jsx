@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation"
 import ConfirmModal from "./ConfirmModal"
 import Link from "next/link"
 
-export default function Home() {
+export default function Classes() {
     const [createClassNow, setCreateClassNow] = useState(false)
     const [id, setId] = useState()
     const [description, setDescription] = useState("")
@@ -217,9 +217,9 @@ export default function Home() {
     }
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-1/4 h-64 m-8 border-2 border-gray-300 rounded-xl shadow-md break-all">
+        <div key={myClass.id} className="flex flex-col justify-between w-1/5 h-60 m-8 border-2 border-gray-300 rounded-xl shadow-md break-all">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-gray-300">
-                <Link className="px-4 hover:underline break-words" href={`/${myClass.id}`}>
+                <Link className="px-4 hover:underline break-words" href={`/classes/${myClass.description}`}>
                     {myClass.description}
                 </Link>
             </div>
@@ -243,16 +243,14 @@ export default function Home() {
 
             <Main>
                 <Header>
-                    <div className="flex justify-center items-center w-full">
-                        <span>Minhas Turmas</span>
-                    </div>
+                    Minhas Turmas
                 </Header>
 
                 <Section>
                     {myClasses.length > 0 ? (
                         <div className="flex flex-grow flex-col w-full">
                             <div className="flex justify-end items-center">
-                                <button className="my-6 mr-8 py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={newMyClassButtonClicked}>
+                                <button className="my-6 mr-8 py-3 px-6 bg-green-500 text-gray-50 rounded-xl shadow-md" type="button" onClick={newMyClassButtonClicked}>
                                     Nova Turma
                                 </button>
                             </div>
