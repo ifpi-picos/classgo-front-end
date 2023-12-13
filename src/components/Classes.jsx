@@ -320,7 +320,7 @@ export default function Classes() {
                                         />
                                     ) : (
                                         <div>
-                                            <button className="py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowModal(true)}>
+                                            <button className="py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowClassModal(true)}>
                                                 Crie uma Turma
                                             </button>
                                         </div>
