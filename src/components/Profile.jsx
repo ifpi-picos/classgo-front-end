@@ -19,7 +19,7 @@ export default function Profile() {
 
     const router = useRouter()
 
-    const getUserUrl = `https://idcurso-back-end.vercel.app/users/self`
+    const getUserUrl = `https://idcurso-back-end.vercel.app/users/one`
     const updateUserUrl = `https://idcurso-back-end.vercel.app/users/update/${id}`
 
     const getUser = () => {

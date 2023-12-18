@@ -4,7 +4,7 @@ import Class from "@/components/Class"
 export default function ClassPage({params}) {
     return (
        <Body>
-            <Class params={params.class}/>
+            <Class description={params.class}/>
        </Body>
     )
 }

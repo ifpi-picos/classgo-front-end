@@ -6,7 +6,7 @@ export default function ConfirmModal({openModal, closeModal, onSubimit, title, d
     return (
         <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-25">
             <form className="flex flex-col justify-center items-center w-1/4 bg-gray-50 rounded-xl" onSubmit={onSubimit}>
-                <fieldset className="flex flex-col justify-center items-center w-11/12 my-4">
+                <fieldset className="flex flex-col justify-center items-center w-11/12 my-8">
                     <div className="w-11/12 flex justify-center items-center mt-8 mb-4">
                         <span>{title}</span>
                     </div>

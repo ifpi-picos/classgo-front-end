@@ -27,8 +27,8 @@ export default function Classes() {
 
     const router = useRouter()
 
-    const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes"
     const createMyClassUrl = "https://idcurso-back-end.vercel.app/classes/create"
+    const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes/all"
     const updateMyClassUrl = `https://idcurso-back-end.vercel.app/classes/update/${id}`
     const deleteMyClassUrl = `https://idcurso-back-end.vercel.app/classes/delete/${id}`
 
@@ -45,8 +45,7 @@ export default function Classes() {
                         return setCreateClassNow(true)
                     }
 
-                    setMyClasses(res.data)
-                    return
+                    return setMyClasses(res.data)
                 }
 
                 else if (res.status === 401) {
@@ -84,8 +83,8 @@ export default function Classes() {
             }})
             .then((res) => {
                 if (res.status === 201) {
-                    setShowClassModal(false)
                     setClassModalSubimitButtonDisabled(false)
+                    setShowClassModal(false)
                     setCreateClassNow(false)
                     getMyClasses()
                     return
@@ -95,8 +94,6 @@ export default function Classes() {
                     localStorage.clear()
                     return router.replace("/")
                 }
-
-                return
             })
             .catch((err) => {
                 if (err.response.status === 400) {
@@ -113,10 +110,10 @@ export default function Classes() {
     }
 
     const editMyClassButtonClicked = (myClass) => {
+        setShowClassModal(true)
         setId(myClass.id)
         setDescription(myClass.description)
         setTotalLessons(myClass.totalLessons)
-        setShowClassModal(true)
         setClassModalButtonName("Salvar")
     }
 
@@ -143,8 +140,6 @@ export default function Classes() {
                     localStorage.clear()
                     return router.replace("/")
                 }
-
-                return
             })
             .catch((err) => {
                 if (err.response.status === 400) {
@@ -180,34 +175,7 @@ export default function Classes() {
                 if (res.status === 200) {
                     setConfirmModalSubimitButtonDisabled(false)
                     setShowConfirmModal(false)
-
-                    axios
-                        .get(getMyClassesUrl, {headers: {
-                            "Accept": "application/json",
-                            "Content-Type": "application/json",
-                            "Authorization": localStorage.getItem("token")
-                        }})
-                        .then((res) => {
-                            if (res.status === 200) {
-                                if (res.data.length < 1) {
-                                    return setCreateClassNow(true)
-                                }
-
-                                return setMyClasses(res.data)
-                            }
-
-                            else if (res.status === 401) {
-                                localStorage.clear()
-                                return router.replace("/")
-                            }
-                        })
-                        .catch((err) => {
-                            if (err.response.status === 401) {
-                                localStorage.clear()
-                                return router.replace("/")
-                            }
-                        })
-                    
+                    getMyClasses()
                     return
                 }
             })
@@ -268,7 +236,7 @@ export default function Classes() {
                                     buttonBg="bg-green-500"
                                     nameButton={classModalButtonName}
                                     onChangeDescription={setDescription}
-                                    onChangeLessons={setTotalLessons}
+                                    onChangeTotalLessons={setTotalLessons}
                                     onSubimit={createMyClass}
                                     disabled={classModalSubimitButtonDisabled}
                                 />
@@ -282,7 +250,7 @@ export default function Classes() {
                                     buttonBg="bg-blue-500"
                                     nameButton={classModalButtonName}
                                     onChangeDescription={setDescription}
-                                    onChangeLessons={setTotalLessons}
+                                    onChangeTotalLessons={setTotalLessons}
                                     onSubimit={updateMyClass}
                                     disabled={classModalSubimitButtonDisabled}
                                 />
@@ -314,7 +282,7 @@ export default function Classes() {
                                             buttonBg="bg-green-500"
                                             nameButton="Criar"
                                             onChangeDescription={setDescription}
-                                            onChangeLessons={setTotalLessons}
+                                            onChangeTotalLessons={setTotalLessons}
                                             onSubimit={createMyClass}
                                             disabled={classModalSubimitButtonDisabled}
                                         />

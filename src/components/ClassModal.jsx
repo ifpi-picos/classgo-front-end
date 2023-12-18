@@ -1,4 +1,4 @@
-export default function ClassModal({openModal, closeModal, title, description, onChangeDescription, totalLessons, onChangeLessons, buttonBg, nameButton, onSubimit, disabled}) {
+export default function ClassModal({openModal, closeModal, title, description, onChangeDescription, totalLessons, onChangeTotalLessons, buttonBg, nameButton, onSubimit, disabled}) {
 
     if (!openModal) {
         return null
@@ -7,7 +7,7 @@ export default function ClassModal({openModal, closeModal, title, description, o
     return (
         <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-25">
                 <form className="flex flex-col justify-center items-center w-1/3 bg-gray-50 rounded-xl" onSubmit={onSubimit}>
-                    <fieldset className="flex flex-col items-center w-11/12 my-8 rounded-xl">
+                    <fieldset className="flex flex-col items-center w-11/12 my-12 rounded-xl">
                         <div className="mt-4">
                             <span>{title}</span>
                         </div>
@@ -36,7 +36,7 @@ export default function ClassModal({openModal, closeModal, title, description, o
                                     type="number"
                                     placeholder="Total de Aulas"
                                     value={totalLessons}
-                                    onChange={(e) => onChangeLessons(e.target.value)}
+                                    onChange={(e) => onChangeTotalLessons(e.target.value)}
                                     required
                                 />
                             </div>
