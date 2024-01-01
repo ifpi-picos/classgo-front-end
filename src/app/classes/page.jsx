@@ -1,5 +1,5 @@
-import Body from "@/components/Body"
-import Classes from "@/components/Classes"
+import Body from "@/components/tags/Body"
+import Classes from "@/components/classes/Classes"
 
 export default function ClassesPage() {
     return (

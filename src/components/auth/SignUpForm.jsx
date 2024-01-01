@@ -3,7 +3,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import VisiblePassword from "./VisiblePassword"
+import VisiblePassword from "../VisiblePassword"
 import Link from "next/link"
 
 export default function SignUpForm() {

@@ -1,12 +1,12 @@
 "use client"
 
 import axios from "axios"
-import Header from "./Header"
+import Header from "../tags/Header"
 import { HiUser } from "react-icons/hi"
-import Main from "./Main"
-import PrivateRoute from "./PrivateRoute"
-import Section from "./Section"
-import SideBar from "./SideBar"
+import Main from "../tags/Main"
+import PrivateRoute from "../PrivateRoute"
+import Section from "../tags/Section"
+import SideBar from "../SideBar"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -19,7 +19,7 @@ export default function Profile() {
 
     const router = useRouter()
 
-    const getUserUrl = `https://idcurso-back-end.vercel.app/users/one`
+    const getUserUrl = `https://idcurso-back-end.vercel.app/users/findOne`
     const updateUserUrl = `https://idcurso-back-end.vercel.app/users/update/${id}`
 
     const getUser = () => {

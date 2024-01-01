@@ -4,7 +4,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import VisiblePassword from "./VisiblePassword"
+import VisiblePassword from "../VisiblePassword"
 
 export default function SignInForm() {
     const [email, setEmail] = useState("")

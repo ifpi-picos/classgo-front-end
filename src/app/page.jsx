@@ -1,4 +1,4 @@
-import Body from "@/components/Body"
+import Body from "@/components/tags/Body"
 import SignInForm from "@/components/SignInForm"
 
 export default function SignInPage() {

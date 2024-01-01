@@ -1,5 +1,5 @@
-import Body from "@/components/Body"
-import Profile from "@/components/Profile"
+import Body from "@/components/tags/Body"
+import Profile from "@/components/profile/Profile"
 
 export default function ProfilePage() {
     return (

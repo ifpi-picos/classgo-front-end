@@ -1,16 +1,16 @@
 "use client"
 
 import axios from "axios"
-import Header from "./Header"
+import Header from "../tags/Header"
 import {  HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi"
-import Main from "./Main"
-import ClassModal from "./ClassModal"
-import PrivateRoute from "./PrivateRoute"
-import Section from "./Section"
-import SideBar from "./SideBar"
+import Main from "../tags/Main"
+import ClassModal from "../ClassModal"
+import PrivateRoute from "../PrivateRoute"
+import Section from "../tags/Section"
+import SideBar from "../SideBar"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import ConfirmModal from "./ConfirmModal"
+import ConfirmModal from "../ConfirmModal"
 import Link from "next/link"
 
 export default function Classes() {
@@ -28,9 +28,9 @@ export default function Classes() {
     const router = useRouter()
 
     const createMyClassUrl = "https://idcurso-back-end.vercel.app/classes/create"
-    const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes/all"
+    const getMyClassesUrl = "https://idcurso-back-end.vercel.app/classes/findAll"
     const updateMyClassUrl = `https://idcurso-back-end.vercel.app/classes/update/${id}`
-    const deleteMyClassUrl = `https://idcurso-back-end.vercel.app/classes/delete/${id}`
+    const deleteMyClassUrl = `https://idcurso-back-end.vercel.app/classes/destroy/${id}`
 
     const getMyClasses = () => {
         axios
@@ -187,7 +187,7 @@ export default function Classes() {
     const myClassesList = myClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-1/5 h-60 m-8 border-2 border-gray-300 rounded-xl shadow-md break-all">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-gray-300">
-                <Link className="px-4 hover:underline break-words" href={`/classes/${myClass.description}`}>
+                <Link className="px-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
                     {myClass.description}
                 </Link>
             </div>

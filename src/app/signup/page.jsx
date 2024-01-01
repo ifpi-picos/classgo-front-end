@@ -1,4 +1,4 @@
-import Body from "@/components/Body"
+import Body from "@/components/tags/Body"
 import SignUpForm from "@/components/SignUpForm"
 
 export default function SignUpPage () {
