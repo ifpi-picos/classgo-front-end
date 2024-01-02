@@ -1,6 +1,6 @@
 import axios from "axios"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function PrivateRoute({url, children}) {
     const [redirecting, setRedirecting] = useState(false)

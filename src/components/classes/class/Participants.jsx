@@ -1,12 +1,12 @@
 "use client"
 
 import Header from "@/components/tags/Header"
-import Main from "@/components/tags/Main"
-import Section from "@/components/tags/Section"
-import PrivateRoute from "@/components/PrivateRoute"
-import SideBar from "@/components/SideBar"
-import Link from "next/link"
 import { HiChartBar, HiClipboardList, HiUsers } from "react-icons/hi"
+import Link from "next/link"
+import Main from "@/components/tags/Main"
+import PrivateRoute from "@/components/user/PrivateRoute"
+import Section from "@/components/tags/Section"
+import SideBar from "@/components/tags/SideBar"
 
 export default function Participants({myClassDescription}) {
     const classDescription = myClassDescription.split("%20").join(" ")

@@ -1,5 +1,5 @@
 import Body from "@/components/tags/Body"
-import ForgotPasswordForm from "@/components/ForgotPasswordForm"
+import ForgotPasswordForm from "@/components/user/ForgotPasswordForm"
 
 export default function ForgotPasswordPage() {
     return (

@@ -1,15 +1,15 @@
 "use client"
 
-import Header from "@/components/tags/Header"
-import Main from "@/components/tags/Main"
-import Section from "@/components/tags/Section"
-import LessonModal from "@/components/LessonModal"
-import PrivateRoute from "@/components/PrivateRoute"
-import SideBar from "@/components/SideBar"
 import axios from "axios"
-import Link from "next/link"
-import { useEffect, useState } from "react"
+import Header from "@/components/tags/Header"
 import { HiChartBar, HiClipboardList, HiOutlinePencilAlt, HiUsers } from "react-icons/hi"
+import LessonModal from "@/components/modals/LessonModal"
+import Link from "next/link"
+import Main from "@/components/tags/Main"
+import PrivateRoute from "@/components/user/PrivateRoute"
+import Section from "@/components/tags/Section"
+import SideBar from "@/components/tags/SideBar"
+import { useEffect, useState } from "react"
 
 export default function Diary({myClassDescription}) {
     const [myClass, setMyClass] = useState({})

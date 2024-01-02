@@ -1,10 +1,10 @@
 "use client"
 
 import axios from "axios"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import VisiblePassword from "../VisiblePassword"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import VisiblePassword from "./VisiblePassword"
 
 export default function SignUpForm() {
     const [name, setName] = useState("")
