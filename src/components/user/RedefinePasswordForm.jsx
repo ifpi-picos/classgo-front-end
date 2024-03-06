@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import VisiblePassword from "./VisiblePassword"
 
-export default function RedefinePasswordForm() {
+export default function RedefinePasswordForm({id}) {
     const [newPassword, setNewPassword] = useState("")
     const [confirmNewPassword, setConfirmNewPassword] = useState("")
     const [visibleNewPassoword, setVisibleNewPassword] = useState(false)
@@ -15,7 +15,7 @@ export default function RedefinePasswordForm() {
 
     const router = useRouter()
 
-    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword/${3}`
+    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword/${id}`
 
     const redefinePassword = (e) => {
         e.preventDefault()
