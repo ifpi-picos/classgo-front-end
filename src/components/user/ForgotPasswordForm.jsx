@@ -8,7 +8,7 @@ export default function ForgotPasswordForm() {
     const [email, setEmail] = useState("")
     const [forgotPasswordButtonDisabled, setForgotPasswordButtonDisabled] = useState(false)
 
-    const forgotPasswordUrl = "https://idcurso-back-end.vercel.app/forgotpassword"
+    const forgotPasswordUrl = "https://idcurso-back-end.vercel.app/users/forgotpassword"
 
     const forgotPassword = (e) => {
         e.preventDefault()
@@ -39,7 +39,7 @@ export default function ForgotPasswordForm() {
             <form className="flex justify-center items-center w-1/3 bg-blue-500 rounded-xl shadow-md" onSubmit={forgotPassword}>
                 <fieldset className="flex flex-col items-center w-5/6 my-10 border border-gray-50 rounded-xl">
                     <div className="flex justify-center items-center my-10 text-gray-50 text-xl">
-                        <span>Login</span>
+                        <span>Solicitar Senha</span>
                     </div>
 
                     <div className="flex flex-col items-center w-5/6 my-5">
@@ -62,7 +62,7 @@ export default function ForgotPasswordForm() {
                             Solicitar
                         </button>
 
-                        <Link className="underline" href="/signup">
+                        <Link className="underline" href="/">
                             Voltar
                         </Link>
                     </div>

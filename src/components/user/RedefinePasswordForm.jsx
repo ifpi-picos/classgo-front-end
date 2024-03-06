@@ -15,7 +15,7 @@ export default function RedefinePasswordForm() {
 
     const router = useRouter()
 
-    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/redefinepassword/${2}`
+    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword/${3}`
 
     const redefinePassword = (e) => {
         e.preventDefault()
