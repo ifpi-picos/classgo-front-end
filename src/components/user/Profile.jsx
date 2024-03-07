@@ -166,6 +166,7 @@ export default function Profile() {
                                                         className="w-full px-3 py-2 border-b-2 border-b-gray-300"
                                                         id="name"
                                                         name="name"
+                                                        minLength="3"
                                                         maxLength="30"
                                                         value={name}
                                                         onChange={(e) => setName(e.target.value)}
