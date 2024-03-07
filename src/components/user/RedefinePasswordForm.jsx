@@ -16,7 +16,6 @@ export default function RedefinePasswordForm({id}) {
     const router = useRouter()
 
     const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword/${id}`
-    console.log(id)
 
     const redefinePassword = (e) => {
         e.preventDefault()
@@ -67,13 +66,14 @@ export default function RedefinePasswordForm({id}) {
                         </div>
 
                         <div className="flex flex-col items-center w-5/6 my-5">
-                            <div className="w-fulflex flex-col items-center l mb-5">
+                            <div className="w-full flex flex-col items-center l mb-5">
                                 <input
                                     className="w-full pl-3 pr-12 py-2 rounded-xl"
-                                    id="password"
-                                    name="password"
+                                    id="newPassword"
+                                    name="newPassword"
                                     type={!visibleNewPassoword ? "password" : "text"}
                                     placeholder="Senha"
+                                    minLength="6"
                                     maxLength="15"
                                     onChange={(e) => setNewPassword(e.target.value)}
                                     required
@@ -88,10 +88,11 @@ export default function RedefinePasswordForm({id}) {
                             <div className="flex flex-col items-center w-full">
                                 <input
                                     className="w-full pl-3 pr-12 py-2 rounded-xl"
-                                    id="newPassword"
-                                    name="newPassword"
+                                    id="confirmNewPassword"
+                                    name="confirmNewPassword"
                                     type={!visibleConfirmNewPassword ? "password" : "text"}
                                     placeholder="Confirmar Senha"
+                                    minLength="6"
                                     maxLength="15"
                                     onChange={(e) => setConfirmNewPassword(e.target.value)}
                                     required

@@ -88,6 +88,7 @@ export default function SignUpForm() {
                                 name="password"
                                 type={!visiblePassoword ? "password" : "text"}
                                 placeholder="Senha"
+                                minLength="6"
                                 maxLength="15"
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -102,10 +103,11 @@ export default function SignUpForm() {
                         <div className="flex justify-center items-center w-full">
                             <input
                                 className="w-full pl-3 pr-12 py-2 rounded-xl"
-                                id="newPassword"
-                                name="newPassword"
+                                id="confirmPassword"
+                                name="confirmPassword"
                                 type={!visibleConfirmPassword ? "password" : "text"}
                                 placeholder="Confirmar Senha"
+                                minLength="6"
                                 maxLength="15"
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required

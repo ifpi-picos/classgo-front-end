@@ -73,6 +73,7 @@ export default function SignInForm() {
                                 name="password"
                                 type={!visiblePassoword ? "password" : "text"}
                                 placeholder="Senha"
+                                minLength="6"
                                 maxLength="15"
                                 onChange={(e) => setPassword(e.target.value)}
                                 required

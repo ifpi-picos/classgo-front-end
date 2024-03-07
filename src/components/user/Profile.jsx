@@ -134,6 +134,7 @@ export default function Profile() {
                                                         name="name"
                                                         type="text"
                                                         placeholder="Nome"
+                                                        minLength="3"
                                                         maxLength="30"
                                                         value={name}
                                                         readOnly
