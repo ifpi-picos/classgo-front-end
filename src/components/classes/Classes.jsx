@@ -15,9 +15,10 @@ import Link from "next/link"
 
 export default function Classes() {
     const [createClassNow, setCreateClassNow] = useState(false)
-    const [id, setId] = useState()
+    const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
-    const [totalLessons, setTotalLessons] = useState(0)
+    const [totalNumberOfLessons, setTotalNumberOfLessons] = useState(0)
+    const [totalNumberOfStudents, setTotalNumberOfStudents] = useState(0)
     const [myClasses, setMyClasses] = useState([])
     const [showClassModal, setShowClassModal] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -76,7 +77,7 @@ export default function Classes() {
         setClassModalSubimitButtonDisabled(true)
 
         axios
-            .post(createMyClassUrl, {description, totalLessons}, {headers: {
+            .post(createMyClassUrl, {description, totalNumberOfLessons, totalNumberOfStudents}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -113,7 +114,8 @@ export default function Classes() {
         setShowClassModal(true)
         setId(myClass.id)
         setDescription(myClass.description)
-        setTotalLessons(myClass.totalLessons)
+        setTotalNumberOfLessons(myClass.totalNumberOfLessons)
+        setTotalNumberOfStudents(myClass.totalNumberOfStudents)
         setClassModalButtonName("Salvar")
     }
 
@@ -123,7 +125,7 @@ export default function Classes() {
         setClassModalSubimitButtonDisabled(true)
 
         axios
-            .put(updateMyClassUrl, {description, totalLessons}, {headers: {
+            .put(updateMyClassUrl, {description, totalNumberOfLessons, totalNumberOfStudents}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -236,7 +238,8 @@ export default function Classes() {
                                     buttonBg="bg-green-500"
                                     nameButton={classModalButtonName}
                                     onChangeDescription={setDescription}
-                                    onChangeTotalLessons={setTotalLessons}
+                                    onChangeTotalNumberOfLessons={setTotalNumberOfLessons}
+                                    onChangeTotalNumberOfStudents={setTotalNumberOfStudents}
                                     onSubimit={createMyClass}
                                     disabled={classModalSubimitButtonDisabled}
                                 />
@@ -246,11 +249,13 @@ export default function Classes() {
                                     closeModal={() => setShowClassModal(false)}
                                     title="Editar Turma"
                                     description={description}
-                                    totalLessons={totalLessons}
+                                    totalNumberOfLessons={totalNumberOfLessons}
+                                    totalNumberOfStudents={totalNumberOfStudents}
                                     buttonBg="bg-blue-500"
                                     nameButton={classModalButtonName}
                                     onChangeDescription={setDescription}
-                                    onChangeTotalLessons={setTotalLessons}
+                                    onChangeTotalNumberOfLessons={setTotalNumberOfLessons}
+                                    onChangeTotalNumberOfStudents={setTotalNumberOfStudents}
                                     onSubimit={updateMyClass}
                                     disabled={classModalSubimitButtonDisabled}
                                 />
@@ -282,7 +287,8 @@ export default function Classes() {
                                             buttonBg="bg-green-500"
                                             nameButton="Criar"
                                             onChangeDescription={setDescription}
-                                            onChangeTotalLessons={setTotalLessons}
+                                            onChangeTotalNumberOfLessons={setTotalNumberOfLessons}
+                                            onChangeTotalNumberOfStudents={setTotalNumberOfStudents}
                                             onSubimit={createMyClass}
                                             disabled={classModalSubimitButtonDisabled}
                                         />

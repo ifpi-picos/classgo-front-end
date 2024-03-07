@@ -1,4 +1,4 @@
-export default function ClassModal({openModal, closeModal, title, description, onChangeDescription, totalLessons, onChangeTotalLessons, buttonBg, nameButton, onSubimit, disabled}) {
+export default function ClassModal({openModal, closeModal, title, description, onChangeDescription, totalNumberOfLessons, onChangeTotalNumberOfLessons, totalNumberOfStudents, onChangeTotalNumberOfStudents, buttonBg, nameButton, onSubimit, disabled}) {
 
     if (!openModal) {
         return null
@@ -28,15 +28,28 @@ export default function ClassModal({openModal, closeModal, title, description, o
                                 />
                             </div>
 
+                            <div className="flex justify-center items-center w-full mb-4">
+                                <input
+                                    className="w-full px-3 py-2 border-b-2 border-b-gray-300"
+                                    id="totalNumberOfLeassons"
+                                    name="totalNumberOfLeassons"
+                                    type="number"
+                                    placeholder="Total de Aulas"
+                                    value={totalNumberOfLessons}
+                                    onChange={(e) => onChangeTotalNumberOfLessons(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            
                             <div className="flex justify-center items-center w-full">
                                 <input
                                     className="w-full px-3 py-2 border-b-2 border-b-gray-300"
-                                    id="totalLeassons"
-                                    name="totalLeassons"
+                                    id="totalNumberOfStudents"
+                                    name="totalNumberOfStudents"
                                     type="number"
-                                    placeholder="Total de Aulas"
-                                    value={totalLessons}
-                                    onChange={(e) => onChangeTotalLessons(e.target.value)}
+                                    placeholder="Total de Alunos"
+                                    value={totalNumberOfStudents}
+                                    onChange={(e) => onChangeTotalNumberOfStudents(e.target.value)}
                                     required
                                 />
                             </div>
