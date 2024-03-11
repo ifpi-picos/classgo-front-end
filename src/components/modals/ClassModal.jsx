@@ -56,12 +56,12 @@ export default function ClassModal({openModal, closeModal, title, description, o
                         </div>
 
                         <div className="flex justify-evenly items-center w-4/5 mb-4">
-                            <button className={`${buttonBg} px-6 py-3 text-gray-50 rounded-xl`} disabled={disabled}>
-                                {nameButton}
+                            <button className="bg-red-500 px-4 py-3 text-gray-50 rounded-xl" type="button" onClick={closeModal}>
+                                Cancelar
                             </button>
 
-                            <button className="bg-red-500 px-6 py-3 text-gray-50 rounded-xl" type="button" onClick={closeModal}>
-                                Cancelar
+                            <button className={`${buttonBg} px-6 py-3 text-gray-50 rounded-xl`} disabled={disabled}>
+                                {nameButton}
                             </button>
                         </div>
                     </fieldset>

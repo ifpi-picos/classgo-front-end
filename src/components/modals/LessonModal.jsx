@@ -47,10 +47,10 @@ export default function LessonModal({openModal, closeModal, title, description, 
                     </div>
 
                     <div className="flex justify-end items-center w-4/5 mb-4">
-                        <button className="bg-red-500 mr-8 px-6 py-3 text-gray-50 rounded-xl" type="button" onClick={closeModal}>
+                        <button className="bg-red-500 mr-12 px-4 py-3 text-gray-50 rounded-xl" type="button" onClick={closeModal}>
                             Cancelar
                         </button>
-                        
+
                         <button className={`${buttonBg} px-6 py-3 text-gray-50 rounded-xl`} disabled={disabled}>
                             {nameButton}
                         </button>

@@ -88,7 +88,7 @@ export default function Diary({myClassDescription}) {
 
     const newLessonButtonClicked = () => {
         setShowLessonModal(true)
-        setLessonModalButtonName("Salvar")
+        setLessonModalButtonName("Próximo")
     }
 
     const createLesson = (e) => {
@@ -134,7 +134,7 @@ export default function Diary({myClassDescription}) {
         setId(lesson.id)
         setDescription(lesson.description)
         setDate(lesson.date)
-        setLessonModalButtonName("Alterar")
+        setLessonModalButtonName("Salvar")
     }
 
     const updateLesson = (e) => {

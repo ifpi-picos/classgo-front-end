@@ -188,13 +188,13 @@ export default function Profile() {
                                                     />
                                                 </div>
 
-                                                <div className="flex justify-evenly items-center w-4/5 my-5 text-gray-50">
-                                                    <button className="px-6 py-3 bg-blue-500 rounded-xl" disabled={saveButtonDisabled}>
-                                                        Salvar
+                                                <div className="flex justify-evenly items-center w-full my-5 text-gray-50">
+                                                    <button className="px-4 py-3 bg-red-500 rounded-xl" type="button" onClick={cancelButtonClicked}>
+                                                        Cancelar
                                                     </button>
 
-                                                    <button className="px-6 py-3 bg-red-500 rounded-xl" type="button" onClick={cancelButtonClicked}>
-                                                        Cancelar
+                                                    <button className="px-6 py-3 bg-blue-500 rounded-xl" disabled={saveButtonDisabled}>
+                                                        Salvar
                                                     </button>
                                                 </div>
                                             </>
