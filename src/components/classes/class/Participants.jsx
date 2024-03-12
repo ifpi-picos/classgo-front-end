@@ -9,15 +9,18 @@ import Section from "@/components/tags/Section"
 import SideBar from "@/components/tags/SideBar"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import StudentModal from "@/components/modals/StudentModal"
+import ConfirmModal from "@/components/modals/ConfirmModal"
 
 export default function Participants({myClassDescription}) {
     const [myClass, setMyClass] = useState({})
     const [classId, setClassId] = useState(0)
     const [id, setId] = useState(0)
     const [name, setName] = useState("")
-    const [numberOfAbsence, setNumberOfAbsence] = useState(0)
+    const [numberOfAbsences, setNumberOfAbsences] = useState(0)
     const [students, setStudents] = useState([])
     const [showConfirmModal, setShowConfirmModal] = useState(false)
+    const [confirmModalSubimitButtonDisabled, setConfirmModalSubimitButtonDisabled] = useState(false)
     const [showStudentModal, setShowStudentModal] = useState(false)
     const [studentModalButtonName, setStudentModalButtonName] = useState("")
     const [studentModalSubimitButtonDisabled, setStudentModalSubimitButtonDisabled] = useState(false)
@@ -88,7 +91,7 @@ export default function Participants({myClassDescription}) {
 
     useEffect(() => {
         getStudents()
-    }, [])
+    }, [classId])
 
     const newStudentButtonClicked = () => {
         setShowStudentModal(true)
@@ -99,7 +102,7 @@ export default function Participants({myClassDescription}) {
         e.preventDefault()
 
         axios
-            .post(createStudentUrl, {name, numberOfAbsence, classId}, {headers: {
+            .post(createStudentUrl, {name, numberOfAbsences, classId}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -135,6 +138,7 @@ export default function Participants({myClassDescription}) {
         setShowStudentModal(true)
         setId(student.id)
         setName(student.name)
+        setNumberOfAbsences(student.numberOfAbsences)
         setStudentModalButtonName("Salvar")
     }
 
@@ -144,7 +148,7 @@ export default function Participants({myClassDescription}) {
         setStudentModalSubimitButtonDisabled(true)
 
         axios
-            .put(updateStudentUrl, {name, numberOfAbsence, classId}, {headers: {
+            .put(updateStudentUrl, {name, numberOfAbsences, classId}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -183,7 +187,7 @@ export default function Participants({myClassDescription}) {
     const deleteStudent = (e) => {
         e.preventDefault()
 
-        setStudentModalSubimitButtonDisabled(true)
+        setConfirmModalSubimitButtonDisabled(true)
 
         axios
             .delete(deleteStudentUrl, {headers: {
@@ -193,7 +197,7 @@ export default function Participants({myClassDescription}) {
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    setStudentModalSubimitButtonDisabled(false)
+                    setConfirmModalSubimitButtonDisabled(false)
                     setShowConfirmModal(false)
                     getStudents()
                     return
@@ -229,7 +233,7 @@ export default function Participants({myClassDescription}) {
     )
 
     const studentsList = students.map((student) => 
-        <div key={student.id} className="flex justify-between items-center w-5/6 h-16 mb-12 border-2 border-gray-300 shadow-md rounded-xl">
+        <div key={student.id} className="flex justify-between items-center w-5/6 h-16 mb-4 border-2 border-gray-300 shadow-md rounded-xl">
             <div className="ml-6">
                 <span className="">
                     {student.name}
@@ -278,6 +282,43 @@ export default function Participants({myClassDescription}) {
                                 studentsList
                             )}
                         </div>
+
+                        {studentModalButtonName === "Adicionar" ? (
+                            <StudentModal
+                                openModal={showStudentModal}
+                                closeModal={() => setShowStudentModal(false)}
+                                onSubimit={createStudent}
+                                title="Novo Aluno"
+                                onChangeName={setName}
+                                buttonBg="bg-green-500"
+                                nameButton={studentModalButtonName}
+                                disabled={studentModalSubimitButtonDisabled}
+                            />
+                        ): (
+                            <StudentModal
+                                openModal={showStudentModal}
+                                closeModal={() => setShowStudentModal(false)}
+                                onSubimit={updateStudent}
+                                title="Editar Aluno"
+                                name={name}
+                                onChangeName={setName}
+                                buttonBg="bg-blue-500"
+                                nameButton={studentModalButtonName}
+                                disabled={studentModalSubimitButtonDisabled}
+                            />
+                        )}
+
+                        {showConfirmModal ? (
+                            <ConfirmModal
+                                openModal={showConfirmModal}
+                                closeModal={() => setShowConfirmModal(false)}
+                                title="Excluir Aluno?"
+                                onSubimit={deleteStudent}
+                                disabled={confirmModalSubimitButtonDisabled}
+                            />
+                        ) : (
+                            null
+                        )}
                     </div>
                 </Section>
             </Main>
