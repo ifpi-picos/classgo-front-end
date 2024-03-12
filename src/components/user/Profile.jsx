@@ -96,8 +96,7 @@ export default function Profile() {
 
                 else if (res.status === 401) {
                     localStorage.clear()
-                    router.replace("/")
-                    return
+                    return router.replace("/")
                 }
             })
     }

@@ -182,7 +182,10 @@ export default function Classes() {
                 }
             })
             .catch((err) => {
-                return console.log(err.response.data)
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
             })
     }
 
@@ -294,7 +297,7 @@ export default function Classes() {
                                         />
                                     ) : (
                                         <div>
-                                            <button className="py-3 px-6 bg-green-500 text-gray-50 rounded-lg shadow-gray-300 shadow-md" type="button" onClick={() => setShowClassModal(true)}>
+                                            <button className="px-6 py-3 bg-green-500 text-gray-50 shadow-md rounded-xl" type="button" onClick={() => setShowClassModal(true)}>
                                                 Crie uma Turma
                                             </button>
                                         </div>

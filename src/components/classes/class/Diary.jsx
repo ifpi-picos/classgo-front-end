@@ -45,7 +45,10 @@ export default function Diary({myClassDescription}) {
                 }
             })
             .catch((err) => {
-                return console.log(err.response.data)
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
             })
     }
 
