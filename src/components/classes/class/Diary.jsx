@@ -2,6 +2,7 @@
 
 import axios from "axios"
 import Header from "@/components/tags/Header"
+import FrequencyModal from "@/components/modals/FrequencyModal"
 import { HiChartBar, HiClipboardList, HiOutlinePencilAlt, HiUsers } from "react-icons/hi"
 import LessonModal from "@/components/modals/LessonModal"
 import Link from "next/link"
@@ -12,27 +13,39 @@ import SideBar from "@/components/tags/SideBar"
 import { useEffect, useState } from "react"
 
 export default function Diary({myClassDescription}) {
+    const classDescription = myClassDescription.split("%20").join(" ")
+
     const [myClass, setMyClass] = useState({})
     const [classId, setClassId] = useState(0)
+
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
     const [date, setDate] = useState(0)
     const [lessons, setLessons] = useState([])
+
     const [showLessonModal, setShowLessonModal] = useState(false)
-    const [lessonModalButtonName, setLessonModalButtonName] = useState("")
-    const [lessonModalSubimitButtonDisabled, setLessonModalSubimitButtonDisabled] = useState(false)
+    const [lessonModalTitle, setLessonModalTitle] = useState("")
 
-    const classDescription = myClassDescription.split("%20").join(" ")
+    const [students, setStudents] = useState([])
 
-    const getMyClassUrl = `https://idcurso-back-end.vercel.app/classes/findOne/${classDescription}`
+    const [frequency, setFrequency] = useState([])
+
+    const [showFrequencyModal, setShowFrequencyModal] = useState(false)
+    const [frequencyModalSubimitButtonDisabled, setFrequencyModalSubimitButtonDisabled] = useState(false)
+
+    const readMyClassUrl = `https://idcurso-back-end.vercel.app/classes/findOne/${classDescription}`
 
     const createLessonUrl = `https://idcurso-back-end.vercel.app/lessons/create`
-    const getLessonsUrl = `https://idcurso-back-end.vercel.app/lessons/findAll/${classId}`
+    const readLessonsUrl = `https://idcurso-back-end.vercel.app/lessons/findAll/${classId}`
     const updateLessonUrl = `https://idcurso-back-end.vercel.app/lessons/update/${id}`
 
-    const getMyClass = () => {
+    const readStudentsUrl = `https://idcurso-back-end.vercel.app/students/findAll/${classId}`
+
+    const readFrequencyUrl = `https://idcurso-back-end.vercel.app/frequencies/findAll/${id}`
+
+    const readMyClass = () => {
         axios
-            .get(getMyClassUrl, {headers: {
+            .get(readMyClassUrl, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -53,12 +66,54 @@ export default function Diary({myClassDescription}) {
     }
 
     useEffect(() => {
-        getMyClass()
+        readMyClass()
     }, [])
 
-    const getLessons = () => {
+    const newLessonButtonClicked = () => {
+        setShowLessonModal(true)
+        setLessonModalTitle("Nova Aula")
+    }
+
+    const createLesson = (e) => {
+        e.preventDefault()
+
+        setFrequencyModalSubimitButtonDisabled(true)
+
         axios
-            .get(getLessonsUrl, {headers: {
+            .post(createLessonUrl, {description, date, classId, frequency}, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 201) {
+                    alert(res.data)
+                    closeAllModals()
+                    return
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    setFrequencyModalSubimitButtonDisabled(false)
+                    alert(err.response.data)
+                    return
+                }
+
+                else if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    }
+
+    const readLessons = () => {
+        axios
+            .get(readLessonsUrl, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -86,76 +141,32 @@ export default function Diary({myClassDescription}) {
     }
 
     useEffect(() => {
-        getLessons()
+        readLessons()
     }, [classId])
-
-    const newLessonButtonClicked = () => {
-        setShowLessonModal(true)
-        setLessonModalButtonName("Próximo")
-    }
-
-    const createLesson = (e) => {
-        e.preventDefault()
-
-        setLessonModalSubimitButtonDisabled(true)
-
-        axios
-            .post(createLessonUrl, {description, date, classId}, {headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("token")
-            }})
-            .then((res) => {
-                if (res.status === 201) {
-                    setLessonModalSubimitButtonDisabled(false)
-                    setShowLessonModal(false)
-                    getLessons()
-                    return
-                }
-
-                else if (res.status === 401) {
-                    localStorage.clear()
-                    return router.replace("/")
-                }
-            })
-            .catch((err) => {
-                if (err.response.status === 400) {
-                    alert(err.response.data)
-                    setLessonModalSubimitButtonDisabled(false)
-                    return
-                }
-
-                else if (err.response.status === 401) {
-                    localStorage.clear()
-                    return router.replace("/")
-                }
-            })
-    }
 
     const editLessonButtonClicked = (lesson) => {
         setShowLessonModal(true)
+        setLessonModalTitle("Editar Aula")
         setId(lesson.id)
         setDescription(lesson.description)
         setDate(lesson.date)
-        setLessonModalButtonName("Salvar")
     }
 
     const updateLesson = (e) => {
         e.preventDefault()
 
-        setLessonModalSubimitButtonDisabled(true)
+        setFrequencyModalSubimitButtonDisabled(true)
 
         axios
-            .put(updateLessonUrl, {description, date, classId}, {headers: {
+            .put(updateLessonUrl, {description, date, classId, frequency}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    setLessonModalSubimitButtonDisabled(false)
-                    setShowLessonModal(false)
-                    getLessons()
+                    alert(res.data)
+                    closeAllModals()
                 }
 
                 else if (res.status === 401) {
@@ -166,7 +177,7 @@ export default function Diary({myClassDescription}) {
             .catch((err) => {
                 if (err.response.status === 400) {
                     alert(err.response.data)
-                    setLessonModalSubimitButtonDisabled(false)
+                    setFrequencyModalSubimitButtonDisabled(false)
                     return
                 }
 
@@ -175,6 +186,96 @@ export default function Diary({myClassDescription}) {
                     return router.replace("/")
                 }
             })
+    }
+
+    const readStudents = () => {
+        axios
+            .get(readStudentsUrl, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    if (res.data.length < 1) {
+                        return
+                    }
+
+                    return setStudents(res.data)
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    }
+
+    useEffect(() => {
+        readStudents()
+    }, [classId])
+
+    const readFrequency = () => {
+        axios
+            .get(readFrequencyUrl, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    if (res.data.length < 1) {
+                        return
+                    }
+
+                    return setFrequency(res.data)
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 401) {
+                    localStorage.clear()
+                    return router.replace("/")
+                }
+            })
+    }
+
+    useEffect(() => {
+        readFrequency()
+    }, [id])
+
+    const closeLessonModal = () => {
+        setShowLessonModal(false)
+    }
+
+    const closeAllModals = () => {
+        setFrequencyModalSubimitButtonDisabled(false)
+        setShowFrequencyModal(false)
+        setShowLessonModal(false)
+        setDescription("")
+        setDate("")
+        readLessons()
+        readFrequency()
+    }
+
+    const nextModal = () => {
+        setShowFrequencyModal(true)
+    }
+
+    const backModal = () => {
+        setFrequencyModalSubimitButtonDisabled(false)
+        setShowFrequencyModal(false)
+        setShowLessonModal(true)
     }
 
     const navbar = (
@@ -196,7 +297,7 @@ export default function Diary({myClassDescription}) {
     const lessonsList = lessons.map((lesson, index) => 
         <tr key={lesson.id}>
             <td className="w-20 py-1 text-center border-2 border-gray-300">
-                {lesson.id < 10 ? "0" + (index + 1) : index + 1}
+                {index < 9 ? "0" + (index + 1) : index + 1}
             </td>
 
             <td className="w-40 py-1 text-center border-2 border-gray-300">
@@ -216,7 +317,7 @@ export default function Diary({myClassDescription}) {
     )
 
     return (
-        <PrivateRoute url={getLessonsUrl}>
+        <PrivateRoute url={readLessonsUrl}>
             <SideBar/>
 
             {!myClass ? (
@@ -274,32 +375,59 @@ export default function Diary({myClassDescription}) {
                                 </div>
                             </div>
 
-                            {lessonModalButtonName === "Salvar" ? (
+                            {lessonModalTitle === "Nova Aula" ? (
                                 <LessonModal
+                                    title={lessonModalTitle}
                                     openModal={showLessonModal}
-                                    closeModal={() => setShowLessonModal(false)}
-                                    onSubimit={createLesson}
-                                    title="Registro de Aula"
+                                    closeModal={closeLessonModal}
+                                    nextModal={nextModal}
                                     onChangeDescription={setDescription}
                                     onChangeDate={setDate}
-                                    buttonBg="bg-blue-500"
-                                    nameButton={lessonModalButtonName}
-                                    disabled={lessonModalSubimitButtonDisabled}
                                 />
                             ) : (
                                 <LessonModal
+                                    title={lessonModalTitle}
                                     openModal={showLessonModal}
-                                    closeModal={() => setShowLessonModal(false)}
-                                    onSubimit={updateLesson}
-                                    title="Registro de Aula"
+                                    closeModal={closeLessonModal}
+                                    nextModal={nextModal}
                                     description={description}
-                                    date={date}
                                     onChangeDescription={setDescription}
+                                    date={date}
                                     onChangeDate={setDate}
-                                    buttonBg="bg-blue-500"
-                                    nameButton={lessonModalButtonName}
-                                    disabled={lessonModalSubimitButtonDisabled}
                                 />
+                            )}
+
+                            {lessonModalTitle === "Nova Aula" && showFrequencyModal ? (
+                                <FrequencyModal
+                                    openModal={showFrequencyModal}
+                                    closeModal={closeAllModals}
+                                    backModal={backModal}
+                                    onSubmit={createLesson}
+                                    students={students}
+                                    onChangeFrequency={setFrequency}
+                                    buttonBg="bg-green-500"
+                                    buttonName="Registrar"
+                                    disabled={frequencyModalSubimitButtonDisabled}
+                                />
+                            ) : (
+                                null
+                            )}
+
+                            {lessonModalTitle === "Editar Aula" && showFrequencyModal ? (
+                                <FrequencyModal
+                                    openModal={showFrequencyModal}
+                                    closeModal={closeAllModals}
+                                    backModal={backModal}
+                                    onSubmit={updateLesson}
+                                    students={students}
+                                    frequency={frequency}
+                                    onChangeFrequency={setFrequency}
+                                    buttonBg="bg-blue-500"
+                                    buttonName="Salvar"
+                                    disabled={frequencyModalSubimitButtonDisabled}
+                                />
+                            ) : (
+                                null
                             )}
                         </div>
                     </Section>

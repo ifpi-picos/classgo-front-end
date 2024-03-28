@@ -1,13 +1,19 @@
-export default function LessonModal({openModal, closeModal, title, description, onChangeDescription, date, onChangeDate, buttonBg, nameButton, onSubimit, disabled}) {
+import { HiX } from "react-icons/hi"
+
+export default function LessonModal({title, openModal, closeModal, nextModal, description, onChangeDescription, date, onChangeDate}) {
     if (!openModal) {
         return null
     }
     
     return (
         <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-25">
-            <form className="flex flex-col justify-center items-center w-1/2 bg-gray-50 shadow-md rounded-xl" onSubmit={onSubimit}>
-                <fieldset className="flex flex-col items-center w-11/12 my-12">
-                    <div className="mt-4">
+            <form className="flex flex-col justify-center items-center w-1/2 bg-gray-50 shadow-md rounded-xl">
+                <fieldset className="flex flex-col items-center w-11/12 mb-12">
+                    <div className="flex justify-end w-full mt-6 mb-8">
+                        <HiX className="cursor-pointer text-gray-500" title="Fechar" size="30" onClick={closeModal}/>
+                    </div>
+
+                    <div>
                         <span>
                             {title}
                         </span>
@@ -46,13 +52,9 @@ export default function LessonModal({openModal, closeModal, title, description, 
                         </div>
                     </div>
 
-                    <div className="flex justify-end items-center w-4/5 mb-4">
-                        <button className="bg-red-500 mr-12 px-4 py-3 text-gray-50 rounded-xl" type="button" onClick={closeModal}>
-                            Cancelar
-                        </button>
-
-                        <button className={`${buttonBg} px-6 py-3 text-gray-50 rounded-xl`} disabled={disabled}>
-                            {nameButton}
+                    <div className="flex justify-end items-center w-4/5">
+                        <button className={`bg-blue-500 px-6 py-3 text-gray-50 rounded-xl`} type="button" onClick={nextModal}>
+                            Próximo
                         </button>
                     </div>
                 </fieldset>
