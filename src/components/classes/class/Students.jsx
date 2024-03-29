@@ -1,5 +1,7 @@
 "use client"
 
+import axios from "axios"
+import ConfirmModal from "@/components/modals/ConfirmModal"
 import Header from "@/components/tags/Header"
 import { HiChartBar, HiClipboardList, HiOutlinePencilAlt, HiOutlineTrash, HiUsers } from "react-icons/hi"
 import Link from "next/link"
@@ -7,13 +9,10 @@ import Main from "@/components/tags/Main"
 import PrivateRoute from "@/components/user/PrivateRoute"
 import Section from "@/components/tags/Section"
 import SideBar from "@/components/tags/SideBar"
-import { useEffect, useState } from "react"
-import axios from "axios"
 import StudentModal from "@/components/modals/StudentModal"
-import ConfirmModal from "@/components/modals/ConfirmModal"
+import { useEffect, useState } from "react"
 
-export default function Participants({myClassDescription}) {
-    const [myClass, setMyClass] = useState({})
+export default function Students({myClassDescription}) {
     const [classId, setClassId] = useState(0)
     const [id, setId] = useState(0)
     const [name, setName] = useState("")
@@ -43,7 +42,6 @@ export default function Participants({myClassDescription}) {
             }})
             .then((res) => {
                 if (res.status === 200) {
-                    setMyClass(res.data)
                     setClassId(res.data.id)
                     return
                 }
@@ -217,7 +215,7 @@ export default function Participants({myClassDescription}) {
     }
 
     const navbar = (
-        <div className="flex justify-evenly items-center w-11/12 h-16 text-base text-gray-950">
+        <nav className="flex justify-evenly items-center w-11/12 h-16 text-base text-gray-950">
             <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/diary`}>
                 <HiClipboardList className="mr-2 mb-1" size="24"/> <span>Diário</span>
             </Link>
@@ -226,10 +224,10 @@ export default function Participants({myClassDescription}) {
                 <HiChartBar className="mr-2 mb-1" size="24"/> <span>Progresso</span>
             </Link>
 
-            <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/participants`}>
-                <HiUsers className="mr-2 mb-1" size="24"/> <span>Participantes</span>
+            <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/students`}>
+                <HiUsers className="mr-2 mb-1" size="24"/> <span>Alunos</span>
             </Link>
-        </div>
+        </nav>
     )
 
     const studentsList = students.map((student) => 

@@ -14,7 +14,7 @@ export default function Progress({myClassDescription}) {
     const getMyClassUrl = `https://idcurso-back-end.vercel.app/classes/findOne/${classDescription}`
 
     const navbar = (
-        <div className="flex justify-evenly items-center w-11/12 h-16 text-base text-gray-950">
+        <nav className="flex justify-evenly items-center w-11/12 h-16 text-base text-gray-950">
             <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/diary`}>
                 <HiClipboardList className="mr-2 mb-1" size="24"/> <span>Diário</span>
             </Link>
@@ -23,10 +23,10 @@ export default function Progress({myClassDescription}) {
                 <HiChartBar className="mr-2 mb-1" size="24"/> <span>Progresso</span>
             </Link>
 
-            <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/participants`}>
-                <HiUsers className="mr-2 mb-1" size="24"/> <span>Participantes</span>
+            <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/students`}>
+                <HiUsers className="mr-2 mb-1" size="24"/> <span>Alunos</span>
             </Link>
-        </div>
+        </nav>
     )
 
     return (

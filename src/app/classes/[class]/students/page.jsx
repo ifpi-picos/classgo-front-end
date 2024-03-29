@@ -1,10 +1,10 @@
 import Body from "@/components/tags/Body"
-import Participants from "@/components/classes/class/Participants"
+import Students from "@/components/classes/class/Students"
 
 export default function ParticipantsPage({params}) {
     return (
         <Body>
-            <Participants myClassDescription={params.class}/>
+            <Students myClassDescription={params.class}/>
         </Body>
     )
 }
