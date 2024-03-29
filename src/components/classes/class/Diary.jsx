@@ -22,14 +22,16 @@ export default function Diary({myClassDescription}) {
     const [description, setDescription] = useState("")
     const [date, setDate] = useState(0)
     const [lessons, setLessons] = useState([])
+    const [orderedLessons, setOrderedLessons] = useState([])
 
     const [showLessonModal, setShowLessonModal] = useState(false)
     const [lessonModalTitle, setLessonModalTitle] = useState("")
 
     const [students, setStudents] = useState([])
+    const [orderedStudents, setOrderedStudents] = useState([])
 
-    const [frequency, setFrequency] = useState([])
-    const [fakeFrequency, setFakeFrequency] = useState([])
+    const [fakeFrequencies, setFakeFrequencies] = useState([])
+    const [frequencies, setFrequencies] = useState([])
 
     const [showFrequencyModal, setShowFrequencyModal] = useState(false)
     const [frequencyModalSubimitButtonDisabled, setFrequencyModalSubimitButtonDisabled] = useState(false)
@@ -42,7 +44,7 @@ export default function Diary({myClassDescription}) {
 
     const readStudentsUrl = `https://idcurso-back-end.vercel.app/students/findAll/${classId}`
 
-    const readFrequencyUrl = `https://idcurso-back-end.vercel.app/frequencies/findAll/${id}`
+    const readFrequenciesUrl = `https://idcurso-back-end.vercel.app/frequencies/findAll/${id}`
 
     const readMyClass = () => {
         axios
@@ -81,7 +83,7 @@ export default function Diary({myClassDescription}) {
         setFrequencyModalSubimitButtonDisabled(true)
 
         axios
-            .post(createLessonUrl, {description, date, classId, frequency}, {headers: {
+            .post(createLessonUrl, {description, date, classId, frequencies}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -145,6 +147,10 @@ export default function Diary({myClassDescription}) {
         readLessons()
     }, [classId])
 
+    useEffect(() => {
+        orderingLessons()
+    }, [lessons])
+
     const editLessonButtonClicked = (lesson) => {
         setShowLessonModal(true)
         setLessonModalTitle("Editar Aula")
@@ -159,7 +165,7 @@ export default function Diary({myClassDescription}) {
         setFrequencyModalSubimitButtonDisabled(true)
 
         axios
-            .put(updateLessonUrl, {description, date, classId, frequency}, {headers: {
+            .put(updateLessonUrl, {description, date, classId, frequencies}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -222,9 +228,9 @@ export default function Diary({myClassDescription}) {
         readStudents()
     }, [classId])
 
-    const readFrequency = () => {
+    const readFrequencies = () => {
         axios
-            .get(readFrequencyUrl, {headers: {
+            .get(readFrequenciesUrl, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -235,7 +241,7 @@ export default function Diary({myClassDescription}) {
                         return
                     }
 
-                    return setFrequency(res.data)
+                    return setFrequencies(res.data)
                 }
 
                 else if (res.status === 401) {
@@ -252,7 +258,7 @@ export default function Diary({myClassDescription}) {
     }
 
     useEffect(() => {
-        readFrequency()
+        readFrequencies()
     }, [id])
 
     const closeLessonModal = () => {
@@ -266,12 +272,13 @@ export default function Diary({myClassDescription}) {
         setDescription("")
         setDate("")
         readLessons()
-        readFrequency()
+        readFrequencies()
     }
 
     const nextModal = () => {
         setShowFrequencyModal(true)
-        addFakeFrequency()
+        orderingStudents()
+        addFakeFrequencies()
     }
 
     const backModal = () => {
@@ -280,11 +287,48 @@ export default function Diary({myClassDescription}) {
         setShowLessonModal(true)
     }
 
-    const addFakeFrequency = () => {
-        const fakeFrequency = []
+    const addFakeFrequencies = () => {
+        const fakeFrequencies = []
 
-        students.map((student) => fakeFrequency.push({studentId: student.id, presence: false}))
-        setFakeFrequency(fakeFrequency)
+        students.map((student) => fakeFrequencies.push({studentId: student.id, presence: false}))
+
+        setFakeFrequencies(fakeFrequencies)
+    }
+
+    const orderingLessons = () => {
+        const lessonsId = []
+        
+        lessons.map((lesson) => lessonsId.push(lesson.id))
+        
+        const orderedLessonsId = lessonsId.sort()
+
+        const orderedLessons = []
+
+        orderedLessonsId.map((id) => (
+            lessons.map((lesson) => (
+                id === lesson.id ? orderedLessons.push({id: lesson.id, description: lesson.description, date: lesson.date}) : null
+            ))
+        ))
+
+        setOrderedLessons(orderedLessons)
+    }
+
+    const orderingStudents = () => {
+        const studentsName = []
+        
+        students.map((student) => studentsName.push(student.name))
+        
+        const orderedStudentsName = studentsName.sort()
+
+        const orderedStudents = []
+
+        orderedStudentsName.map((name) => (
+            students.map((student) => (
+                name === student.name ? orderedStudents.push({id: student.id, name: student.name}) : null
+            ))
+        ))
+
+        setOrderedStudents(orderedStudents)
     }
 
     const navbar = (
@@ -303,7 +347,7 @@ export default function Diary({myClassDescription}) {
         </nav>
     )
     
-    const lessonsList = lessons.map((lesson, index) => 
+    const orderedLessonsList = orderedLessons.map((lesson, index) => 
         <tr key={lesson.id}>
             <td className="w-20 py-1 text-center border-2 border-gray-300">
                 {index < 9 ? "0" + (index + 1) : index + 1}
@@ -377,7 +421,7 @@ export default function Diary({myClassDescription}) {
                                             </thead>
 
                                             <tbody className="">
-                                                {lessonsList}
+                                                {orderedLessonsList}
                                             </tbody>
                                         </table>
                                     )}
@@ -412,9 +456,9 @@ export default function Diary({myClassDescription}) {
                                     closeModal={closeAllModals}
                                     backModal={backModal}
                                     onSubmit={createLesson}
-                                    students={students}
-                                    fakeFrequency={fakeFrequency}
-                                    onChangeFrequency={setFrequency}
+                                    students={orderedStudents}
+                                    fakeFrequencies={fakeFrequencies}
+                                    onChangeFrequencies={setFrequencies}
                                     buttonBg="bg-green-500"
                                     buttonName="Registrar"
                                     disabled={frequencyModalSubimitButtonDisabled}
@@ -429,9 +473,9 @@ export default function Diary({myClassDescription}) {
                                     closeModal={closeAllModals}
                                     backModal={backModal}
                                     onSubmit={updateLesson}
-                                    students={students}
-                                    frequency={frequency}
-                                    onChangeFrequency={setFrequency}
+                                    students={orderedStudents}
+                                    frequencies={frequencies}
+                                    onChangeFrequencies={setFrequencies}
                                     buttonBg="bg-blue-500"
                                     buttonName="Salvar"
                                     disabled={frequencyModalSubimitButtonDisabled}

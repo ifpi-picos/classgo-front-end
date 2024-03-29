@@ -1,18 +1,18 @@
 import { HiX } from "react-icons/hi"
 
-export default function FrequencyModal({openModal, closeModal, backModal, onSubmit, students = [], fakeFrequency = [], frequency = [], onChangeFrequency, buttonBg, buttonName, disabled}) {
+export default function FrequencyModal({openModal, closeModal, backModal, onSubmit, students = [], fakeFrequencies = [], frequencies = [], onChangeFrequencies, buttonBg, buttonName, disabled}) {
     if (!openModal) {
         return null
     }
 
-    let newLessonFrequencyConfirmed = fakeFrequency
+    let newLessonFrequenciesConfirmed = fakeFrequencies
 
     const handleOnChangeNewLessonFrequency = (position) => {
-        fakeFrequency.map((value, index) => 
-            position === index ? newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: !value.presence}) : newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: value.presence})
+        fakeFrequencies.map((frequency, index) => 
+            position === index ? newLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: !frequency.presence}) : newLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: frequency.presence})
         )
 
-        onChangeFrequency(newLessonFrequencyConfirmed)
+        onChangeFrequencies(newLessonFrequenciesConfirmed)
     }
 
     const studentsList = students.map((student, index) => (
@@ -31,29 +31,25 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
         </div>
     ))
 
-    const studentsIdOffrequency = []
-
-    frequency.map((frequency) => (
-        studentsIdOffrequency.push(frequency.studentId)
-    ))
-
-    const studentsOffrequency = []
+    const studentsName = []
 
     students.map((student) => (
-        studentsIdOffrequency.includes(student.id) ? studentsOffrequency.push(student) : null
+        frequencies.map((frequency) => (
+            student.id === frequency.studentId ? studentsName.push(student.name) : null
+        ))
     ))
 
-    let editedLessonFrequencyConfirmed = frequency
+    let editedLessonFrequenciesConfirmed = frequencies
 
     const handleOnChangeEditedLessonFrequency = (studentId) => {
-        frequency.map((value, index) => (
-            value.studentId == studentId ? editedLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: !value.presence}) : editedLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: value.presence})
+        frequencies.map((frequency, index) => (
+            frequency.studentId == studentId ? editedLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: !frequency.presence}) : editedLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: frequency.presence})
         ))
 
-        onChangeFrequency(editedLessonFrequencyConfirmed)
+        onChangeFrequencies(editedLessonFrequenciesConfirmed)
     }
 
-    const frequencyList = frequency.map((frequency, index) => (
+    const frequenciesList = frequencies.map((frequency, index) => (
         <div key={frequency.studentId} className="flex items-center mb-4">
             <input
                 className="w-4 h-4 mr-4"
@@ -65,7 +61,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
             />
 
             <label htmlFor={frequency.studentId}>
-                {studentsOffrequency[index].name}
+                {studentsName[index]}
             </label>
         </div>
     ))
@@ -95,7 +91,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
                             </div>
                         ) : (
                             <div className="flex flex-col w-3/4 h-64 my-16 overflow-x-hidden">
-                                {frequencyList}
+                                {frequenciesList}
                             </div>
                         )
                     )}
