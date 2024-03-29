@@ -20,6 +20,7 @@ export default function Classes() {
     const [totalNumberOfLessons, setTotalNumberOfLessons] = useState(0)
     const [totalNumberOfStudents, setTotalNumberOfStudents] = useState(0)
     const [myClasses, setMyClasses] = useState([])
+    const [orderedMyClasses, setOrderedMyClasses] = useState([])
     const [showClassModal, setShowClassModal] = useState(false)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [classModalButtonName, setClassModalButtonName] = useState("")
@@ -65,6 +66,10 @@ export default function Classes() {
     useEffect(() => {
         getMyClasses()
     }, [])
+
+    useEffect(() => {
+        orderingMyClasses()
+    }, [myClasses])
 
     const newMyClassButtonClicked = () => {
         setShowClassModal(true)
@@ -189,7 +194,25 @@ export default function Classes() {
             })
     }
 
-    const myClassesList = myClasses.map((myClass) => 
+    const orderingMyClasses = () => {
+        const myClassesName = []
+        
+        myClasses.map((myClass) => myClassesName.push(myClass.description))
+        
+        const orderedMyClassesName = myClassesName.sort()
+
+        const orderedMyClasses = []
+
+        orderedMyClassesName.map((description) => (
+            myClasses.map((myClass) => (
+                description === myClass.description ? orderedMyClasses.push({id: myClass.id, description: myClass.description, totalNumberOfLessons: myClass.totalNumberOfLessons, totalNumberOfStudents: myClass.totalNumberOfStudents}) : null
+            ))
+        ))
+
+        setOrderedMyClasses(orderedMyClasses)
+    }
+
+    const orderedMyClassesList = orderedMyClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-1/5 h-60 m-8 border-2 border-gray-300 rounded-xl shadow-md break-all">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-gray-300">
                 <Link className="px-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
@@ -229,7 +252,7 @@ export default function Classes() {
                             </div>
 
                             <div className="flex flex-wrap w-full">
-                                {myClassesList}
+                                {orderedMyClassesList}
                             </div>
 
                             {classModalButtonName === "Criar" ? (

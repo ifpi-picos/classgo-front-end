@@ -18,6 +18,7 @@ export default function Students({myClassDescription}) {
     const [name, setName] = useState("")
     const [numberOfAbsences, setNumberOfAbsences] = useState(0)
     const [students, setStudents] = useState([])
+    const [orderedStudents, setOrderedStudents] = useState([])
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [confirmModalSubimitButtonDisabled, setConfirmModalSubimitButtonDisabled] = useState(false)
     const [showStudentModal, setShowStudentModal] = useState(false)
@@ -90,6 +91,10 @@ export default function Students({myClassDescription}) {
     useEffect(() => {
         getStudents()
     }, [classId])
+
+    useEffect(() => {
+        orderingStudents()
+    }, [students])
 
     const newStudentButtonClicked = () => {
         setShowStudentModal(true)
@@ -214,6 +219,24 @@ export default function Students({myClassDescription}) {
             })
     }
 
+    const orderingStudents = () => {
+        const studentsName = []
+        
+        students.map((student) => studentsName.push(student.name))
+        
+        const orderedStudentsName = studentsName.sort()
+
+        const orderedStudents = []
+
+        orderedStudentsName.map((name) => (
+            students.map((student) => (
+                name === student.name ? orderedStudents.push({id: student.id, name: student.name}) : null
+            ))
+        ))
+
+        setOrderedStudents(orderedStudents)
+    }
+
     const navbar = (
         <nav className="flex justify-evenly items-center w-11/12 h-16 text-base text-gray-950">
             <Link className="flex justify-center items-center w-1/5 py-4 hover:border-2 rounded-xl" href={`/classes/${myClassDescription}/diary`}>
@@ -230,7 +253,7 @@ export default function Students({myClassDescription}) {
         </nav>
     )
 
-    const studentsList = students.map((student) => 
+    const orderedStudentsList = orderedStudents.map((student) => 
         <div key={student.id} className="flex justify-between items-center w-5/6 h-16 mb-4 border-2 border-gray-300 shadow-md rounded-xl">
             <div className="ml-6">
                 <span className="">
@@ -277,7 +300,7 @@ export default function Students({myClassDescription}) {
                                     <span>Nenhum Aluno Adicionado</span>
                                 </div>
                             ) : (
-                                studentsList
+                                orderedStudentsList
                             )}
                         </div>
 
