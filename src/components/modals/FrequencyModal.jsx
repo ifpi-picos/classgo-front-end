@@ -1,23 +1,15 @@
 import { HiX } from "react-icons/hi"
 
-export default function FrequencyModal({openModal, closeModal, backModal, onSubmit, students = [], frequency = [], onChangeFrequency, buttonBg, buttonName, disabled}) {
+export default function FrequencyModal({openModal, closeModal, backModal, onSubmit, students = [], fakeFrequency = [], frequency = [], onChangeFrequency, buttonBg, buttonName, disabled}) {
     if (!openModal) {
         return null
     }
 
-    const newLessonFrequency = []
-    
-    for (let index = 0; index < students.length; index++) {
-        const student = students[index]
-
-        newLessonFrequency.push({studentId: student.id, presence: false})
-    }
-
-    let newLessonFrequencyConfirmed = newLessonFrequency
+    let newLessonFrequencyConfirmed = fakeFrequency
 
     const handleOnChangeNewLessonFrequency = (position) => {
-        newLessonFrequency.map((value, index) => 
-            index === position ? newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: !value.presence}) : newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: value.presence})
+        fakeFrequency.map((value, index) => 
+            position === index ? newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: !value.presence}) : newLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: value.presence})
         )
 
         onChangeFrequency(newLessonFrequencyConfirmed)
@@ -30,7 +22,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
                 id={student.id}
                 name="student"
                 type="checkbox"
-                onChange={() => handleOnChangeNewLessonFrequency(index, student.id)}
+                onChange={() => handleOnChangeNewLessonFrequency(index)}
             />
             
             <label htmlFor={student.id}>
@@ -53,11 +45,11 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
 
     let editedLessonFrequencyConfirmed = frequency
 
-    const handleOnChangePresenceEditLesson = (studentId) => {
+    const handleOnChangeEditedLessonFrequency = (studentId) => {
         frequency.map((value, index) => (
             value.studentId == studentId ? editedLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: !value.presence}) : editedLessonFrequencyConfirmed.splice(index, 1, {studentId: value.studentId, presence: value.presence})
         ))
-        
+
         onChangeFrequency(editedLessonFrequencyConfirmed)
     }
 
@@ -68,7 +60,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
                 id={frequency.studentId}
                 name="frequency"
                 type="checkbox"
-                onChange={() => handleOnChangePresenceEditLesson(frequency.studentId)}
+                onChange={() => handleOnChangeEditedLessonFrequency(frequency.studentId)}
                 defaultChecked={frequency.presence}
             />
 

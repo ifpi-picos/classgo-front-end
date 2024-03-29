@@ -29,6 +29,7 @@ export default function Diary({myClassDescription}) {
     const [students, setStudents] = useState([])
 
     const [frequency, setFrequency] = useState([])
+    const [fakeFrequency, setFakeFrequency] = useState([])
 
     const [showFrequencyModal, setShowFrequencyModal] = useState(false)
     const [frequencyModalSubimitButtonDisabled, setFrequencyModalSubimitButtonDisabled] = useState(false)
@@ -99,8 +100,8 @@ export default function Diary({myClassDescription}) {
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    setFrequencyModalSubimitButtonDisabled(false)
                     alert(err.response.data)
+                    setFrequencyModalSubimitButtonDisabled(false)
                     return
                 }
 
@@ -270,12 +271,20 @@ export default function Diary({myClassDescription}) {
 
     const nextModal = () => {
         setShowFrequencyModal(true)
+        addFakeFrequency()
     }
 
     const backModal = () => {
         setFrequencyModalSubimitButtonDisabled(false)
         setShowFrequencyModal(false)
         setShowLessonModal(true)
+    }
+
+    const addFakeFrequency = () => {
+        const fakeFrequency = []
+
+        students.map((student) => fakeFrequency.push({studentId: student.id, presence: false}))
+        setFakeFrequency(fakeFrequency)
     }
 
     const navbar = (
@@ -404,6 +413,7 @@ export default function Diary({myClassDescription}) {
                                     backModal={backModal}
                                     onSubmit={createLesson}
                                     students={students}
+                                    fakeFrequency={fakeFrequency}
                                     onChangeFrequency={setFrequency}
                                     buttonBg="bg-green-500"
                                     buttonName="Registrar"
