@@ -16,7 +16,7 @@ export default function Students({myClassDescription}) {
     const [classId, setClassId] = useState(0)
     const [id, setId] = useState(0)
     const [name, setName] = useState("")
-    const [numberOfAbsences, setNumberOfAbsences] = useState(0)
+    const [numberOfpresencies, setNumberOfpresencies] = useState(0)
     const [students, setStudents] = useState([])
     const [orderedStudents, setOrderedStudents] = useState([])
     const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -105,7 +105,7 @@ export default function Students({myClassDescription}) {
         e.preventDefault()
 
         axios
-            .post(createStudentUrl, {name, numberOfAbsences, classId}, {headers: {
+            .post(createStudentUrl, {name, numberOfpresencies, classId}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
@@ -141,7 +141,7 @@ export default function Students({myClassDescription}) {
         setShowStudentModal(true)
         setId(student.id)
         setName(student.name)
-        setNumberOfAbsences(student.numberOfAbsences)
+        setNumberOfpresencies(student.numberOfpresencies)
         setStudentModalButtonName("Salvar")
     }
 
@@ -151,7 +151,7 @@ export default function Students({myClassDescription}) {
         setStudentModalSubimitButtonDisabled(true)
 
         axios
-            .put(updateStudentUrl, {name, numberOfAbsences, classId}, {headers: {
+            .put(updateStudentUrl, {name, numberOfpresencies, classId}, {headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
