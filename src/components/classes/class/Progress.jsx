@@ -96,7 +96,7 @@ export default function Progress({myClassDescription}) {
 
         orderedStudentsName.map((name) => (
             students.map((student) => (
-                name === student.name ? orderedStudents.push({id: student.id, name: student.name, numberOfpresencies: student.numberOfpresencies}) : null
+                name === student.name ? orderedStudents.push({id: student.id, name: student.name, numberOfPresencies: student.numberOfPresencies}) : null
             ))
         ))
 
@@ -117,7 +117,7 @@ export default function Progress({myClassDescription}) {
         
 
         orderedStudents.map((student) => (
-            progress.push({studentName: student.name, presencePercentage: ((student.numberOfpresencies / totalNumberOfLessons) * 100).toFixed(0)})
+            progress.push({studentName: student.name, presencePercentage: ((student.numberOfPresencies / totalNumberOfLessons) * 100).toFixed(0)})
         ))
 
         setProgress(progress)
