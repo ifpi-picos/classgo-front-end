@@ -142,9 +142,7 @@ export default function Progress({myClassDescription}) {
             </Link>
         </nav>
     )
-
-    console.log(progress)
-
+    
     const progressList = progress.map((progress, index) => (
         <div key={progress.studentName} className="w-5/6 mb-4">
             <div>
