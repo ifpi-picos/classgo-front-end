@@ -117,7 +117,7 @@ export default function Progress({myClassDescription}) {
         
 
         orderedStudents.map((student) => (
-            progress.push({studentName: student.name, presencePercentage: ((student.numberOfPresencies / totalNumberOfLessons) * 100).toFixed(0)})
+            progress.push({studentName: student.name, presencePercentage: parseInt((student.numberOfPresencies / totalNumberOfLessons) * 100)})
         ))
 
         setProgress(progress)
@@ -143,6 +143,8 @@ export default function Progress({myClassDescription}) {
         </nav>
     )
 
+    console.log(progress)
+
     const progressList = progress.map((progress, index) => (
         <div key={progress.studentName} className="w-5/6 mb-4">
             <div>
@@ -156,7 +158,7 @@ export default function Progress({myClassDescription}) {
                     {progress.presencePercentage < 70 ? (
                         <div className={`${progressTailwindcssDynamicClass[index]} h-full bg-red-500 rounded-s-xl`}></div>
                     ): (
-                        <div className={`${progressTailwindcssDynamicClass[index]} h-full bg-green-500 rounded-s-xl`}></div>
+                        <div className={`${progressTailwindcssDynamicClass[index]} h-full bg-green-500 ${progress.presencePercentage === 100 ? "rounded-xl" : "rounded-s-xl"}`}></div>
                     )}
                 </div>
 
