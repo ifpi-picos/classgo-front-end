@@ -7,26 +7,26 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
 
     let newLessonFrequenciesConfirmed = fakeFrequencies
 
-    const handleOnChangeNewLessonFrequency = (position) => {
-        fakeFrequencies.map((frequency, index) => 
-            position === index ? newLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: !frequency.presence}) : newLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: frequency.presence})
+    const handleOnChangeNewLessonFrequency = (studentId) => {
+        fakeFrequencies.map((fakeFrequency, index) => 
+            studentId === fakeFrequency.studentId ? newLessonFrequenciesConfirmed.splice(index, 1, {studentId: fakeFrequency.studentId, presence: !fakeFrequency.presence}) : null
         )
 
         onChangeFrequencies(newLessonFrequenciesConfirmed)
     }
 
-    const studentsList = students.map((student, index) => (
-        <div key={student.id} className="flex items-center mb-4">
+    const fakeFrequenciesList = fakeFrequencies.map((fakeFrequency, index) => (
+        <div key={fakeFrequency.studentId} className="flex items-center mb-4">
             <input
                 className="w-4 h-4 mr-4"
-                id={student.id}
+                id={fakeFrequency.studentId}
                 name="student"
                 type="checkbox"
-                onChange={() => handleOnChangeNewLessonFrequency(index)}
+                onChange={() => handleOnChangeNewLessonFrequency(fakeFrequency.studentId)}
             />
             
-            <label htmlFor={student.id}>
-                {student.name}
+            <label htmlFor={fakeFrequency.studentId}>
+                {students[index].name}
             </label>
         </div>
     ))
@@ -43,7 +43,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
 
     const handleOnChangeEditedLessonFrequency = (studentId) => {
         frequencies.map((frequency, index) => (
-            frequency.studentId == studentId ? editedLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: !frequency.presence}) : editedLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: frequency.presence})
+            frequency.studentId === studentId ? editedLessonFrequenciesConfirmed.splice(index, 1, {studentId: frequency.studentId, presence: !frequency.presence}) : null
         ))
 
         onChangeFrequencies(editedLessonFrequenciesConfirmed)
@@ -87,7 +87,7 @@ export default function FrequencyModal({openModal, closeModal, backModal, onSubm
                     ) : (
                         buttonName == "Registrar" ? (
                             <div className="flex flex-col w-3/4 h-64 my-16 overflow-x-hidden">
-                                {studentsList}
+                                {fakeFrequenciesList}
                             </div>
                         ) : (
                             <div className="flex flex-col w-3/4 h-64 my-16 overflow-x-hidden">

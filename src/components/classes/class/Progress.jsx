@@ -160,7 +160,7 @@ export default function Progress({myClassDescription}) {
                     )}
                 </div>
 
-                <div className="">
+                <div>
                     <span>
                         {progress.presencePercentage}%
                     </span>

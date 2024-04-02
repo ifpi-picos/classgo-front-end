@@ -263,6 +263,7 @@ export default function Diary({myClassDescription}) {
 
     const closeLessonModal = () => {
         setShowLessonModal(false)
+        readFrequencies()
     }
 
     const closeAllModals = () => {
@@ -279,18 +280,30 @@ export default function Diary({myClassDescription}) {
         setShowFrequencyModal(true)
         orderingStudents()
         addFakeFrequencies()
+        readFrequencies()
     }
 
     const backModal = () => {
         setFrequencyModalSubimitButtonDisabled(false)
         setShowFrequencyModal(false)
         setShowLessonModal(true)
+        readFrequencies()
     }
 
     const addFakeFrequencies = () => {
+        const studentsId = []
+        
+        students.map((student) => studentsId.push(student.id))
+        
+        const orderedStudentsId = studentsId.sort()
+
         const fakeFrequencies = []
 
-        students.map((student) => fakeFrequencies.push({studentId: student.id, presence: false}))
+        orderedStudentsId.map((id) => (
+            students.map((student) => (
+                id === student.id ? fakeFrequencies.push({studentId: student.id, presence: false}) : null
+            ))
+        ))
 
         setFakeFrequencies(fakeFrequencies)
     }
