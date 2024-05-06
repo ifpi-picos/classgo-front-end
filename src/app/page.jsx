@@ -1,10 +1,10 @@
-import Body from "@/components/tags/Body"
-import SignInForm from "@/components/user/SignInForm"
+import Body from "@/containers/Body"
+import SignIn from "@/components/users/SignIn"
 
 export default function SignInPage() {
-  return (
-    <Body>
-      <SignInForm/>
-    </Body>
-  )
+    return (
+        <Body>
+            <SignIn/>
+        </Body>
+    )
 }
