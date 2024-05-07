@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser"
 
 export default function SignIn() {
     const [visiblePassword, setVisblePassword] = useState(true)
-    const {setEmail, setPassword, signIn} = useUser()
+    const {setEmail, setPassword, signIn, signInButtonDisabled} = useUser()
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-blue-50 text-white">
@@ -68,7 +68,7 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex flex-col justify-between items-center w-4/5">
-                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-md">
+                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-md" disabled={signInButtonDisabled}>
                             <span>Entrar</span>
                         </button>
 
