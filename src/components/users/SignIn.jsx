@@ -3,58 +3,60 @@
 import { HiLockClosed, HiMail, HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 import Image from "next/image"
 import Link from "next/link"
-import SignInImg from "../../../assets/SignInImg.jpg"
+import signInImg from "../../../assets/signInImg.jpg"
 import { useState } from "react"
+import useUser from "@/hooks/useUser"
 
 export default function SignIn() {
     const [visiblePassword, setVisblePassword] = useState(true)
+    const {setEmail, setPassword, signIn} = useUser()
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-blue-50 text-white">
-            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm sm:w-[70%] sm:text-xs xs:w-[90%]">
+            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm md:font-semibold sm:w-[70%] sm:text-xs xs:w-[90%]">
                 <div className="flex justify-center items-center w-1/2 h-full rounded-s-xl lg:hidden">
-                    <Image className="w-full h-full rounded-s-xl" src={SignInImg} alt="Imagem ilustrativa"/>
+                    <Image className="w-full h-full rounded-s-xl" src={signInImg} alt="Imagem ilustrativa"/>
                 </div>
 
-                <div className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 rounded-e-xl lg:w-full lg:rounded-xl">
+                <form className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 rounded-e-xl lg:w-full lg:rounded-xl" onSubmit={signIn}>
                     <div className="flex justify-center items-center w-4/5 text-lg md:text-base sm:text-sm">
                         <span>Login</span>
                     </div>
 
                     <div className="flex flex-col items-center justify-evenly w-4/5">
                         <div className="flex items-center w-full mb-4 border-b">
-                            <HiMail className="text-lg"/>
+                            <HiMail className="w-[10%] text-lg"/>
 
                             <input
-                                className="w-[90%] bg-transparent placeholder:text-white px-2 py-1 outline-none"
+                                className="w-[90%] bg-transparent placeholder:text-white p-1 outline-none"
                                 id="email"
                                 name="email"
                                 type="email"
                                 placeholder="Email"
-                                minLength="12"
                                 maxLength="60"
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
 
                         <div className="flex items-center w-full mb-4 border-b">
-                            <HiLockClosed className="text-lg"/>
+                            <HiLockClosed className="w-[10%] text-lg"/>
 
                             <input
-                                className="w-[90%] bg-transparent placeholder:text-white px-2 py-1 outline-none"
+                                className="w-[80%] bg-transparent placeholder:text-white p-1 outline-none"
                                 id="password"
                                 name="password"
                                 type={visiblePassword ? "password" : "text"}
                                 placeholder="Senha"
-                                minLength="6"
                                 maxLength="15"
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                             
                             {visiblePassword ? (
-                                <HiOutlineEye className="text-lg cursor-pointer" onClick={() => setVisblePassword(false)}/>
+                                <HiOutlineEye className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(false)}/>
                             ) : (
-                                <HiOutlineEyeOff className="text-lg cursor-pointer" onClick={() => setVisblePassword(true)}/>
+                                <HiOutlineEyeOff className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(true)}/>
                             )}
                         </div>
 
@@ -74,7 +76,7 @@ export default function SignIn() {
                             <span>Registrar-se</span>
                         </Link>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     )
