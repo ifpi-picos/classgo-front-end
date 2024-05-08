@@ -8,7 +8,7 @@ import { useState } from "react"
 import useUser from "@/hooks/useUser"
 
 export default function SignIn() {
-    const [visiblePassword, setVisblePassword] = useState(true)
+    const [visiblePassword, setVisblePassword] = useState(false)
     const {setEmail, setPassword, signIn, signInButtonDisabled} = useUser()
 
     return (
@@ -46,17 +46,17 @@ export default function SignIn() {
                                 className="w-[80%] bg-transparent placeholder:text-white p-1 outline-none"
                                 id="password"
                                 name="password"
-                                type={visiblePassword ? "password" : "text"}
+                                type={!visiblePassword ? "password" : "text"}
                                 placeholder="Senha"
-                                maxLength="15"
+                                maxLength="18"
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                             
-                            {visiblePassword ? (
-                                <HiOutlineEye className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(false)}/>
+                            {!visiblePassword ? (
+                                <HiOutlineEye className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(true)}/>
                             ) : (
-                                <HiOutlineEyeOff className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(true)}/>
+                                <HiOutlineEyeOff className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(false)}/>
                             )}
                         </div>
 
