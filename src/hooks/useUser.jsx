@@ -14,6 +14,7 @@ export default function useUser() {
     const signUpUrl = `https://idcurso-back-end.vercel.app/users`
     const signInUrl = `https://idcurso-back-end.vercel.app/users/signin`
     const forgotPasswordUrl = `https://idcurso-back-end.vercel.app/users/forgotpassword`
+    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword`
 
     const signUp = (e) => {
         e.preventDefault()
@@ -29,7 +30,6 @@ export default function useUser() {
             .then((res) => {
                 if (res.status === 201) {
                     alert(res.data)
-                    setSubmitButtonDisabled(false)
                     router.push("/")
                     return
                 }
@@ -53,7 +53,6 @@ export default function useUser() {
             .then((res) => {
                 if (res.status === 200) {
                     localStorage.setItem("token", res.data)
-                    setSubmitButtonDisabled(false)
                     router.replace("/myclasses")
                     return
                 }
@@ -89,7 +88,46 @@ export default function useUser() {
                     return
                 }
             })
+    }
 
+    const redefinePassword = (e) => {
+        e.preventDefault()
+
+        setSubmitButtonDisabled(true)
+
+        axios
+            .put(redefinePasswordUrl, {password, confirmPassword}, {headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            }})
+            .then((res) => {
+                if (res.status === 200) {
+                    alert(res.data)
+                    localStorage.clear()
+                    router.replace("/")
+                    return
+                }
+
+                else if (res.status === 401) {
+                    localStorage.clear()
+                    router.replace("/")
+                    return
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    alert(err.response.data)
+                    setSubmitButtonDisabled(false)
+                    return
+                }
+
+                else if (err.response.status === 401) {
+                    localStorage.clear()
+                    router.replace("/")
+                    return
+                }
+            })
     }
 
     return {
@@ -100,6 +138,7 @@ export default function useUser() {
         signUp,
         signIn,
         forgotPassword,
+        redefinePassword,
         submitButtonDisabled
     }
 }
