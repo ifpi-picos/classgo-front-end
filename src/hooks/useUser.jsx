@@ -13,6 +13,7 @@ export default function useUser() {
 
     const signUpUrl = `https://idcurso-back-end.vercel.app/users`
     const signInUrl = `https://idcurso-back-end.vercel.app/users/signin`
+    const forgotPasswordUrl = `https://idcurso-back-end.vercel.app/users/forgotpassword`
 
     const signUp = (e) => {
         e.preventDefault()
@@ -66,6 +67,31 @@ export default function useUser() {
             })
     }
 
+    const forgotPassword = (e) => {
+        e.preventDefault()
+
+        setSubmitButtonDisabled(true)
+
+        axios
+            .post(forgotPasswordUrl, {email})
+            .then((res) => {
+                if (res.status === 200) {
+                    alert("Pedido de solicitação enviado para seu email!")
+                    localStorage.setItem("token", res.data)
+                    setSubmitButtonDisabled(false)
+                    return
+                }
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    alert(err.response.data)
+                    setSubmitButtonDisabled(false)
+                    return
+                }
+            })
+
+    }
+
     return {
         setName,
         setEmail,
@@ -73,6 +99,7 @@ export default function useUser() {
         setConfirmPassword,
         signUp,
         signIn,
+        forgotPassword,
         submitButtonDisabled
     }
 }
