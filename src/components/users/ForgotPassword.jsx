@@ -18,7 +18,7 @@ export default function ForgotPassword() {
 
                 <form className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 rounded-e-xl lg:w-full lg:rounded-xl" onSubmit={forgotPassword}>
                     <div className="flex justify-center items-center w-4/5 text-lg md:text-base sm:text-sm">
-                        <span>Solicitar Senha</span>
+                        <span>Solicitar Nova Senha</span>
                     </div>
 
                     <div className="flex flex-col items-center justify-evenly w-4/5">
