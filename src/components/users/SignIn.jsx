@@ -15,7 +15,7 @@ export default function SignIn() {
         <div className="flex justify-center items-center w-full h-screen bg-blue-50 text-white">
             <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm md:font-semibold sm:w-[70%] sm:text-xs xs:w-[90%]">
                 <div className="flex justify-center items-center w-1/2 h-full rounded-s-xl lg:hidden">
-                    <Image className="w-full h-full rounded-s-xl" src={SignInImg} alt="Imagem ilustrativa"/>
+                    <Image className="w-full h-full rounded-s-xl" src={SignInImg} alt="Imagem ilustrativa" priority/>
                 </div>
 
                 <form className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 rounded-e-xl lg:w-full lg:rounded-xl" onSubmit={signIn}>
@@ -68,7 +68,7 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex flex-col justify-between items-center w-4/5">
-                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-md" disabled={submitButtonDisabled}>
+                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-md sm:py-2" disabled={submitButtonDisabled}>
                             <span>Entrar</span>
                         </button>
 
