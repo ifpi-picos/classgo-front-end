@@ -41,7 +41,7 @@ export default function useUser() {
                             return
                         }
                     })
-    }, [name, email, password, confirmPassword])
+    }, [router, signUpUrl, name, email, password, confirmPassword])
 
     const signIn = useCallback(async (e) => {
         e.preventDefault()
@@ -64,7 +64,7 @@ export default function useUser() {
                             return
                         }
                     })
-    }, [email, password])
+    }, [router, signInUrl, email, password])
 
     const forgotPassword = useCallback(async (e) => {
         e.preventDefault()
@@ -88,7 +88,7 @@ export default function useUser() {
                             return
                         }
                     })
-    }, [email])
+    }, [forgotPasswordUrl, email])
 
     const redefinePassword = useCallback(async (e) => {
         e.preventDefault()
@@ -128,7 +128,7 @@ export default function useUser() {
                             return
                         }
                     })
-    }, [password, confirmPassword])
+    }, [router, redefinePasswordUrl, password, confirmPassword])
 
     return {
         setName,
