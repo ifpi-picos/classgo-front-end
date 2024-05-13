@@ -6,7 +6,7 @@ import Link from "next/link"
 export default function SideBar() {
     return (
         <aside className="flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen bg-blue-500 text-white shadow-md">
-            <div className="flex justify-center items-center w-full h-[100px]">
+            <div className="flex justify-center items-center w-full h-32">
                 <span>idCurso</span>
             </div>
 
