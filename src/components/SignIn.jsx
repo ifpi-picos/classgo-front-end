@@ -3,7 +3,7 @@
 import { HiLockClosed, HiMail, HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 import Image from "next/image"
 import Link from "next/link"
-import SignInImg from "../../../assets/SignInImg.jpg"
+import SignInImg from "../../assets/SignInImg.jpg"
 import { useState } from "react"
 import useUser from "@/hooks/useUser"
 

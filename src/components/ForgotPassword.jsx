@@ -1,7 +1,7 @@
 "use client"
 
 import { HiMail } from "react-icons/hi"
-import ForgotPasswordImg from "../../../assets/ForgotPasswordImg.jpg"
+import ForgotPasswordImg from "../../assets/ForgotPasswordImg.jpg"
 import Image from "next/image"
 import Link from "next/link"
 import useUser from "@/hooks/useUser"
