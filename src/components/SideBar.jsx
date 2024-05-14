@@ -28,13 +28,12 @@ export default function SideBar() {
                         <span>Perfil</span>
                     </Link>
 
-                    <Link className="flex items-center w-[95%] p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/">
+                    <Link className="flex items-center w-[95%] p-2 rounded-xl hover:bg-red-400 active:bg-red-500" href="/">
                         <HiOutlineLogin className="text-lg mr-2"/>
                         <span>Sair</span>
                     </Link>
                 </div>
             </div>
-
         </aside>
     )
 }

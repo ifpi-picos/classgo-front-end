@@ -8,7 +8,7 @@ export default function MyClasses() {
             <SideBar/>
 
             <main className="flex flex-col w-4/5">
-                <header className="flex justify-center items-center w-full h-32 text-neutral-800 text-lg shadow-md">
+                <header className="flex justify-center items-center w-full h-32 text-neutral-800 text-xl shadow-md">
                     <span>Minhas Turmas</span>
                 </header>
 
@@ -18,8 +18,8 @@ export default function MyClasses() {
                     </div>
 
                     <div>
-                        <button className="px-6 py-2 bg-green-500 text-white font-medium shadow-md rounded-xl" type="button">
-                            <span>Crie Uma Turma</span>
+                        <button className="px-4 py-2 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button">
+                            <span>Crie uma Turma</span>
                         </button>
                     </div>
                 </section>
