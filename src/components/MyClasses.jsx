@@ -14,7 +14,7 @@ export default function MyClasses() {
 
                 <section className="flex flex-grow flex-col justify-center items-center w-full">
                     <div className="w-1/4">
-                        <Image className="w-full h-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
+                        <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                     </div>
 
                     <div>
