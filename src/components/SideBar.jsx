@@ -1,39 +1,30 @@
 "use client"
 
-import { HiAcademicCap, HiOutlineLogin, HiUser } from "react-icons/hi"
+import { HiAcademicCap, HiMenu, HiOutlineLogin, HiUser } from "react-icons/hi"
 import Link from "next/link"
 
 export default function SideBar() {
     return (
-        <aside className="flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen bg-blue-500 text-white shadow-md">
+        <nav className="flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen bg-blue-500 text-white shadow-md lg:w-[30%] md:text-sm sm:w-[20%]">
             <div className="flex justify-center items-center w-full h-32">
-                <span>idCurso</span>
+                <HiMenu className="hidden text-2xl sm:block"/>
+                <span className="sm:hidden">idCurso</span>
             </div>
 
-            <div className="w-full">
-                <div className="flex flex-col items-center w-full mb-8">
-                    <span className="text-sm w-[95%] mb-4">Início</span>
+            <Link className="flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500 sm:justify-center" href="/myclasses">
+                <HiAcademicCap className="text-2xl"/>
+                <span className="ml-4 sm:hidden">Turmas</span>
+            </Link>
 
-                    <Link className="flex items-center w-[95%] p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/myclasses">
-                        <HiAcademicCap className="text-lg mr-2"/>
-                        <span>Turmas</span>
-                    </Link>
-                </div>
+            <Link className="flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500 sm:justify-center" href="/profile">
+                <HiUser className="text-2xl"/>
+                <span className="ml-4 sm:hidden">Perfil</span>
+            </Link>
 
-                <div className="flex flex-col items-center w-full mb-6">
-                    <span className="text-sm w-[95%] mb-4">Configurações</span>
-
-                    <Link className="flex items-center w-[95%] mb-2 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/profile">
-                        <HiUser className="text-lg mr-2"/>
-                        <span>Perfil</span>
-                    </Link>
-
-                    <Link className="flex items-center w-[95%] p-2 rounded-xl hover:bg-red-400 active:bg-red-500" href="/">
-                        <HiOutlineLogin className="text-lg mr-2"/>
-                        <span>Sair</span>
-                    </Link>
-                </div>
-            </div>
-        </aside>
+            <Link className="flex items-center w-[90%] p-2 rounded-xl hover:bg-red-400 active:bg-red-500 sm:justify-center" href="/">
+                <HiOutlineLogin className="text-2xl"/>
+                <span className="ml-4 sm:hidden">Sair</span>
+            </Link>
+        </nav>
     )
 }
