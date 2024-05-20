@@ -19,11 +19,11 @@ export default function MyClasses() {
                 </Header>
 
                 <Section>
-                    <div className="w-1/4 sm:w-3/5 xs:4/5">
+                    <div className="w-full">
                         <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                     </div>
 
-                    <button className="px-4 py-2 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button">
+                    <button className="px-4 py-2 bg-green-500 text-white font-semibold shadow-md rounded-xl md:text-sm" type="button">
                         <span>Crie uma Turma</span>
                     </button>
                 </Section>
