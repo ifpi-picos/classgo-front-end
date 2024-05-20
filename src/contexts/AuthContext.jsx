@@ -10,7 +10,6 @@ export default function AuthProvider({children}) {
 
     const verifyToken = useCallback(() => {
         const token = localStorage.getItem("token")
-        console.log(token)
 
         if (!token) {
             return router.replace("/")
