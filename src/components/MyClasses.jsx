@@ -19,7 +19,7 @@ export default function MyClasses() {
                 </Header>
 
                 <Section>
-                    <div className="w-1/4 xs:w-4/5">
+                    <div className="w-1/4 sm:w-3/5 xs:4/5">
                         <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                     </div>
 
