@@ -1,10 +1,10 @@
 import AuthProvider from "@/contexts/AuthContext"
-import MyClasses from "@/components/MyClasses"
+import Profile from "@/components/Profile"
 
-export default function MyClassesPage() {
+export default function ProfilePage() {
     return (
         <AuthProvider>
-            <MyClasses/>
+            <Profile/>
         </AuthProvider>
     )
 }
