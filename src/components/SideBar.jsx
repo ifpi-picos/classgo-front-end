@@ -9,7 +9,7 @@ export default function SideBar() {
 
     return (
         <>
-            <nav className={`${isOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-10 bg-blue-500 text-white shadow-md 2xl:w-[30%] lg:w-2/5 sm:w-3/5 xs:w-4/5" : "hidden"}`}>
+            <nav className={`${isOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-10 bg-blue-500 text-white shadow-md 2xl:w-1/4 xl:w-[30%] lg:w-[35%] md:w-2/5 sm:w-1/2 xs:w-4/5" : "hidden"}`}>
                 <div className="flex items-center justify-between w-[90%] h-[120px] p-2 lg:h-[100px]">
                     <span>idCurso</span>
                     <HiX className="text-2xl cursor-pointer" onClick={disableSideBar}/>
