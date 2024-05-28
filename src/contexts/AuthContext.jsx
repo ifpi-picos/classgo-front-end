@@ -3,7 +3,7 @@
 import { createContext, useCallback, useEffect } from "react"
 import { useRouter } from "next/navigation"
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
 export default function AuthProvider({children}) {
     const router = useRouter()
