@@ -16,7 +16,7 @@ export default function Profile() {
                     Meu Perfil
                 </Header>
 
-                <form className="flex flex-col justify-evenly items-center w-2/5 h-[500px] mt-[120px] border rounded-xl shadow-xl xl:w-[45%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]">
+                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border rounded-xl shadow-xl xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]">
                     <HiUser className="text-8xl"/>
 
                     <div className="flex flex-col items-center w-[90%]">
@@ -53,7 +53,7 @@ export default function Profile() {
                         </div>
                     </div>
 
-                    <button className="w-2/5 bg-green-600 text-white font-semibold px-4 py-2 rounded-md" type="button">
+                    <button className="w-[35%] bg-green-600 text-white font-semibold px-4 py-1 rounded-md" type="button">
                         <span>Editar</span>
                     </button>
                 </form>
