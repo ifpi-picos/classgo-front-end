@@ -3,13 +3,21 @@
 import Header from "@/containers/Header"
 import { HiMail, HiUser } from "react-icons/hi"
 import Main from "@/containers/Main"
-import SideBar from "./SideBar"
 import Section from "@/containers/Section"
+import SideBar from "./SideBar"
+import { useEffect } from "react"
+import useSideBar from "@/hooks/useSideBar"
 
 export default function Profile() {
+    const {activeMyClassesButton, activeProfileButton, activateProfileButton} = useSideBar()
+
+    useEffect(() => {
+        activateProfileButton()
+    }, [activateProfileButton])
+
     return (
         <Main>
-            <SideBar/>
+            <SideBar activeMyClassesButton={activeMyClassesButton} activeProfileButton={activeProfileButton}/>
 
             <Section>
                 <Header>

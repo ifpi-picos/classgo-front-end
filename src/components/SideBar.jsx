@@ -2,10 +2,10 @@
 
 import { HiAcademicCap, HiMenu, HiOutlineLogin, HiUser, HiX } from "react-icons/hi"
 import Link from "next/link"
-import useToggleSideBar from "@/hooks/useToggleSideBar"
+import useSideBar from "@/hooks/useSideBar"
 
-export default function SideBar() {
-    const {isOpen, enableSideBar, disableSideBar} = useToggleSideBar()
+export default function SideBar({activeMyClassesButton, activeProfileButton}) {
+    const {isOpen, enableSideBar, disableSideBar} = useSideBar()
 
     return (
         <>
@@ -15,12 +15,12 @@ export default function SideBar() {
                     <HiX className="text-2xl cursor-pointer" onClick={disableSideBar}/>
                 </div>
 
-                <Link className="flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/myclasses">
+                <Link className={`${activeMyClassesButton ? "bg-blue-400" : "bg-transparent"} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500`} href="/myclasses">
                     <HiAcademicCap className="text-2xl"/>
                     <span className="ml-4">Turmas</span>
                 </Link>
 
-                <Link className="flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500" href="/profile">
+                <Link className={`${activeProfileButton ? "bg-blue-400" : "bg-transparent"} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500`} href="/profile">
                     <HiUser className="text-2xl"/>
                     <span className="ml-4">Perfil</span>
                 </Link>

@@ -6,11 +6,19 @@ import Image from "next/image"
 import Main from "../containers/Main"
 import Section from "../containers/Section"
 import SideBar from "./SideBar"
+import { useEffect } from "react"
+import useSideBar from "@/hooks/useSideBar"
 
 export default function MyClasses() {
+    const {activeMyClassesButton, activeProfileButton, activateMyClassesButton} = useSideBar()
+
+    useEffect(() => {
+        activateMyClassesButton()
+    }, [activateMyClassesButton])
+
     return (
         <Main>
-            <SideBar/>
+            <SideBar activeMyClassesButton={activeMyClassesButton} activeProfileButton={activeProfileButton}/>
 
             <Section>
                 <Header>
