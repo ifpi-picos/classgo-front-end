@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function useUser() {
@@ -8,13 +8,16 @@ export default function useUser() {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
+    const [editUser, setEditUser] = useState(false)
 
     const router = useRouter()
 
     const signUpUrl = `https://idcurso-back-end.vercel.app/users`
     const signInUrl = `https://idcurso-back-end.vercel.app/users/signin`
+    const readUserUrl = `https://idcurso-back-end.vercel.app/users`
     const forgotPasswordUrl = `https://idcurso-back-end.vercel.app/users/forgotpassword`
     const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword`
+    const updateUserUrl = `https://idcurso-back-end.vercel.app/users`
 
     const signUp = useCallback(async (e) => {
         e.preventDefault()
@@ -65,6 +68,44 @@ export default function useUser() {
                         }
                     })
     }, [router, signInUrl, email, password])
+
+    const readUser = useCallback(async () => {
+        await axios
+                    .get(readUserUrl, {headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }})
+                    .then((res) => {
+                        if (res.status === 200) {
+                            setName(res.data.name)
+                            setEmail(res.data.email)
+                            return
+                        }
+
+                        else if (res.status === 401) {
+                            localStorage.clear()
+                            router.replace("/")
+                            return
+                        }
+                    })
+                    .catch((err) => {
+                        if (err.response.status === 400) {
+                            alert(err.response.data)
+                            return
+                        }
+
+                        else if (err.response.status === 401) {
+                            localStorage.clear()
+                            router.replace("/")
+                            return
+                        }
+                    })
+    },  [readUserUrl, router])
+
+    useEffect(() => {
+        readUser()
+    }, [readUser])
 
     const forgotPassword = useCallback(async (e) => {
         e.preventDefault()
@@ -130,7 +171,57 @@ export default function useUser() {
                     })
     }, [router, redefinePasswordUrl, password, confirmPassword])
 
+    const updateUser = useCallback(async (e) => {
+        e.preventDefault()
+
+        setSubmitButtonDisabled(true)
+
+        await axios
+                    .put(updateUserUrl, {name, email}, {headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }})
+                    .then((res) => {
+                        if (res.status === 200) {
+                            alert(res.data)
+                            setSubmitButtonDisabled(false)
+                            setEditUser(false)
+                            return
+                        }
+
+                        else if (res.status === 401) {
+                            localStorage.clear()
+                            return router.replace("/")
+                        }
+                    })
+                    .catch((err) => {
+                        if (err.response.status === 400) {
+                            alert(err.response.data)
+                            setSubmitButtonDisabled(false)
+                        }
+        
+                        else if (res.status === 401) {
+                            localStorage.clear()
+                            return router.replace("/")
+                        }
+                    })
+    }, [updateUserUrl, name, email, router])
+
+    const editButtonClicked = useCallback(() => {
+        setEditUser(true)
+    }, [])
+
+    const cancelButtonClicked = useCallback(async () => {
+        await readUser()
+        setEditUser(false)
+    }, [readUser])
+
     return {
+        name,
+        email,
+        submitButtonDisabled,
+        editUser,
         setName,
         setEmail,
         setPassword,
@@ -139,6 +230,8 @@ export default function useUser() {
         signIn,
         forgotPassword,
         redefinePassword,
-        submitButtonDisabled
+        editButtonClicked,
+        cancelButtonClicked,
+        updateUser,
     }
 }

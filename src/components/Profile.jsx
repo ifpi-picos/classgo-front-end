@@ -5,26 +5,23 @@ import { HiMail, HiUser } from "react-icons/hi"
 import Main from "@/containers/Main"
 import Section from "@/containers/Section"
 import SideBar from "./SideBar"
-import { useEffect } from "react"
 import useSideBar from "@/hooks/useSideBar"
+import useUser from "@/hooks/useUser"
 
 export default function Profile() {
-    const {activeMyClassesButton, activeProfileButton, activateProfileButton} = useSideBar()
-
-    useEffect(() => {
-        activateProfileButton()
-    }, [activateProfileButton])
+    const {active} = useSideBar()
+    const {name, email, editUser, submitButtonDisabled, setName, setEmail, editButtonClicked, cancelButtonClicked, updateUser} = useUser()
 
     return (
         <Main>
-            <SideBar activeMyClassesButton={activeMyClassesButton} activeProfileButton={activeProfileButton}/>
+            <SideBar profileRoute={active}/>
 
             <Section>
                 <Header>
                     Meu Perfil
                 </Header>
 
-                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border rounded-xl shadow-xl xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]">
+                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border rounded-xl shadow-xl xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]" onSubmit={updateUser}>
                     <HiUser className="text-8xl"/>
 
                     <div className="flex flex-col items-center w-[90%]">
@@ -39,7 +36,9 @@ export default function Profile() {
                                 placeholder="Nome"
                                 minLength="3"
                                 maxLength="30"
-                                
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                readOnly={editUser ? false : true}
                                 required
                             />
                         </div>
@@ -55,15 +54,27 @@ export default function Profile() {
                                 placeholder="Email"
                                 minLength="12"
                                 maxLength="60"
-                                
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                readOnly={editUser ? false : true}
                                 required
                             />
                         </div>
                     </div>
 
-                    <button className="w-[35%] bg-green-600 text-white font-semibold px-4 py-1 rounded-md" type="button">
+                    <button className={editUser ? "hidden" : "w-[35%] bg-green-600 text-white font-semibold py-1 rounded-md"} type="button" onClick={editButtonClicked}>
                         <span>Editar</span>
                     </button>
+
+                    <div className={`${editUser ? "w-[35%]" : "hidden"}`}>
+                        <button className="w-full bg-blue-500 text-white font-semibold mb-4 py-1 rounded-md" disabled={submitButtonDisabled}>
+                            <span>Salvar</span>
+                        </button>
+
+                        <button className="w-full bg-red-500 text-white font-semibold py-1 rounded-md" type="button" onClick={cancelButtonClicked}>
+                            <span>Cancelar</span>
+                        </button>
+                    </div>
                 </form>
             </Section>
         </Main>
