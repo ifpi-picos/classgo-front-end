@@ -4,7 +4,7 @@ import { HiAcademicCap, HiMenu, HiOutlineLogin, HiUser, HiX } from "react-icons/
 import Link from "next/link"
 import useSideBar from "@/hooks/useSideBar"
 
-export default function SideBar({activeMyClassesButton, activeProfileButton}) {
+export default function SideBar({myClassesRoute, profileRoute}) {
     const {isOpen, enableSideBar, disableSideBar} = useSideBar()
 
     return (
@@ -15,17 +15,17 @@ export default function SideBar({activeMyClassesButton, activeProfileButton}) {
                     <HiX className="text-2xl cursor-pointer" onClick={disableSideBar}/>
                 </div>
 
-                <Link className={`${activeMyClassesButton ? "bg-blue-400" : "bg-transparent"} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500`} href="/myclasses">
+                <Link className={`${myClassesRoute} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:border active:bg-blue-500`} href="/myclasses">
                     <HiAcademicCap className="text-2xl"/>
                     <span className="ml-4">Turmas</span>
                 </Link>
 
-                <Link className={`${activeProfileButton ? "bg-blue-400" : "bg-transparent"} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:bg-blue-400 active:bg-blue-500`} href="/profile">
+                <Link className={`${profileRoute} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:border active:bg-blue-500`} href="/profile">
                     <HiUser className="text-2xl"/>
                     <span className="ml-4">Perfil</span>
                 </Link>
 
-                <Link className="flex items-center w-[90%] p-2 rounded-xl hover:bg-red-400 active:bg-red-500" href="/">
+                <Link className="flex items-center w-[90%] p-2 rounded-xl hover:border active:bg-red-500" href="/">
                     <HiOutlineLogin className="text-2xl"/>
                     <span className="ml-4">Sair</span>
                 </Link>
