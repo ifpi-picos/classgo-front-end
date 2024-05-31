@@ -9,12 +9,12 @@ import useSideBar from "@/hooks/useSideBar"
 import useUser from "@/hooks/useUser"
 
 export default function Profile() {
-    const {active} = useSideBar()
+    const {pageActive} = useSideBar()
     const {name, email, editUser, submitButtonDisabled, setName, setEmail, editButtonClicked, cancelButtonClicked, updateUser} = useUser()
 
     return (
         <Main>
-            <SideBar profileRoute={active}/>
+            <SideBar profilePage={pageActive}/>
 
             <Section>
                 <Header>

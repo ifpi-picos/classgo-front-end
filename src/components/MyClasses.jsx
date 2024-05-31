@@ -9,11 +9,11 @@ import SideBar from "./SideBar"
 import useSideBar from "@/hooks/useSideBar"
 
 export default function MyClasses() {
-    const {active} = useSideBar()
+    const {pageActive} = useSideBar()
 
     return (
         <Main>
-            <SideBar myClassesRoute={active}/>
+            <SideBar myClassesPage={pageActive}/>
 
             <Section>
                 <Header>

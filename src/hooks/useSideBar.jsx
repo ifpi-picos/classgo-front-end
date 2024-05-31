@@ -1,20 +1,21 @@
 import { useCallback, useState } from "react"
 
 export default function useSideBar() {
-    const [isOpen, setIsOpen] = useState(true)
-    const [active, setActive] = useState("bg-blue-400 border")
+    const [sideBarIsOpen, setSideBarIsOpen] = useState(true)
+    
+    const pageActive = "bg-blue-400 border"
 
     const enableSideBar = useCallback(() => {
-        setIsOpen(true)
+        setSideBarIsOpen(true)
     }, [])
 
     const disableSideBar = useCallback(() => {
-        setIsOpen(false)
+        setSideBarIsOpen(false)
     }, [])
 
     return {
-        isOpen,
-        active,
+        sideBarIsOpen,
+        pageActive,
         enableSideBar,
         disableSideBar
     }
