@@ -13,7 +13,7 @@ export default function SignIn() {
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-blue-50 text-white">
-            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm md:font-semibold sm:w-[70%] sm:text-xs xs:w-[90%] xs:h-[450px]">
+            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm md:font-semibold sm:w-[70%] sm:text-xs xs:w-[95%] xs:h-[450px]">
                 <div className="flex justify-center items-center w-1/2 h-full rounded-s-xl lg:hidden">
                     <Image className="h-full rounded-s-xl" src={SignInImg} alt="Imagem ilustrativa" priority/>
                 </div>
@@ -28,7 +28,7 @@ export default function SignIn() {
                             <HiMail className="w-[10%] text-lg"/>
 
                             <input
-                                className="w-[90%] bg-transparent placeholder:text-white p-1 outline-none"
+                                className="w-[95%] bg-transparent placeholder:text-white p-1 outline-none"
                                 id="email"
                                 name="email"
                                 type="email"
