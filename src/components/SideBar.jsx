@@ -1,6 +1,6 @@
 "use client"
 
-import { HiAcademicCap, HiMenu, HiOutlineLogin, HiUser, HiX } from "react-icons/hi"
+import { HiAcademicCap, HiMenu, HiOutlineLogout, HiUser, HiX } from "react-icons/hi"
 import Link from "next/link"
 import useSideBar from "@/hooks/useSideBar"
 
@@ -26,7 +26,7 @@ export default function SideBar({myClassesPage, profilePage}) {
                 </Link>
 
                 <Link className="flex items-center w-[90%] p-2 rounded-xl hover:border active:bg-red-500" href="/">
-                    <HiOutlineLogin className="text-2xl"/>
+                    <HiOutlineLogout className="text-2xl"/>
                     <span className="ml-4">Sair</span>
                 </Link>
             </nav>

@@ -68,7 +68,7 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex flex-col justify-between items-center w-4/5">
-                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-md sm:py-2" disabled={submitButtonDisabled}>
+                        <button className="w-full bg-blue-400 mb-4 py-1 rounded-xl sm:py-2" disabled={submitButtonDisabled}>
                             <span>Entrar</span>
                         </button>
 

@@ -21,11 +21,11 @@ export default function Profile() {
                     Meu Perfil
                 </Header>
 
-                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border rounded-xl shadow-xl xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]" onSubmit={updateUser}>
+                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border border-neutral-200 rounded-xl shadow-md xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]" onSubmit={updateUser}>
                     <HiUser className="text-8xl"/>
 
-                    <div className="flex flex-col items-center w-[90%]">
-                        <div className="flex items-center w-[90%] mb-4 border-b border-neutral-800">
+                    <div className="flex flex-col items-center w-4/5">
+                        <div className="flex items-center w-full mb-4 border-b border-neutral-800">
                             <HiUser className="w-[10%] text-lg"/>
 
                             <input
@@ -43,7 +43,7 @@ export default function Profile() {
                             />
                         </div>
 
-                        <div className="flex items-center w-[90%] border-b border-neutral-800">
+                        <div className="flex items-center w-full border-b border-neutral-800">
                             <HiMail className="w-[10%] text-lg"/>
 
                             <input
@@ -62,19 +62,25 @@ export default function Profile() {
                         </div>
                     </div>
 
-                    <button className={editUser ? "hidden" : "w-[35%] bg-green-600 text-white font-semibold py-1 rounded-md"} type="button" onClick={editButtonClicked}>
-                        <span>Editar</span>
-                    </button>
+                    {editUser ? (
+                        <div className="flex justify-between w-[80%] sm:flex-col-reverse">
+                            <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full" type="button" onClick={cancelButtonClicked}>
+                                <span>Cancelar</span>
+                            </button>
 
-                    <div className={`${editUser ? "w-[35%]" : "hidden"}`}>
-                        <button className="w-full bg-blue-500 text-white font-semibold mb-4 py-1 rounded-md" disabled={submitButtonDisabled}>
-                            <span>Salvar</span>
-                        </button>
+                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:mb-2" disabled={submitButtonDisabled}>
+                                <span>Salvar</span>
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="flex justify-center w-[80%]">
+                            <button className="w-[40%] bg-green-600 text-white font-semibold py-1 rounded-xl sm:w-full" type="button" onClick={editButtonClicked}>
+                                <span>Editar</span>
+                            </button>
+                        </div>
+                    )}
 
-                        <button className="w-full bg-red-500 text-white font-semibold py-1 rounded-md" type="button" onClick={cancelButtonClicked}>
-                            <span>Cancelar</span>
-                        </button>
-                    </div>
+
                 </form>
             </Section>
         </Main>
