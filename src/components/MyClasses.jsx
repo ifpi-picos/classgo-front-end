@@ -65,7 +65,7 @@ export default function MyClasses() {
                                 <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                             </div>
 
-                            <button className="w-3/5 py-1 bg-green-500 text-white font-semibold shadow-md rounded-xl sm:w-4/5 sm:py-2" type="button" onClick={openModal}>
+                            <button className="w-3/5 py-1 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button" onClick={openModal}>
                                 <span>Crie uma Turma</span>
                             </button>
                         </>
