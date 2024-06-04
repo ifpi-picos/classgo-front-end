@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 
 export default function useSideBar() {
-    const [sideBarIsOpen, setSideBarIsOpen] = useState(true)
+    const [sideBarIsOpen, setSideBarIsOpen] = useState(false)
     
     const pageActive = "bg-blue-400 border"
 
