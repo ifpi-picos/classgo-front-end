@@ -49,11 +49,11 @@ export default function MyClasses() {
                                 </div>
 
                                 <div className="flex justify-between w-[80%] sm:flex-col-reverse">
-                                    <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full" type="button" onClick={closeModal}>
+                                    <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2" type="button" onClick={closeModal}>
                                         <span>Cancelar</span>
                                     </button>
 
-                                    <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:mb-4">
+                                    <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4">
                                         <span>Criar</span>
                                     </button>
                                 </div>

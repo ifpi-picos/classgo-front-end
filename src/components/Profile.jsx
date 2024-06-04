@@ -64,17 +64,17 @@ export default function Profile() {
 
                     {editUser ? (
                         <div className="flex justify-between w-[80%] sm:flex-col-reverse">
-                            <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full" type="button" onClick={cancelButtonClicked}>
+                            <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2" type="button" onClick={cancelButtonClicked}>
                                 <span>Cancelar</span>
                             </button>
 
-                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:mb-4" disabled={submitButtonDisabled}>
+                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                 <span>Salvar</span>
                             </button>
                         </div>
                     ) : (
                         <div className="flex justify-center w-[80%]">
-                            <button className="w-[40%] bg-green-600 text-white font-semibold py-1 rounded-xl sm:w-full" type="button" onClick={editButtonClicked}>
+                            <button className="w-[40%] bg-green-600 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2" type="button" onClick={editButtonClicked}>
                                 <span>Editar</span>
                             </button>
                         </div>
