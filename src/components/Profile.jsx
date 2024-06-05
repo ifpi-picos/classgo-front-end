@@ -21,7 +21,7 @@ export default function Profile() {
                     Meu Perfil
                 </Header>
 
-                <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[120px] border border-neutral-200 rounded-xl shadow-md xl:w-[40%] lg:w-1/2 md:w-3/5 sm:w-4/5 sm:text-xs xs:w-[90%] xs:h-[450px]" onSubmit={updateUser}>
+                <form className="flex flex-col justify-evenly items-center w-[40%] h-[500px] mt-[120px] border border-neutral-200 rounded-xl shadow-md xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 sm:text-xs xs:w-full xs:border-none xs:rounded-none xs:shadow-none xs:h-[450px]" onSubmit={updateUser}>
                     <HiUser className="text-8xl"/>
 
                     <div className="flex flex-col items-center w-4/5">
