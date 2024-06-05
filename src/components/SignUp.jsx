@@ -14,7 +14,7 @@ export default function SignUp() {
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-blue-50 text-white">
-            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] md:text-sm md:font-semibold sm:w-[70%] sm:text-xs xs:w-[95%] xs:h-[450px]">
+            <div className="flex w-3/5 h-[500px] rounded-xl shadow-md xl:w-[70%] lg:w-[50%] md:w-[60%] sm:w-[70%] sm:text-sm xs:w-[95%] xs:h-[450px] xs:text-xs">
                 <div className="flex justify-center items-center w-1/2 h-full rounded-s-xl lg:hidden">
                     <Image className="h-full rounded-s-xl" src={SignUpImg} alt="Imagem ilustrativa" priority/>
                 </div>

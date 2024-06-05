@@ -25,7 +25,7 @@ export default function SideBar({myClassesPage, profilePage}) {
                     <span className="ml-4">Perfil</span>
                 </Link>
 
-                <Link className="flex items-center w-[90%] p-2 rounded-xl hover:border active:bg-red-500" href="/">
+                <Link className="flex items-center w-[90%] p-2 rounded-xl hover:border active:bg-blue-500" href="/">
                     <HiOutlineLogout className="text-2xl"/>
                     <span className="ml-4">Sair</span>
                 </Link>
