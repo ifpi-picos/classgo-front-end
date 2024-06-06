@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 
 export default function useMyClass() {
+    const [myClassesExist, setMyClassesExist] = useState(false)
     const [description, setDescription] = useState("")
     const [numberOfStudents, setNumberOfStudents] = useState(0)
     const [myClasses, setMyClasses] = useState([])
@@ -53,7 +54,11 @@ export default function useMyClass() {
 
     useEffect(() => {
         readMyClasses()
-    }, [readMyClasses])
+        
+        if (myClasses.length > 0) {
+            setMyClassesExist(true)
+        }
+    }, [readMyClasses, myClasses])
 
     const createMyClass = useCallback(async (e) => {
         e.preventDefault()
@@ -100,6 +105,7 @@ export default function useMyClass() {
     }, [createMyclassesUrl, description, readMyClasses, router])
 
     return {
+        myClassesExist,
         myClasses,
         setDescription,
         createMyClass,
