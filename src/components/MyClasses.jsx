@@ -23,7 +23,7 @@ export default function MyClasses() {
     }, [closeModal, myClasses])
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-[17.5%] h-48 border-2 border-neutral-300 rounded-xl shadow-md break-all xl:w-[22.5%] lg:w-[27.5%] md:w-[35%] sm:w-2/5 sm:text-sm xs:w-[100%] xs:h-60 xs:text-base">
+        <div key={myClass.id} className="flex flex-col justify-between w-[17.5%] h-48 border-2 border-neutral-300 rounded-xl shadow-md break-all xl:w-[22.5%] lg:w-[27.5%] md:w-[35%] sm:w-2/5 sm:text-sm xs:w-4/5 xs:h-60 xs:text-base">
             <div className="flex justify-center items-center w-full h-12 border-b-2 border-neutral-300 xs:h-16">
                 <Link className="p-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
                     {myClass.description}
@@ -32,8 +32,8 @@ export default function MyClasses() {
 
             <div className="flex justify-between items-center w-full">
                 <div className="flex">
-                    <HiUsers className="mt-1 ml-4 sm:mt-[3px] xs:mt-1"/>
-                    <span className="ml-2 mb-2">{myClass.numberOfStudents}/50</span>
+                    <HiUsers className="mt-[2px] ml-4 sm:mt-[3px] xs:mt-[2px]"/>
+                    <span className="text-sm ml-2 mb-1">{myClass.numberOfStudents}/50</span>
                 </div>
 
                 <div>
@@ -98,7 +98,7 @@ export default function MyClasses() {
                     ): (
                         myClassesExist ? (
                             myClasses.length > 0 ? (
-                                <div className="w-[95%] h-[95%]">
+                                <div className="flex flex-wrap w-full h-full mt-8 mx-8 xs:justify-center">
                                     {myClassesList}
                                 </div>
                             ) : (
