@@ -43,6 +43,11 @@ export default function useUser() {
                             setSubmitButtonDisabled(false)
                             return
                         }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
+                            return
+                        }
                     })
     }, [router, signUpUrl, name, email, password, confirmPassword])
 
@@ -64,6 +69,11 @@ export default function useUser() {
                         if (err.response.status === 400) {
                             alert(err.response.data)
                             setSubmitButtonDisabled(false)
+                            return
+                        }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
                             return
                         }
                     })
@@ -100,6 +110,11 @@ export default function useUser() {
                             router.replace("/")
                             return
                         }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
+                            return
+                        }
                     })
     },  [readUserUrl, router])
 
@@ -126,6 +141,11 @@ export default function useUser() {
                         if (err.response.status === 400) {
                             alert(err.response.data)
                             setSubmitButtonDisabled(false)
+                            return
+                        }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
                             return
                         }
                     })
@@ -168,6 +188,11 @@ export default function useUser() {
                             router.replace("/")
                             return
                         }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
+                            return
+                        }
                     })
     }, [router, redefinePasswordUrl, password, confirmPassword])
 
@@ -205,6 +230,11 @@ export default function useUser() {
                             localStorage.clear()
                             return router.replace("/")
                         }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
+                            return
+                        }
                     })
     }, [updateUserUrl, name, email, router])
 
@@ -232,6 +262,6 @@ export default function useUser() {
         redefinePassword,
         editButtonClicked,
         cancelButtonClicked,
-        updateUser,
+        updateUser
     }
 }

@@ -2,17 +2,24 @@
 
 import FirstClassImg from "../../assets/FirstClassImg.jpg"
 import Header from "../containers/Header"
+import { HiX } from "react-icons/hi"
 import Image from "next/image"
 import Main from "../containers/Main"
 import Section from "../containers/Section"
 import SideBar from "./SideBar"
 import useSideBar from "@/hooks/useSideBar"
 import useModal from "@/hooks/useModal"
-import { HiTemplate, HiX } from "react-icons/hi"
+import useMyClass from "@/hooks/useMyClass"
+import { useEffect } from "react"
 
 export default function MyClasses() {
     const {pageActive} = useSideBar()
+    const {myClasses, setDescription, createMyClass, submitButtonDisabled} = useMyClass()
     const {modalIsOpen, openModal, closeModal} = useModal()
+
+    useEffect(() => {
+        closeModal()
+    }, [closeModal, myClasses])
 
     return (
         <Main>
@@ -26,7 +33,7 @@ export default function MyClasses() {
                 <div className="flex flex-grow flex-col justify-center items-center w-1/5 mt-[120px] bg-white text-neutral-800 2xl:w-1/4 xl:w-[30%] lg:w-[35%] lg:mt-[100px] md:w-2/5 sm:w-1/2 xs:w-4/5">
                     {modalIsOpen ? (
                         <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                            <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]">
+                            <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                 <div className="absolute top-0 right-0 m-4">
                                     <HiX className="text-xl cursor-pointer" onClick={closeModal}/>
                                 </div>
@@ -38,12 +45,13 @@ export default function MyClasses() {
                                 <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
                                     <input
                                         className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
-                                        id="newClass"
-                                        name="newClass"
+                                        id="description"
+                                        name="description"
                                         type="text"
                                         placeholder="Nome da turma"
                                         minLength="3"
                                         maxLength="30"
+                                        onChange={(e) => setDescription(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -53,22 +61,26 @@ export default function MyClasses() {
                                         <span>Cancelar</span>
                                     </button>
 
-                                    <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4">
+                                    <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                         <span>Criar</span>
                                     </button>
                                 </div>
                             </form>
                         </div>
                     ): (
-                        <>
-                            <div className="w-full">
-                                <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
-                            </div>
+                        myClasses.length > 0 ? (
+                            null
+                        ) : (
+                            <>
+                                <div className="w-full">
+                                    <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
+                                </div>
 
-                            <button className="w-3/5 py-1 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button" onClick={openModal}>
-                                <span>Crie uma Turma</span>
-                            </button>
-                        </>
+                                <button className="w-3/5 py-1 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button" onClick={openModal}>
+                                    <span>Crie uma Turma</span>
+                                </button>
+                            </>
+                        )
                     )}
                 </div>
             </Section>
