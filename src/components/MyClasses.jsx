@@ -23,8 +23,8 @@ export default function MyClasses() {
     }, [closeModal, myClasses])
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-[17.5%] h-48 border-2 border-neutral-300 rounded-xl shadow-md break-all xl:w-[22.5%] lg:w-[27.5%] md:w-[35%] sm:w-2/5 sm:text-sm xs:w-4/5 xs:h-60 xs:text-base">
-            <div className="flex justify-center items-center w-full h-12 border-b-2 border-neutral-300 xs:h-16">
+        <div key={myClass.id} className="flex flex-col justify-between w-80 h-64 border-2 border-neutral-300 rounded-xl shadow-md break-all">
+            <div className="flex justify-center items-center w-full h-16 border-b-2 border-neutral-300">
                 <Link className="p-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
                     {myClass.description}
                 </Link>
@@ -38,11 +38,11 @@ export default function MyClasses() {
 
                 <div>
                     <button className="mr-2 mb-2 text-green-600 rounded-full hover:bg-green-100 p-2" type="button">
-                        <HiOutlinePencilAlt className="text-xl sm:text-base xs:text-xl"/>
+                        <HiOutlinePencilAlt className="text-xl"/>
                     </button>
 
                     <button className="mr-4 mb-2 text-red-500 rounded-full hover:bg-red-100 p-2" type="button">
-                        <HiOutlineTrash className="text-xl sm:text-base xs:text-xl"/>
+                        <HiOutlineTrash className="text-xl"/>
                     </button>
                 </div>
             </div>
@@ -98,7 +98,7 @@ export default function MyClasses() {
                     ): (
                         myClassesExist ? (
                             myClasses.length > 0 ? (
-                                <div className="flex flex-wrap w-full h-full mt-8 mx-8 xs:justify-center">
+                                <div className="flex flex-wrap w-full h-full m-4 sm:justify-center sm:mx-0">
                                     {myClassesList}
                                 </div>
                             ) : (

@@ -9,9 +9,9 @@ export default function SideBar({myClassesPage, profilePage}) {
 
     return (
         <>
-            <nav className={`${sideBarIsOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-10 bg-blue-500 text-white shadow-md 2xl:w-1/4 xl:w-[30%] lg:w-[35%] md:w-2/5 sm:w-1/2 xs:w-4/5" : "hidden"}`}>
-                <div className="flex items-center justify-between w-[90%] h-[120px] p-2 lg:h-[100px]">
-                    <span>idCurso</span>
+            <nav className={`${sideBarIsOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-10 bg-blue-500 text-white shadow-md xl:w-1/4 lg:w-[30%] md:w-2/5 sm:w-1/2 xs:w-4/5" : "hidden"}`}>
+                <div className="flex items-center justify-between w-[90%] h-[100px] p-2">
+                    <span className="text-lg">idCurso</span>
                     <HiX className="text-2xl cursor-pointer" onClick={disableSideBar}/>
                 </div>
 
@@ -31,7 +31,7 @@ export default function SideBar({myClassesPage, profilePage}) {
                 </Link>
             </nav>
 
-            <HiMenu className={`${sideBarIsOpen ? "hidden" : "fixed z-10 left-12 top-12 text-2xl text-neutral-800 cursor-pointer lg:left-10 lg:top-10"}`} onClick={enableSideBar}/>
+            <HiMenu className={`${sideBarIsOpen ? "hidden" : "fixed z-10 left-10 top-10 text-2xl text-neutral-800 cursor-pointer lg:left-10 lg:top-10"}`} onClick={enableSideBar}/>
         </>
     )
 }
