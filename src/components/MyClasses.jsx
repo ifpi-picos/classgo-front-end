@@ -11,19 +11,14 @@ import SideBar from "./SideBar"
 import useSideBar from "@/hooks/useSideBar"
 import useModal from "@/hooks/useModal"
 import useMyClass from "@/hooks/useMyClass"
-import { useEffect } from "react"
 
 export default function MyClasses() {
     const {pageActive} = useSideBar()
     const {createFirstClass, myClasses, setDescription, createMyClass, submitButtonDisabled} = useMyClass()
     const {modalIsOpen, openModal, closeModal} = useModal()
 
-    useEffect(() => {
-        closeModal()
-    }, [closeModal, myClasses])
-
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-80 h-64 border-2 border-neutral-300 rounded-xl shadow-md break-all">
+        <div key={myClass.id} className="flex flex-col justify-between w-80 h-64 border-2 border-neutral-300 rounded-xl shadow-md hover:shadow-xl">
             <div className="flex justify-center items-center w-full h-16 border-b-2 border-neutral-300">
                 <Link className="p-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
                     {myClass.description}
@@ -61,7 +56,9 @@ export default function MyClasses() {
                 <div className="flex flex-grow justify-center items-center w-full mt-[100px] bg-white text-neutral-800">
                     {myClasses.length > 0 ? (
                         <div className="flex flex-wrap p-4 gap-4 h-full w-full">
-                            <HiPlus className="fixed top-10 right-10 text-2xl text-neutral-800 cursor-pointer" onClick={openModal}/>
+                            <span className="fixed top-8 right-8 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={openModal}>
+                                <HiPlus className="text-2xl"/>
+                            </span>
 
                             {myClassesList}
 
@@ -69,10 +66,10 @@ export default function MyClasses() {
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                         <div className="absolute top-0 right-0 m-4">
-                                            <HiX className="text-xl cursor-pointer" onClick={closeModal}/>
+                                            <HiX className="text-2xl cursor-pointer" onClick={closeModal}/>
                                         </div>
 
-                                        <div className="sm:text-sm">
+                                        <div className="text-lg sm:text-sm">
                                             <span>Nova Turma</span>
                                         </div>
 
@@ -91,11 +88,11 @@ export default function MyClasses() {
                                         </div>
 
                                         <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                            <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2" type="button" onClick={closeModal}>
+                                            <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={closeModal}>
                                                 <span>Cancelar</span>
                                             </button>
 
-                                            <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
+                                            <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                                 <span>Criar</span>
                                             </button>
                                         </div>
@@ -120,10 +117,10 @@ export default function MyClasses() {
                                     <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-xl cursor-pointer" onClick={closeModal}/>
+                                                <HiX className="text-2xl cursor-pointer" onClick={closeModal}/>
                                             </div>
 
-                                            <div className="sm:text-sm">
+                                            <div className="text-lg sm:text-sm">
                                                 <span>Nova Turma</span>
                                             </div>
 
@@ -142,11 +139,11 @@ export default function MyClasses() {
                                             </div>
 
                                             <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                                <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2" type="button" onClick={closeModal}>
+                                                <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={closeModal}>
                                                     <span>Cancelar</span>
                                                 </button>
 
-                                                <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
+                                                <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                                     <span>Criar</span>
                                                 </button>
                                             </div>

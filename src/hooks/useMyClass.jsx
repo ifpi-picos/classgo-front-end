@@ -77,6 +77,7 @@ export default function useMyClass() {
                         if (res.status === 201) {
                             setSubmitButtonDisabled(false)
                             readMyClasses()
+                            window.location.reload(true)
                             return
                         }
 
