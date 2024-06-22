@@ -31,8 +31,8 @@ export default function SideBar({myClassesPage, profilePage}) {
                 </Link>
             </nav>
             
-            <span className={`${sideBarIsOpen ? "hidden" : "fixed z-10 left-6 top-4 text-neutral-800 p-2 cursor-pointer rounded-full hover:bg-neutral-200"}`} onClick={enableSideBar}>
-                <HiMenu className="text-2xl"/>
+            <span className={`${sideBarIsOpen ? "hidden" : "fixed z-10 left-5 top-5 text-neutral-800 p-2 cursor-pointer rounded-full hover:bg-neutral-200"}`} onClick={enableSideBar}>
+                <HiMenu className="text-2xl sm:text-xl"/>
             </span>
         </>
     )
