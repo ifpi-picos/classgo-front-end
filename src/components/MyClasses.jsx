@@ -53,11 +53,11 @@ export default function MyClasses() {
                     Minhas Turmas
                 </Header>
 
-                <div className="flex justify-center w-full bg-white text-neutral-800 mb-6">
+                <div className="flex justify-centera absolute top-[90px] w-full bg-white text-neutral-800 mb-6">
                     {myClasses.length > 0 ? (
-                        <div className="flex flex-wrap gap-4 mx-6 h-full w-full sm:justify-center">
-                            <span className="fixed top-5 right-5 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={openModal}>
-                                <HiPlus className="text-2xl sm:text-xl"/>
+                        <div className="flex flex-wrap gap-4 mx-6 h-full w-full bg-white sm:justify-center">
+                            <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={openModal}>
+                                <HiPlus className="text-2xl"/>
                             </span>
 
                             {myClassesList}
