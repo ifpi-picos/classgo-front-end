@@ -18,26 +18,26 @@ export default function MyClasses() {
     const {modalIsOpen, openModal, closeModal} = useModal()
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-80 h-64 border-2 border-neutral-300 rounded-xl shadow-md hover:shadow-xl">
-            <div className="flex justify-center items-center w-full h-16 border-b-2 border-neutral-300">
-                <Link className="p-4 hover:underline break-words" href={`/classes/${myClass.description}/diary`}>
+        <div key={myClass.id} className="flex flex-col justify-between w-80 h-40 border-2 border-neutral-200 rounded-xl shadow-md hover:shadow-xl">
+            <Link className="flex justify-center items-center w-full border-b-2 border-neutral-200"  href={`/classes/${myClass.description}/diary`}>
+                <span className="p-[12px] hover:underline break-words">
                     {myClass.description}
-                </Link>
-            </div>
+                </span>
+            </Link>
 
             <div className="flex justify-between items-center w-full">
                 <div className="flex">
-                    <HiUsers className="mt-[2px] ml-4 sm:mt-[3px] xs:mt-[2px]"/>
+                    <HiUsers className="mt-[2px] ml-4 sm:mt-[3px] xs:mt-[2px]" title="Alunos"/>
                     <span className="text-sm ml-2 mb-1">{myClass.numberOfStudents}/50</span>
                 </div>
 
                 <div>
                     <button className="mr-2 mb-2 text-green-600 rounded-full hover:bg-green-100 p-2" type="button">
-                        <HiOutlinePencilAlt className="text-xl"/>
+                        <HiOutlinePencilAlt className="text-xl" title="Editar"/>
                     </button>
 
                     <button className="mr-4 mb-2 text-red-500 rounded-full hover:bg-red-100 p-2" type="button">
-                        <HiOutlineTrash className="text-xl"/>
+                        <HiOutlineTrash className="text-xl" title="Excluir"/>
                     </button>
                 </div>
             </div>
@@ -53,11 +53,11 @@ export default function MyClasses() {
                     Minhas Turmas
                 </Header>
 
-                <div className="flex justify-centera absolute top-[90px] w-full bg-white text-neutral-800 mb-6">
+                <div className="flex justify-centera absolute top-[90px] w-full bg-white text-neutral-800">
                     {myClasses.length > 0 ? (
-                        <div className="flex flex-wrap gap-4 mx-6 h-full w-full bg-white sm:justify-center">
-                            <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={openModal}>
-                                <HiPlus className="text-2xl"/>
+                        <div className="flex flex-wrap gap-4 mx-4 mb-4 w-full bg-white sm:justify-center">
+                            <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-100" onClick={openModal}>
+                                <HiPlus className="text-2xl" title="Nova Turma"/>
                             </span>
 
                             {myClassesList}
@@ -66,7 +66,7 @@ export default function MyClasses() {
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                         <div className="absolute top-0 right-0 m-4">
-                                            <HiX className="text-2xl cursor-pointer" onClick={closeModal}/>
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeModal}/>
                                         </div>
 
                                         <div className="text-lg sm:text-sm">
