@@ -13,7 +13,7 @@ import useSideBar from "@/hooks/useSideBar"
 
 export default function MyClasses() {
     const {pageActive} = useSideBar()
-    const {confirmModalIsOpen, openConfirmModal, closeConfirmModal, classModalIsOpen, classModalAction, openClassModal, closeClassModal, createFirstClass, myClasses, description, setDescription, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
+    const {confirmModalIsOpen, closeConfirmModal, classModalIsOpen, classModalAction, openClassModal, closeClassModal, createFirstClass, myClasses, description, setDescription, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
 
     const myClassesList = myClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-neutral-200 rounded-xl shadow-md cursor-pointer hover:shadow-xl">
@@ -64,7 +64,7 @@ export default function MyClasses() {
 
                             {confirmModalIsOpen ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[250px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[90%]" onSubmit={deleteMyClass}>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
                                                 <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeConfirmModal}/>
                                             </div>

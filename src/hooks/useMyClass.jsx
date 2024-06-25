@@ -9,7 +9,6 @@ export default function useMyClass() {
     const [createFirstClass, setCreateFirstClass] = useState(false)
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
-    const [numberOfStudents, setNumberOfStudents] = useState(0)
     const [myClasses, setMyClasses] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
@@ -240,7 +239,6 @@ export default function useMyClass() {
     return {
         createFirstClass,
         confirmModalIsOpen,
-        openConfirmModal,
         closeConfirmModal,
         classModalIsOpen,
         classModalAction,
