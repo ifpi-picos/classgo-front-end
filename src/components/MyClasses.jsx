@@ -17,7 +17,7 @@ export default function MyClasses() {
 
     const myClassesList = myClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-neutral-200 rounded-xl shadow-md cursor-pointer hover:shadow-xl">
-            <Link className="flex justify-center items-center w-full border-b-2 border-neutral-200"  href={`/classes/${myClass.description}/diary`}>
+            <Link className="flex justify-center items-center w-full border-b-2 border-neutral-200"  href={`/myclasses/${myClass.description}/diary`}>
                 <span className="px-2 py-[12px] hover:underline break-words">
                     {myClass.description}
                 </span>
@@ -57,7 +57,7 @@ export default function MyClasses() {
                     </span>
                 </Header>
 
-                <div className="flex justify-centera absolute top-[90px] w-full bg-white text-neutral-800">
+                <div className="flex justify-center absolute top-[90px] w-full bg-white text-neutral-800">
                     {myClasses.length > 0 ? (
                         <div className="flex flex-wrap gap-4 mx-4 mb-4 w-full bg-white sm:justify-center">
                             {myClassesList}
