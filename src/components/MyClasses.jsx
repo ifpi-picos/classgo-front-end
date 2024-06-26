@@ -52,7 +52,7 @@ export default function MyClasses() {
                         Minhas Turmas
                     </span>
 
-                    <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-100" onClick={createButtonClicked}>
+                    <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
                         <HiPlus className="text-2xl" title="Nova Turma"/>
                     </span>
                 </Header>
