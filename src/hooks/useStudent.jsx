@@ -2,23 +2,26 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 
-export default function useMyClass() {
+export default function useStudent({classDescription}) {
+    const [classId, setClassId] = useState(0)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
-    const [showClassModal, setShowClassModal] = useState(false)
-    const [classModalAction, setClassModalAction] = useState("")
-    const [createFirstClass, setCreateFirstClass] = useState(false)
+    const [showStudentModal, setShowStudentModal] = useState(false)
+    const [studentModalAction, setStudentModalAction] = useState("")
     const [id, setId] = useState(0)
-    const [description, setDescription] = useState("")
-    const [myClasses, setMyClasses] = useState([])
+    const [name, setName] = useState("")
+    const [numberOfPresences, setNumberOfPresences] = useState(0)
+    const [students, setStudents] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
     const router = useRouter()
 
-    const readMyClassesUrl = `https://idcurso-back-end.vercel.app/classes`
-    const createMyclassesUrl = `https://idcurso-back-end.vercel.app/classes`
-    const updateMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${id}`
-    const deleteMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${id}`
-    
+    const readMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${classDescription}`
+
+    const readStudentsUrl = `https://idcurso-back-end.vercel.app/students/${classId}`
+    const createStudentUrl = `https://idcurso-back-end.vercel.app/students`
+    const updateStudentUrl = `https://idcurso-back-end.vercel.app/students/${id}`
+    const deleteStudentUrl = `https://idcurso-back-end.vercel.app/students/${id}`
+
     const openConfirmModal = useCallback(() => {
         setShowConfirmModal(true)
     }, [])
@@ -27,29 +30,24 @@ export default function useMyClass() {
         setShowConfirmModal(false)
     }, [])
 
-    const openClassModal = useCallback(() => {
-        setShowClassModal(true)
+    const openStudentModal = useCallback(() => {
+        setShowStudentModal(true)
     }, [])
 
-    const closeClassModal = useCallback(() => {
-        setShowClassModal(false)
+    const closeStudentModal = useCallback(() => {
+        setShowStudentModal(false)
     }, [])
 
-    const readMyClasses = useCallback(async () => {
+    const readMyClass = useCallback(async () => {
         await axios
-                    .get(readMyClassesUrl, {headers: {
+                    .get(readMyClassUrl, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
                     }})
                     .then((res) => {
                         if (res.status === 200) {
-                            if (res.data.length === 0) {
-                                setCreateFirstClass(true)
-                                return
-                            }
-
-                            setMyClasses(res.data)
+                            setClassId(res.data.id)
                             return
                         }
 
@@ -76,15 +74,54 @@ export default function useMyClass() {
                             return
                         }
                     })
-    }, [readMyClassesUrl, router])
+    },  [readMyClassUrl, router])
 
-    const createMyClass = useCallback(async (e) => {
+    const readStudents = useCallback(async () => {
+        await axios
+                    .get(readStudentsUrl, {headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }})
+                    .then((res) => {
+                        if (res.status === 200) {
+                            setSubmitButtonDisabled(false)
+                            setStudents(res.data)
+                            return
+                        }
+
+                        else if (res.status === 401) {
+                            localStorage.clear()
+                            router.replace("/")
+                            return
+                        }
+                    })
+                    .catch((err) => {
+                        if (err.response.status === 400) {
+                            alert(err.response.data)
+                            return
+                        }
+
+                        else if (err.response.status === 401) {
+                            localStorage.clear()
+                            router.replace("/")
+                            return
+                        }
+
+                        else if (err.response.status >= 500) {
+                            alert("Erro no servidor, recarregue a página!")
+                            return
+                        }
+                    })
+    }, [readStudentsUrl, router])
+
+    const createStudent = useCallback(async (e) => {
         e.preventDefault()
 
         setSubmitButtonDisabled(true)
 
         await axios
-                    .post(createMyclassesUrl, {description}, {headers: {
+                    .post(createStudentUrl, {name, classId}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -92,8 +129,8 @@ export default function useMyClass() {
                     .then((res) => {
                         if (res.status === 201) {
                             setSubmitButtonDisabled(false)
-                            closeClassModal()
-                            readMyClasses()
+                            closeStudentModal()
+                            readStudents()
                             return
                         }
 
@@ -121,15 +158,15 @@ export default function useMyClass() {
                             return
                         }
                     })
-    }, [createMyclassesUrl, description, closeClassModal, readMyClasses, router])
+    }, [createStudentUrl, name, classId, closeStudentModal, readStudents, router])
 
-    const updateMyClass = useCallback(async (e) => {
+    const updateStudent = useCallback(async (e) => {
         e.preventDefault()
 
         setSubmitButtonDisabled(true)
 
         await axios
-                    .put(updateMyClassUrl, {description}, {headers: {
+                    .put(updateStudentUrl, {name, classId}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -137,8 +174,8 @@ export default function useMyClass() {
                     .then((res) => {
                         if (res.status === 200) {
                             setSubmitButtonDisabled(false)
-                            closeClassModal()
-                            readMyClasses()
+                            closeStudentModal()
+                            readStudents()
                             return
                         }
 
@@ -166,15 +203,15 @@ export default function useMyClass() {
                             return
                         }
                     })
-    }, [updateMyClassUrl, description, closeClassModal, readMyClasses, router])
+    }, [updateStudentUrl, name, classId, closeStudentModal, readStudents, router])
 
-    const deleteMyClass = useCallback(async (e) => {
+    const deleteStudent = useCallback(async (e) => {
         e.preventDefault()
 
         setSubmitButtonDisabled(true)
 
         await axios
-                    .delete(deleteMyClassUrl, {headers: {
+                    .delete(deleteStudentUrl, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -183,7 +220,7 @@ export default function useMyClass() {
                         if (res.status === 200) {
                             setSubmitButtonDisabled(false)
                             closeConfirmModal()
-                            readMyClasses()
+                            readStudents()
                             return
                         }
 
@@ -212,46 +249,52 @@ export default function useMyClass() {
                         }
                     })
                     
-    }, [deleteMyClassUrl, closeConfirmModal, readMyClasses, router])
+    }, [deleteStudentUrl, closeConfirmModal, readStudents, router])
 
     useEffect(() => {
-        readMyClasses()
-    })
+        readMyClass()
+    }, [readMyClass])
+
+    useEffect(() => {
+        readStudents()
+    }, [readStudents, classId])
 
     const createButtonClicked = useCallback(() => {
-        setClassModalAction("Create")
-        openClassModal()
-    }, [openClassModal])
+        setStudentModalAction("Create")
+        openStudentModal()
+    }, [openStudentModal])
 
-    const editButtonClicked = useCallback((myClass) => {
-        setClassModalAction("Update")
-        openClassModal()
-        setId(myClass.id)
-        setDescription(myClass.description)
-    }, [openClassModal])
+    const editButtonClicked = useCallback((student) => {
+        setStudentModalAction("Update")
+        openStudentModal()
+        setId(student.id)
+        setName(student.name)
+    }, [openStudentModal])
 
-    const deleteButtonClicked = useCallback((myClass) => {
+    const deleteButtonClicked = useCallback((student) => {
         openConfirmModal()
-        setId(myClass.id)
+        setId(student.id)
     }, [openConfirmModal])
-
+    
     return {
-        createFirstClass,
         showConfirmModal,
+        openConfirmModal,
         closeConfirmModal,
-        showClassModal,
-        openClassModal,
-        closeClassModal,
-        classModalAction,
-        description,
-        setDescription,
-        myClasses,
-        createMyClass,
-        updateMyClass,
-        deleteMyClass,
+        showStudentModal,
+        openStudentModal,
+        closeStudentModal,
+        studentModalAction,
+        name,
+        setName,
+        numberOfPresences,
+        setNumberOfPresences,
+        students,
+        createStudent,
+        updateStudent,
+        deleteStudent,
         createButtonClicked,
-        editButtonClicked,
         deleteButtonClicked,
+        editButtonClicked,
         submitButtonDisabled
     }
 }

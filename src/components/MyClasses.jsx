@@ -13,11 +13,11 @@ import useSideBar from "@/hooks/useSideBar"
 
 export default function MyClasses() {
     const {pageActive} = useSideBar()
-    const {confirmModalIsOpen, closeConfirmModal, classModalIsOpen, classModalAction, openClassModal, closeClassModal, createFirstClass, myClasses, description, setDescription, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
+    const {showConfirmModal, closeConfirmModal, showClassModal, classModalAction, openClassModal, closeClassModal, createFirstClass, myClasses, description, setDescription, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
 
     const myClassesList = myClasses.map((myClass) => 
-        <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-neutral-200 rounded-xl shadow-md cursor-pointer hover:shadow-xl">
-            <Link className="flex justify-center items-center w-full border-b-2 border-neutral-200"  href={`/myclasses/${myClass.description}/diary`}>
+        <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-neutral-300 rounded-xl shadow-md cursor-pointer hover:shadow-xl">
+            <Link className="flex justify-center items-center w-full border-b-2 border-neutral-300"  href={`/myclasses/${myClass.description}/diary`}>
                 <span className="px-2 py-[12px] hover:underline break-words">
                     {myClass.description}
                 </span>
@@ -31,11 +31,11 @@ export default function MyClasses() {
 
                 <div>
                     <button className="mr-2 mb-2 text-green-600 rounded-full hover:bg-green-100 p-2" type="button" onClick={() => editButtonClicked(myClass)}>
-                        <HiOutlinePencilAlt className="text-xl" title="Editar"/>
+                        <HiOutlinePencilAlt className="text-xl" title="Editar Turma"/>
                     </button>
 
                     <button className="mr-4 mb-2 text-red-500 rounded-full hover:bg-red-100 p-2" type="button" onClick={() => deleteButtonClicked(myClass)}>
-                        <HiOutlineTrash className="text-xl" title="Excluir"/>
+                        <HiOutlineTrash className="text-xl" title="Excluir Turma"/>
                     </button>
                 </div>
             </div>
@@ -62,15 +62,15 @@ export default function MyClasses() {
                         <div className="flex flex-wrap gap-4 mx-4 mb-4 w-full bg-white sm:justify-center">
                             {myClassesList}
 
-                            {confirmModalIsOpen ? (
+                            {showConfirmModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteMyClass}>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[200px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
                                                 <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeConfirmModal}/>
                                             </div>
                                             
-                                            <div className="flex justify-center items-center">
-                                                <span>Deseja Excluir Essa Turma?</span>
+                                            <div className="flex justify-center items-center mt-6 text-lg font-medium">
+                                                <span>Excluir essa turma?</span>
                                             </div>
                         
                                             <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
@@ -88,10 +88,10 @@ export default function MyClasses() {
                                 null
                             )}
 
-                            {classModalIsOpen ? (
+                            {showClassModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     {classModalAction === "Create" ? (
-                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
+                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
                                                 <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeClassModal}/>
                                             </div>
@@ -125,7 +125,7 @@ export default function MyClasses() {
                                             </div>
                                         </form>
                                     ) : (
-                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateMyClass}>
+                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
                                                 <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeClassModal}/>
                                             </div>
@@ -168,7 +168,7 @@ export default function MyClasses() {
                         </div>
                     ) : (
                         createFirstClass ? (
-                            <div className="flex flex-col justify-center items-center w-1/4 xl:w-[30%] lg:w-[35%] lg:mt-[100px] md:w-2/5 sm:w-1/2 xs:w-4/5">
+                            <div className="flex flex-col justify-center items-center w-1/4 mt-20 xl:w-[30%] lg:w-[35%] lg:mt-[100px] md:w-2/5 sm:w-1/2 xs:w-4/5">
                                 <div className="w-full">
                                     <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                                 </div>
@@ -177,7 +177,7 @@ export default function MyClasses() {
                                     <span>Crie uma Turma</span>
                                 </button>
 
-                                {classModalIsOpen ? (
+                                {showClassModal ? (
                                     <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
                                             <div className="absolute top-0 right-0 m-4">
