@@ -5,16 +5,16 @@ import Link from "next/link"
 import Main from "@/containers/Main"
 import Section from "@/containers/Section"
 import SideBar from "./SideBar"
-import { HiOutlinePencilAlt, HiPlus } from "react-icons/hi"
+import { HiOutlinePencilAlt, HiPlus, HiX } from "react-icons/hi"
 import useLesson from "@/hooks/useLesson"
 
 export default function Diary({myClassDescription}) {
     const classDescription = myClassDescription.split("%20").join(" ")
 
-    const {lessons} = useLesson()
+    const {showLessonModal, closeLessonModal, lessonModalAction, description, setDescription, date, setDate, lessons, createLesson, updateLesson, createButtonClicked, editButtonClicked, submitButtonDisabled} = useLesson({classDescription})
 
-    const lessonsList = lessons.map((lesson, index) => (
-        <tr key={index}>
+    const lessonsList = lessons.map((lesson) => (
+        <tr key={lesson.id}>
             <td className="text-center p-1 border-2 border-neutral-300">
                 {lesson.date.replace(/(\d{4})-(\d\d)-(\d\d)/, "$3/$2/$1").toString()}
             </td>
@@ -25,7 +25,7 @@ export default function Diary({myClassDescription}) {
 
             <td className="text-center p-1 border-2 border-neutral-300">
                 <button className="text-green-600 cursor-pointer p-2 rounded-full hover:bg-green-100" type="button">
-                    <HiOutlinePencilAlt className="text-xl xs:text-base" title="Editar Aula"/>
+                    <HiOutlinePencilAlt className="text-xl xs:text-base" title="Editar Aula" onClick={editButtonClicked}/>
                 </button>
             </td>
         </tr>
@@ -62,7 +62,7 @@ export default function Diary({myClassDescription}) {
                             </span>
 
                             <button className="text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" type="button">
-                                <HiPlus className="text-2xl" title="Nova Aula"/>
+                                <HiPlus className="text-2xl" title="Nova Aula" onClick={createButtonClicked}/>
                             </button>
                         </div>
 
@@ -79,6 +79,55 @@ export default function Diary({myClassDescription}) {
                                 {lessonsList}
                             </tbody>
                         </table>
+
+                        {showLessonModal ? (
+                            <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
+                                {lessonModalAction === "Create" ? (
+                                    <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]">
+                                        <div className="absolute top-0 right-0 m-4">
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeLessonModal}/>
+                                        </div>
+
+                                        <div className="text-lg sm:text-sm">
+                                            <span>Nova Aula</span>
+                                        </div>
+
+                                        <div className="flex flex-col w-[80%] sm:text-xs">
+                                            <input
+                                                className="w-full bg-transparent mb-4 border-b border-neutral-800 placeholder:text-neutral-500 p-1 outline-none"
+                                                id="description"
+                                                name="description"
+                                                type="text"
+                                                placeholder="Descrição da aula"
+                                                minLength="3"
+                                                maxLength="30"
+                                                onChange={(e) => setDescription(e.target.value)}
+                                                required
+                                            />
+
+                                            <input
+                                                className="flex justify-end w-full bg-transparent border-b border-neutral-800 p-1 outline-none"
+                                                id="date"
+                                                name="date"
+                                                type="date"
+                                                onChange={(e) => setDate(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex justify-end w-[80%] sm:text-xs">
+                                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
+                                                <span>Próximo</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                ) : (
+                                    null
+                                )}
+                            </div>
+                        ) : (
+                            null
+                        )}
                     </div>
                 </div>
             </Section>
