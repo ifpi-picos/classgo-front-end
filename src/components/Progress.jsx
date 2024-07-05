@@ -13,7 +13,7 @@ export default function Progress({myClassDescription}) {
     const {progress} = useProgress({classDescription})
 
     const progressList = progress.map((data, index) => (
-        <tr key={index} className="break-all">
+        <tr key={index}>
             <td className="py-1 px-2 border-2 border-neutral-300">
                 {data.name}
             </td>
@@ -60,8 +60,8 @@ export default function Progress({myClassDescription}) {
                         </div>
 
                         <table className="w-full my-6">
-                            <thead className="w-full">
-                                <tr>
+                            <thead className="w-full break-all">
+                                <tr className="w-full">
                                     <th className="w-3/5 p-2 border-2 border-neutral-300">Aluno</th>
                                     <th className="w-1/5 p-2 border-2 border-neutral-300">Faltas</th>
                                     <th className="w-1/5 p-2 border-2 border-neutral-300">Aulas</th>

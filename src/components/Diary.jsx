@@ -87,9 +87,9 @@ export default function Diary({myClassDescription}) {
 
                         <table className="w-full my-6 break-all text-neutral-800 rounded-xl">
                             <thead className="w-full">
-                                <tr>
-                                    <th className="w-1/5 p-2 border-2 border-neutral-300">Data</th>
-                                    <th className="w-[65%] p-2 border-2 border-neutral-300">Descrição</th>
+                                <tr className="w-full">
+                                    <th className="w-1/4 p-2 border-2 border-neutral-300">Data</th>
+                                    <th className="w-[55%] p-2 border-2 border-neutral-300">Descrição</th>
                                     <th className="w-[20%] p-2 border-2 border-neutral-300">Ação</th>
                                 </tr>                            
                             </thead>
