@@ -1,16 +1,22 @@
 import axios from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import useStudent from "./useStudent"
 
 export default function useLesson({classDescription}) {
     const [classId, setClassId] = useState(0)
     const [showLessonModal, setShowLessonModal] = useState(false)
     const [lessonModalAction, setLessonModalAction] = useState("")
+    const [showFrequencyModal, setShowFrequencyModal] = useState(false)
+    const [frequencyModalAction, setFrequencyModalAction] = useState("")
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
     const [date, setDate] = useState(new Date())
     const [lessons, setLessons] = useState([])
+    const [frequency, setFrequency] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
+    
+    const {students} = useStudent({classDescription})
 
     const router = useRouter()
 
@@ -20,13 +26,52 @@ export default function useLesson({classDescription}) {
     const createLessonUrl = `https://idcurso-back-end.vercel.app/lessons`
     const updateLessonUrl = `https://idcurso-back-end.vercel.app/lessons/${id}`
 
+    const createNewFrequency = useCallback(() => {
+        const newFrequency = []
+
+        students.map((student) => {
+            newFrequency.push({
+                studentName: student.name,
+                presence: false
+            })
+        })
+        
+        setFrequency(newFrequency)
+    }, [students])
+
     const openLessonModal = useCallback(() => {
         setShowLessonModal(true)
     }, [])
 
     const closeLessonModal = useCallback(() => {
         setShowLessonModal(false)
+        createNewFrequency()
+    }, [createNewFrequency])
+
+    const closeFrequencyModal = useCallback(() => {
+        setShowFrequencyModal(false)
+        setShowLessonModal(false)
+        createNewFrequency()
+    }, [createNewFrequency])
+
+    const nextModal = useCallback(() => {
+        setShowLessonModal(false)
+        setShowFrequencyModal(true)
     }, [])
+
+    const backModal = useCallback(() => {
+        setShowFrequencyModal(false)
+        setShowLessonModal(true)
+    }, [])
+
+    const onChangeFrequency = useCallback((studentName) => {
+        frequency.map((data, index) => {
+            studentName === data.studentName ? frequency.splice(index, 1, {studentName: data.studentName, presence: !data.presence}) : null
+        })
+        console.log(frequency)
+
+        setFrequency(frequency)
+    }, [frequency])
 
     const readMyClass = useCallback(async () => {
         await axios
@@ -111,7 +156,7 @@ export default function useLesson({classDescription}) {
         setSubmitButtonDisabled(true)
 
         await axios
-                    .post(createLessonUrl, {description, date, classId}, {headers: {
+                    .post(createLessonUrl, {description, date, frequency, classId}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -119,8 +164,9 @@ export default function useLesson({classDescription}) {
                     .then((res) => {
                         if (res.status === 201) {
                             setSubmitButtonDisabled(false)
-                            closeLessonModal()
+                            closeFrequencyModal()
                             readLessons()
+                            createNewFrequency()
                             return
                         }
 
@@ -148,7 +194,7 @@ export default function useLesson({classDescription}) {
                             return
                         }
                     })
-    }, [createLessonUrl, description, date, classId, closeLessonModal, readLessons, router])
+    }, [createLessonUrl, description, date, frequency, classId, closeFrequencyModal, readLessons, createNewFrequency, router])
 
     const updateLesson = useCallback(async (e) => {
         e.preventDefault()
@@ -156,7 +202,7 @@ export default function useLesson({classDescription}) {
         setSubmitButtonDisabled(true)
 
         await axios
-                    .put(updateLessonUrl, {description, date, classId}, {headers: {
+                    .put(updateLessonUrl, {description, date, frequency, classId}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -164,8 +210,10 @@ export default function useLesson({classDescription}) {
                     .then((res) => {
                         if (res.status === 200) {
                             setSubmitButtonDisabled(false)
-                            closeLessonModal()
+                            alert(res.data)
+                            closeFrequencyModal()
                             readLessons()
+                            createNewFrequency()
                             return
                         }
 
@@ -193,42 +241,56 @@ export default function useLesson({classDescription}) {
                             return
                         }
                     })
-    }, [updateLessonUrl, description, date, classId, closeLessonModal, readLessons, router])
-
-    useEffect(() => {
-        readMyClass()
-    }, [readMyClass])
-
-    useEffect(() => {
-        readLessons()
-    }, [readLessons, classId])
+    }, [updateLessonUrl, description, date, frequency, classId, closeFrequencyModal, readLessons, createNewFrequency, router])
 
     const createButtonClicked = useCallback(() => {
         setLessonModalAction("Create")
+        setFrequencyModalAction("Create")
         openLessonModal()
     }, [openLessonModal])
 
     const editButtonClicked = useCallback((lesson) => {
         setLessonModalAction("Update")
+        setFrequencyModalAction("Update")
         openLessonModal()
         setId(lesson.id)
         setDescription(lesson.description)
         setDate(lesson.date)
+        setFrequency(lesson.frequency)
     }, [openLessonModal])
+    
+    useEffect(() => {
+        readMyClass()
+    }, [readMyClass])
+
+    useEffect(() => {
+        createNewFrequency()
+    }, [createNewFrequency])
+
+    useEffect(() => {
+        readLessons()
+    }, [readLessons, classId])
 
     return {
         showLessonModal,
-        closeLessonModal,
         lessonModalAction,
+        closeLessonModal,
+        showFrequencyModal,
+        frequencyModalAction,
+        closeFrequencyModal,
         description,
         setDescription,
         date,
         setDate,
+        frequency,
+        onChangeFrequency,
         lessons,
         createLesson,
         updateLesson,
         createButtonClicked,
         editButtonClicked,
+        nextModal,
+        backModal,
         submitButtonDisabled
     }
 }

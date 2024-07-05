@@ -11,7 +11,7 @@ import useStudent from "@/hooks/useStudent"
 export default function Students({myClassDescription}) {
     const classDescription = myClassDescription.split("%20").join(" ")
 
-    const {showConfirmModal, openConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
+    const {showConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
 
     const studentsList = students.map((student) => 
         <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-neutral-300 rounded-xl cursor-pointer mb-2">
@@ -56,14 +56,14 @@ export default function Students({myClassDescription}) {
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300">
-                            <span className="text-lg p-2 sm:text-base">
+                        <div className="flex justify-between w-full border-b-2 border-neutral-300 p-1">
+                            <span className="text-lg pl-2 pt-2 sm:text-base">
                                 Alunos
                             </span>
 
-                            <button className="text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" type="button" onClick={createButtonClicked}>
+                            <span className="text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
                                 <HiPlus className="text-2xl" title="Novo Aluno"/>
-                            </button>
+                            </span>
                         </div>
 
                         <div className="w-full my-6">
@@ -72,8 +72,8 @@ export default function Students({myClassDescription}) {
                             {showConfirmModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[200px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteStudent}>
-                                            <span className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeConfirmModal}/>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeConfirmModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                             </span>
                                             
                                             <div className="flex justify-center items-center text-lg mt-6 font-medium">
@@ -99,9 +99,9 @@ export default function Students({myClassDescription}) {
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     {studentModalAction === "Create" ? (
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createStudent}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeStudentModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeStudentModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                            </span>
 
                                             <div className="text-lg sm:text-sm">
                                                 <span>Novo Aluno</span>
@@ -133,9 +133,9 @@ export default function Students({myClassDescription}) {
                                         </form>
                                     ) : (
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateStudent}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeStudentModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeStudentModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                            </span>
 
                                             <div className="text-lg sm:text-sm">
                                                 <span>Editar Aluno</span>

@@ -52,9 +52,13 @@ export default function MyClasses() {
                         Minhas Turmas
                     </span>
 
-                    <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
-                        <HiPlus className="text-2xl" title="Nova Turma"/>
-                    </span>
+                    {createFirstClass ? (
+                        null
+                    ) : (
+                        <span className="fixed top-[18px] right-4 z-20 text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
+                            <HiPlus className="text-2xl" title="Nova Turma"/>
+                        </span>
+                    )}
                 </Header>
 
                 <div className="flex justify-center absolute top-[90px] w-full bg-white text-neutral-800">
@@ -65,9 +69,9 @@ export default function MyClasses() {
                             {showConfirmModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[200px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteMyClass}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeConfirmModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeConfirmModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                            </span>
                                             
                                             <div className="flex justify-center items-center mt-6 text-lg font-medium">
                                                 <span>Excluir essa turma?</span>
@@ -92,9 +96,9 @@ export default function MyClasses() {
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     {classModalAction === "Create" ? (
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeClassModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeClassModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                            </span>
 
                                             <div className="text-lg sm:text-sm">
                                                 <span>Nova Turma</span>
@@ -126,9 +130,9 @@ export default function MyClasses() {
                                         </form>
                                     ) : (
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateMyClass}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={closeClassModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeClassModal}>
+                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                            </span>
 
                                             <div className="text-lg sm:text-sm">
                                                 <span>Editar Turma</span>
@@ -180,9 +184,9 @@ export default function MyClasses() {
                                 {showClassModal ? (
                                     <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                         <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createMyClass}>
-                                            <div className="absolute top-0 right-0 m-4">
-                                                <HiX className="text-2xl cursor-pointer" onClick={closeClassModal}/>
-                                            </div>
+                                            <span className="absolute top-0 right-0 m-4" onClick={closeClassModal}>
+                                                <HiX className="text-2xl cursor-pointer"/>
+                                            </span>
 
                                             <div className="text-lg sm:text-sm">
                                                 <span>Nova Turma</span>
