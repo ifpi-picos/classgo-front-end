@@ -1,0 +1,80 @@
+"use client"
+
+import Header from "@/containers/Header"
+import Link from "next/link"
+import Main from "@/containers/Main"
+import Section from "@/containers/Section"
+import SideBar from "./SideBar"
+import useProgress from "@/hooks/useProgress"
+
+export default function Progress({myClassDescription}) {
+    const classDescription = myClassDescription.split("%20").join(" ")
+
+    const {progress} = useProgress({classDescription})
+
+    const progressList = progress.map((data, index) => (
+        <tr key={index} className="break-all">
+            <td className="py-1 px-2 border-2 border-neutral-300">
+                {data.name}
+            </td>
+
+            <td className="text-center p-1 border-2 border-neutral-300">
+                {data.absences}
+            </td>
+
+            <td className="text-center p-1 border-2 border-neutral-300">
+                {data.lessons}
+            </td>
+        </tr>
+    ))
+
+    return (
+        <Main>
+            <SideBar/>
+
+            <Section>
+                <Header>
+                    {classDescription}
+                </Header>
+
+                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-neutral-800">
+                    <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/diary`}>
+                                Diário
+                            </Link>
+
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/progress`}>
+                                Progresso
+                            </Link>
+
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/students`}>
+                                Alunos
+                            </Link>
+                    </div>
+
+                    <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
+                        <div className="flex justify-between w-full border-b-2 border-neutral-300 p-1">
+                            <span className="text-lg pl-2 pt-2 sm:text-base">
+                                Progresso
+                            </span>
+                        </div>
+
+                        <table className="w-full my-6">
+                            <thead className="w-full">
+                                <tr>
+                                    <th className="w-3/5 p-2 border-2 border-neutral-300">Aluno</th>
+                                    <th className="w-1/5 p-2 border-2 border-neutral-300">Faltas</th>
+                                    <th className="w-1/5 p-2 border-2 border-neutral-300">Aulas</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody className="w-full">
+                                {progressList}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </Section>
+        </Main>
+    )
+}
