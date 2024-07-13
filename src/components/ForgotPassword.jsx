@@ -16,7 +16,7 @@ export default function ForgotPassword() {
                     <Image className="h-full rounded-s-xl" src={ForgotPasswordImg} alt="Imagem ilustrativa" priority/>
                 </div>
 
-                <form className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 rounded-e-xl lg:w-full lg:rounded-xl" onSubmit={forgotPassword}>
+                <form className="flex flex-col justify-evenly items-center w-1/2 h-full bg-blue-500 font-semibold rounded-e-xl lg:w-full lg:rounded-xl" onSubmit={forgotPassword}>
                     <div className="flex justify-center items-center w-4/5 text-lg md:text-base sm:text-sm">
                         <span>Solicitar Nova Senha</span>
                     </div>

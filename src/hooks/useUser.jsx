@@ -118,10 +118,6 @@ export default function useUser() {
                     })
     },  [readUserUrl, router])
 
-    useEffect(() => {
-        readUser()
-    }, [readUser])
-
     const forgotPassword = useCallback(async (e) => {
         e.preventDefault()
 
@@ -246,6 +242,10 @@ export default function useUser() {
         await readUser()
         setEditUser(false)
     }, [readUser])
+
+    useEffect(() => {
+        readUser()
+    }, [readUser, name, email, password])
 
     return {
         name,
