@@ -255,7 +255,7 @@ export default function useUser() {
 
     useEffect(() => {
         readUser()
-    }, [readUser, name, email, password])
+    }, [readUser, verifyToken])
 
     return {
         name,

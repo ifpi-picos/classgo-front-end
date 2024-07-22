@@ -1,6 +1,6 @@
 import axios from "axios"
-import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function useMyClass() {
     const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -216,7 +216,7 @@ export default function useMyClass() {
 
     useEffect(() => {
         readMyClasses()
-    })
+    }, [readMyClasses])
 
     const createButtonClicked = useCallback(() => {
         setClassModalAction("Create")
