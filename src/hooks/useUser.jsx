@@ -7,8 +7,8 @@ export default function useUser() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
     const [editUser, setEditUser] = useState(false)
+    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
     const router = useRouter()
 
@@ -18,6 +18,16 @@ export default function useUser() {
     const forgotPasswordUrl = `https://idcurso-back-end.vercel.app/users/forgotpassword`
     const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword`
     const updateUserUrl = `https://idcurso-back-end.vercel.app/users`
+
+    const verifyToken = useCallback(() => {
+        const token = localStorage.getItem("token")
+
+        if (!token) {
+            return router.replace("/")
+        }
+
+        return token
+    }, [router])
 
     const signUp = useCallback(async (e) => {
         e.preventDefault()
@@ -256,12 +266,13 @@ export default function useUser() {
         setEmail,
         setPassword,
         setConfirmPassword,
+        verifyToken,
         signUp,
         signIn,
         forgotPassword,
         redefinePassword,
+        updateUser,
         editButtonClicked,
-        cancelButtonClicked,
-        updateUser
+        cancelButtonClicked
     }
 }

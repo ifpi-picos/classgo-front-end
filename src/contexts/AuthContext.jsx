@@ -1,26 +1,16 @@
 "use client"
 
-import { createContext, useCallback, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { createContext, useEffect } from "react"
+import useUser from "@/hooks/useUser"
 
 const AuthContext = createContext()
 
 export default function AuthProvider({children}) {
-    const router = useRouter()
-
-    const verifyToken = useCallback(() => {
-        const token = localStorage.getItem("token")
-
-        if (!token) {
-            return router.replace("/")
-        }
-
-        return token
-    }, [router])
+    const {verifyToken} = useUser()
 
     useEffect(() => {
         verifyToken()
-    }, [verifyToken, router])
+    }, [verifyToken])
 
     return (
         <AuthContext.Provider value={verifyToken}>
