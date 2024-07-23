@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function useUser() {
+    const [loading, setLoading] = useState(true)
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -100,6 +101,7 @@ export default function useUser() {
                         if (res.status === 200) {
                             setName(res.data.name)
                             setEmail(res.data.email)
+                            setLoading(false)
                             return
                         }
 
@@ -258,6 +260,7 @@ export default function useUser() {
     }, [readUser, verifyToken])
 
     return {
+        loading,
         name,
         email,
         submitButtonDisabled,
