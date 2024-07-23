@@ -1,10 +1,10 @@
 import axios from "axios"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import useStudent from "./useStudent"
+import { MyClassContext } from "@/contexts/MyClassContext"
 
-export default function useLesson({classDescription}) {
-    const [classId, setClassId] = useState(0)
+export default function useLesson() {
     const [showLessonModal, setShowLessonModal] = useState(false)
     const [lessonModalAction, setLessonModalAction] = useState("")
     const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -16,11 +16,11 @@ export default function useLesson({classDescription}) {
     const [frequency, setFrequency] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
     
-    const {students} = useStudent({classDescription})
+    const {classId} = useContext(MyClassContext)
+
+    const {students} = useStudent()
 
     const router = useRouter()
-
-    const readMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${classDescription}`
 
     const readLessonsUrl = `https://idcurso-back-end.vercel.app/lessons/${classId}`
     const createLessonUrl = `https://idcurso-back-end.vercel.app/lessons`
@@ -72,44 +72,6 @@ export default function useLesson({classDescription}) {
 
         setFrequency(frequency)
     }, [frequency])
-
-    const readMyClass = useCallback(async () => {
-        await axios
-                    .get(readMyClassUrl, {headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": localStorage.getItem("token")
-                    }})
-                    .then((res) => {
-                        if (res.status === 200) {
-                            setClassId(res.data.id)
-                            return
-                        }
-
-                        else if (res.status === 401) {
-                            localStorage.clear()
-                            router.replace("/")
-                            return
-                        }
-                    })
-                    .catch((err) => {
-                        if (err.response.status === 400) {
-                            alert(err.response.data)
-                            return
-                        }
-
-                        else if (err.response.status === 401) {
-                            localStorage.clear()
-                            router.replace("/")
-                            return
-                        }
-
-                        else if (err.response.status >= 500) {
-                            alert("Erro no servidor, recarregue a página!")
-                            return
-                        }
-                    })
-    },  [readMyClassUrl, router])
 
     const readLessons = useCallback(async () => {
         await axios
@@ -258,10 +220,6 @@ export default function useLesson({classDescription}) {
         setDate(lesson.date)
         setFrequency(lesson.frequency)
     }, [openLessonModal])
-    
-    useEffect(() => {
-        readMyClass()
-    }, [readMyClass])
 
     useEffect(() => {
         createNewFrequency()

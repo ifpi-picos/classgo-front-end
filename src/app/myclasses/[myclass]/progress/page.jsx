@@ -1,5 +1,6 @@
 import AuthProvider from "@/contexts/AuthContext"
 import Progress from "@/components/Progress"
+import MyClassProvider from "@/contexts/MyClassContext"
 
 export const metadata = {
     title: "Progresso"
@@ -8,7 +9,9 @@ export const metadata = {
 export default function ProgressPage({params}) {
     return (
         <AuthProvider>
-            <Progress myClassDescription={params.myclass}/>
+            <MyClassProvider myClassDescription={params.myclass}>
+                <Progress/>
+            </MyClassProvider>
         </AuthProvider>
     )
 }

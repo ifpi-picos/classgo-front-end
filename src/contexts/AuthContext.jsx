@@ -13,7 +13,7 @@ export default function AuthProvider({children}) {
     }, [verifyToken])
 
     return (
-        <AuthContext.Provider value={verifyToken}>
+        <AuthContext.Provider value={null}>
             {children}
         </AuthContext.Provider>
     )

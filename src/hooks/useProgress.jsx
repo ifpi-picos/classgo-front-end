@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
-import useStudent from "./useStudent"
 import useLesson from "./useLesson"
+import useStudent from "./useStudent"
 
-export default function useProgress({classDescription}) {
+export default function useProgress() {
     const [progress, setProgress] = useState([])
 
-    const {students} = useStudent({classDescription})
-    const {lessons} = useLesson({classDescription})
+    const {lessons} = useLesson()
+    const {students} = useStudent()
 
     const createProgress = useCallback(() => {
         const newProgress = []
@@ -22,10 +22,6 @@ export default function useProgress({classDescription}) {
 
         setProgress(newProgress)
     }, [students, lessons])
-
-    useEffect(() => {
-
-    }, [])
 
     useEffect(() => {
         createProgress()

@@ -1,9 +1,9 @@
+import { MyClassContext } from "@/contexts/MyClassContext"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 
-export default function useStudent({classDescription}) {
-    const [classId, setClassId] = useState(0)
+export default function useStudent() {
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [showStudentModal, setShowStudentModal] = useState(false)
     const [studentModalAction, setStudentModalAction] = useState("")
@@ -13,9 +13,9 @@ export default function useStudent({classDescription}) {
     const [students, setStudents] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
-    const router = useRouter()
+    const {classId} = useContext(MyClassContext)
 
-    const readMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${classDescription}`
+    const router = useRouter()
 
     const readStudentsUrl = `https://idcurso-back-end.vercel.app/students/${classId}`
     const createStudentUrl = `https://idcurso-back-end.vercel.app/students`
@@ -37,44 +37,6 @@ export default function useStudent({classDescription}) {
     const closeStudentModal = useCallback(() => {
         setShowStudentModal(false)
     }, [])
-
-    const readMyClass = useCallback(async () => {
-        await axios
-                    .get(readMyClassUrl, {headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": localStorage.getItem("token")
-                    }})
-                    .then((res) => {
-                        if (res.status === 200) {
-                            setClassId(res.data.id)
-                            return
-                        }
-
-                        else if (res.status === 401) {
-                            localStorage.clear()
-                            router.replace("/")
-                            return
-                        }
-                    })
-                    .catch((err) => {
-                        if (err.response.status === 400) {
-                            alert(err.response.data)
-                            return
-                        }
-
-                        else if (err.response.status === 401) {
-                            localStorage.clear()
-                            router.replace("/")
-                            return
-                        }
-
-                        else if (err.response.status >= 500) {
-                            alert("Erro no servidor, recarregue a página!")
-                            return
-                        }
-                    })
-    },  [readMyClassUrl, router])
 
     const readStudents = useCallback(async () => {
         await axios
@@ -250,10 +212,6 @@ export default function useStudent({classDescription}) {
                     })
                     
     }, [deleteStudentUrl, closeConfirmModal, readStudents, router])
-
-    useEffect(() => {
-        readMyClass()
-    }, [readMyClass])
 
     useEffect(() => {
         readStudents()

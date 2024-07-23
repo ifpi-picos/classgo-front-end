@@ -1,5 +1,6 @@
 import AuthProvider from "@/contexts/AuthContext"
 import Students from "@/components/Students"
+import MyClassProvider from "@/contexts/MyClassContext"
 
 export const metadata = {
     title: "Alunos"
@@ -8,7 +9,9 @@ export const metadata = {
 export default function StudentsPage({params}) {
     return (
         <AuthProvider>
-            <Students myClassDescription={params.myclass}/>
+            <MyClassProvider myClassDescription={params.myclass}>
+                <Students/>
+            </MyClassProvider>
         </AuthProvider>
     )
 }

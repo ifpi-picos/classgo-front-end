@@ -3,14 +3,17 @@
 import Header from "@/containers/Header"
 import Link from "next/link"
 import Main from "@/containers/Main"
+import { MyClassContext } from "@/contexts/MyClassContext"
 import Section from "@/containers/Section"
 import SideBar from "./SideBar"
+import { useContext } from "react"
 import useProgress from "@/hooks/useProgress"
 
-export default function Progress({myClassDescription}) {
-    const classDescription = myClassDescription.split("%20").join(" ")
+export default function Progress() {
+    const {classDescription} = useContext(MyClassContext)
 
-    const {progress} = useProgress({classDescription})
+
+    const {progress} = useProgress()
 
     const progressList = progress.map((data, index) => (
         <tr key={index}>
@@ -39,15 +42,15 @@ export default function Progress({myClassDescription}) {
 
                 <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-neutral-800">
                     <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/diary`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/diary`}>
                                 Diário
                             </Link>
 
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/progress`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${classDescription}/progress`}>
                                 Progresso
                             </Link>
 
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${myClassDescription}/students`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/students`}>
                                 Alunos
                             </Link>
                     </div>
