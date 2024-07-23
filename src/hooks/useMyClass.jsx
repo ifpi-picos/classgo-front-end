@@ -3,10 +3,10 @@ import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function useMyClass() {
+    const [loading, setLoading] = useState(true)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [showClassModal, setShowClassModal] = useState(false)
     const [classModalAction, setClassModalAction] = useState("")
-    const [createFirstClass, setCreateFirstClass] = useState(false)
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
     const [myClasses, setMyClasses] = useState([])
@@ -44,12 +44,8 @@ export default function useMyClass() {
                     }})
                     .then((res) => {
                         if (res.status === 200) {
-                            if (res.data.length === 0) {
-                                setCreateFirstClass(true)
-                                return
-                            }
-
                             setMyClasses(res.data)
+                            setLoading(false)
                             return
                         }
 
@@ -236,7 +232,7 @@ export default function useMyClass() {
     }, [openConfirmModal])
 
     return {
-        createFirstClass,
+        loading,
         showConfirmModal,
         closeConfirmModal,
         showClassModal,
