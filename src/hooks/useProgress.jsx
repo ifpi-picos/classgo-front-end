@@ -3,6 +3,7 @@ import useLesson from "./useLesson"
 import useStudent from "./useStudent"
 
 export default function useProgress() {
+    const [loading, setLoading] = useState(true)
     const [progress, setProgress] = useState([])
 
     const {lessons} = useLesson()
@@ -19,8 +20,9 @@ export default function useProgress() {
 
             })
         })
-
+        
         setProgress(newProgress)
+        setLoading(false)
     }, [students, lessons])
 
     useEffect(() => {
@@ -28,6 +30,7 @@ export default function useProgress() {
     }, [createProgress])
     
     return {
+        loading,
         progress
     }
 }

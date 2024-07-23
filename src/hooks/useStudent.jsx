@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import { useCallback, useContext, useEffect, useState } from "react"
 
 export default function useStudent() {
+    const [loading, setLoading] = useState(true)
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [showStudentModal, setShowStudentModal] = useState(false)
     const [studentModalAction, setStudentModalAction] = useState("")
@@ -47,8 +48,8 @@ export default function useStudent() {
                     }})
                     .then((res) => {
                         if (res.status === 200) {
-                            setSubmitButtonDisabled(false)
                             setStudents(res.data)
+                            setLoading(false)
                             return
                         }
 
@@ -235,6 +236,7 @@ export default function useStudent() {
     }, [openConfirmModal])
     
     return {
+        loading,
         showConfirmModal,
         openConfirmModal,
         closeConfirmModal,

@@ -9,11 +9,12 @@ import Section from "@/containers/Section"
 import SideBar from "./SideBar"
 import { useContext } from "react"
 import useStudent from "@/hooks/useStudent"
+import Loading from "./Loading"
 
 export default function Students() {
     const {classDescription} = useContext(MyClassContext)
 
-    const {showConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
+    const {loading, showConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
 
     const studentsList = students.map((student) => 
         <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-neutral-300 rounded-xl cursor-pointer mb-2">
@@ -58,7 +59,7 @@ export default function Students() {
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300 p-1">
+                        <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
                             <span className="text-lg pl-2 pt-2 sm:text-base">
                                 Alunos
                             </span>
@@ -68,8 +69,20 @@ export default function Students() {
                             </span>
                         </div>
 
-                        <div className="w-full my-6">
-                            {studentsList}
+                        <div className="w-full mb-6">
+                            {loading ? (
+                                <div className="text-center mb-6">
+                                    <Loading/>
+                                </div>
+                            ) : (
+                                students.length === 0 ? (
+                                    <span className="flex justify-center w-full text-center mb-6">
+                                        Nenhuma Aluno adicionado
+                                    </span>
+                                ) : (
+                                    studentsList
+                                )
+                            )}
 
                             {showConfirmModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">

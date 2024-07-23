@@ -1,10 +1,11 @@
 import axios from "axios"
+import { MyClassContext } from "@/contexts/MyClassContext"
 import { useCallback, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import useStudent from "./useStudent"
-import { MyClassContext } from "@/contexts/MyClassContext"
 
 export default function useLesson() {
+    const [loading, setLoading] = useState(true)
     const [showLessonModal, setShowLessonModal] = useState(false)
     const [lessonModalAction, setLessonModalAction] = useState("")
     const [showFrequencyModal, setShowFrequencyModal] = useState(false)
@@ -82,7 +83,7 @@ export default function useLesson() {
                     }})
                     .then((res) => {
                         if (res.status === 200) {
-                            setSubmitButtonDisabled(false)
+                            setLoading(false)
                             setLessons(res.data)
                             return
                         }
@@ -230,6 +231,7 @@ export default function useLesson() {
     }, [readLessons, classId])
 
     return {
+        loading,
         showLessonModal,
         lessonModalAction,
         closeLessonModal,

@@ -9,11 +9,12 @@ import SideBar from "./SideBar"
 import { HiOutlinePencilAlt, HiPlus, HiX } from "react-icons/hi"
 import { useContext } from "react"
 import useLesson from "@/hooks/useLesson"
+import Loading from "./Loading"
 
 export default function Diary() {
     const {classDescription} = useContext(MyClassContext)
 
-    const {showLessonModal, lessonModalAction, closeLessonModal, showFrequencyModal, frequencyModalAction, closeFrequencyModal, description, setDescription, date, setDate, frequency, onChangeFrequency, lessons, createLesson, updateLesson, createButtonClicked, editButtonClicked, nextModal, backModal, submitButtonDisabled} = useLesson()
+    const {loading, showLessonModal, lessonModalAction, closeLessonModal, showFrequencyModal, frequencyModalAction, closeFrequencyModal, description, setDescription, date, setDate, frequency, onChangeFrequency, lessons, createLesson, updateLesson, createButtonClicked, editButtonClicked, nextModal, backModal, submitButtonDisabled} = useLesson()
 
     const lessonsList = lessons.map((lesson) => (
         <tr key={lesson.id}>
@@ -32,8 +33,6 @@ export default function Diary() {
             </td>
         </tr>
     ))
-
-    
 
     const frequencyList = frequency.map((data, index) => (
         <div key={index} className="mb-4">
@@ -77,7 +76,7 @@ export default function Diary() {
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm xs:text-xs">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300 p-1">
+                        <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
                             <span className="text-lg pl-2 pt-2 sm:text-base">
                                 Aulas
                             </span>
@@ -87,19 +86,31 @@ export default function Diary() {
                             </span>
                         </div>
 
-                        <table className="w-full my-6 break-all text-neutral-800 rounded-xl">
-                            <thead className="w-full">
-                                <tr className="w-full">
-                                    <th className="w-1/4 p-2 border-2 border-neutral-300">Data</th>
-                                    <th className="w-[55%] p-2 border-2 border-neutral-300">Descrição</th>
-                                    <th className="w-[20%] p-2 border-2 border-neutral-300">Ação</th>
-                                </tr>                            
-                            </thead>
-
-                            <tbody className="w-full">
-                                {lessonsList}
-                            </tbody>
-                        </table>
+                        {loading ? (
+                            <div className="text-center mb-6">
+                                <Loading/>
+                            </div>
+                        ) : (
+                            lessons.length === 0 ? (
+                                <span className="text-center mb-6">
+                                    Nenhuma Aula Registrada
+                                </span>
+                            ) : (
+                                <table className="w-full mb-5 break-all text-neutral-800 rounded-xl">
+                                    <thead className="w-full">
+                                        <tr className="w-full">
+                                            <th className="w-1/4 p-2 border-2 border-neutral-300">Data</th>
+                                            <th className="w-[55%] p-2 border-2 border-neutral-300">Descrição</th>
+                                            <th className="w-[20%] p-2 border-2 border-neutral-300">Ação</th>
+                                        </tr>                            
+                                    </thead>
+    
+                                    <tbody className="w-full">
+                                        {lessonsList}
+                                    </tbody>
+                                </table>
+                            )
+                        )}
 
                         {showLessonModal ? (
                             <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
