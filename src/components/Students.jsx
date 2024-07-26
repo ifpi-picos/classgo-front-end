@@ -76,9 +76,7 @@ export default function Students() {
                                 </div>
                             ) : (
                                 students.length === 0 ? (
-                                    <span className="flex justify-center w-full text-center mb-6">
-                                        Nenhuma Aluno adicionado
-                                    </span>
+                                    null
                                 ) : (
                                     studentsList
                                 )

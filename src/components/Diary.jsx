@@ -85,16 +85,14 @@ export default function Diary() {
                                 <HiPlus className="text-2xl" title="Nova Aula"/>
                             </span>
                         </div>
-
+                        
                         {loading ? (
                             <div className="text-center mb-6">
                                 <Loading/>
                             </div>
                         ) : (
                             lessons.length === 0 ? (
-                                <span className="text-center mb-6">
-                                    Nenhuma Aula Registrada
-                                </span>
+                                null
                             ) : (
                                 <table className="w-full mb-5 break-all text-neutral-800 rounded-xl">
                                     <thead className="w-full">
@@ -104,7 +102,7 @@ export default function Diary() {
                                             <th className="w-[20%] p-2 border-2 border-neutral-300">Ação</th>
                                         </tr>                            
                                     </thead>
-    
+        
                                     <tbody className="w-full">
                                         {lessonsList}
                                     </tbody>

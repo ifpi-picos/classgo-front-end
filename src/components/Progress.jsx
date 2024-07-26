@@ -68,9 +68,7 @@ export default function Progress() {
                             </div>
                         ) : (
                             progress.length === 0 ? (
-                                <span className="text-center mb-6">
-                                    Nenhum Progresso gerado
-                                </span>
+                                null
                             ) : (
                                 <table className="w-full mb-6">
                                     <thead className="w-full break-all">
@@ -80,7 +78,7 @@ export default function Progress() {
                                             <th className="w-1/5 p-2 border-2 border-neutral-300">Aulas</th>
                                         </tr>
                                     </thead>
-                                    
+                                        
                                     <tbody className="w-full">
                                         {progressList}
                                     </tbody>
