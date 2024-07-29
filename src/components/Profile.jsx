@@ -8,10 +8,30 @@ import Section from "@/containers/Section"
 import SideBar from "./SideBar"
 import useSideBar from "@/hooks/useSideBar"
 import useUser from "@/hooks/useUser"
+import { useEffect } from "react"
 
 export default function Profile() {
-    const {pageActive} = useSideBar()
-    const {loading, name, email, editUser, submitButtonDisabled, setName, setEmail, editButtonClicked, cancelButtonClicked, updateUser} = useUser()
+    const {
+        pageActive
+    } = useSideBar()
+
+    const {
+        loading,
+        name,
+        email,
+        editUser,
+        submitButtonDisabled,
+        setName,
+        setEmail,
+        readUser,
+        updateUser,
+        editButtonClicked,
+        cancelButtonClicked
+    } = useUser()
+
+    useEffect(() => {
+        readUser()
+    }, [readUser])
 
     return (
         <Main>

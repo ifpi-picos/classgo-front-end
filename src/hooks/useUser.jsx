@@ -255,10 +255,6 @@ export default function useUser() {
         setEditUser(false)
     }, [readUser])
 
-    useEffect(() => {
-        readUser()
-    }, [readUser, verifyToken])
-
     return {
         loading,
         name,
@@ -272,6 +268,7 @@ export default function useUser() {
         verifyToken,
         signUp,
         signIn,
+        readUser,
         forgotPassword,
         redefinePassword,
         updateUser,
