@@ -69,7 +69,6 @@ export default function useLesson() {
         frequency.map((data, index) => {
             studentName === data.studentName ? frequency.splice(index, 1, {studentName: data.studentName, presence: !data.presence}) : null
         })
-        console.log(frequency)
 
         setFrequency(frequency)
     }, [frequency])
@@ -228,7 +227,7 @@ export default function useLesson() {
 
     useEffect(() => {
         readLessons()
-    }, [readLessons, classId])
+    }, [readLessons])
 
     return {
         loading,

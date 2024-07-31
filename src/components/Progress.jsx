@@ -57,7 +57,7 @@ export default function Progress() {
 
                     <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
                         <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
-                            <span className="text-lg pl-2 pt-2 sm:text-base">
+                            <span className="text-lg p-2 sm:text-base">
                                 Progresso
                             </span>
                         </div>
