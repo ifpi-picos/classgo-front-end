@@ -77,7 +77,7 @@ export default function Students() {
                             ) : (
                                 students.length === 0 ? (
                                     <span className="text-center mb-6">
-                                        Nenhuma Aluno adionado 
+                                        Nenhum Aluno adionado
                                     </span>
                                 ) : (
                                     studentsList
