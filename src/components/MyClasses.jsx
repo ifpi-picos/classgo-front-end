@@ -68,7 +68,7 @@ export default function MyClasses() {
                                 <Image className="w-full" src={FirstClassImg} alt="Imagem ilustrativa" priority/>
                             </div>
 
-                            <button className="w-3/5 py-1 bg-green-500 text-white font-semibold shadow-md rounded-xl" type="button" onClick={openClassModal}>
+                            <button className="w-3/5 py-1 bg-green-500 text-white font-bold shadow-md rounded-xl hover:shadow-xl active:shadow-none" type="button" onClick={openClassModal}>
                                 <span>Crie uma Turma</span>
                             </button>
 
@@ -79,11 +79,11 @@ export default function MyClasses() {
                                             <HiX className="text-2xl cursor-pointer"/>
                                         </button>
 
-                                        <div className="text-lg sm:text-sm">
+                                        <div className="text-lg sm:font-normal sm:text-base">
                                             <span>Nova Turma</span>
                                         </div>
 
-                                        <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
+                                        <div className="flex items-center w-[80%] border-b border-neutral-800 sm:font-semibold sm:text-sm">
                                             <input
                                                 className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
                                                 id="description"
@@ -97,8 +97,8 @@ export default function MyClasses() {
                                             />
                                         </div>
 
-                                        <div className="flex justify-between w-[40%] sm:text-xs">
-                                            <button className="w-full bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
+                                        <div className="w-[50%] sm:font-semibold sm:text-sm">
+                                            <button className="w-full bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                                 <span>Criar</span>
                                             </button>
                                         </div>
