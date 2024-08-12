@@ -83,7 +83,7 @@ export default function MyClasses() {
                                             <span>Nova Turma</span>
                                         </div>
 
-                                        <div className="flex items-center w-[80%] border-b border-neutral-800 sm:font-semibold sm:text-sm">
+                                        <div className="flex items-center w-[80%] border-b border-neutral-800 sm:font-medium sm:text-sm">
                                             <input
                                                 className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
                                                 id="description"
@@ -121,12 +121,12 @@ export default function MyClasses() {
                                             </button>
 
                                             <div className="flex flex-col items-center w-full gap-8">
-                                                <div className="text-lg sm:text-base">
+                                                <div className="text-lg sm:font-normal sm:text-base">
                                                     <span>Excluir Turma?</span>
                                                 </div>
                                 
                                                 <div className="w-[50%] sm:text-sm">
-                                                    <button className="w-full bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" disabled={submitButtonDisabled}>
+                                                    <button className="w-full bg-red-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:py-2" disabled={submitButtonDisabled}>
                                                         <span>Excluir</span>
                                                     </button>
                                                 </div>
@@ -145,11 +145,11 @@ export default function MyClasses() {
                                                     <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                                 </button>
 
-                                                <div className="text-lg sm:text-sm">
+                                                <div className="text-lg sm:font-normal sm:text-base">
                                                     <span>Nova Turma</span>
                                                 </div>
 
-                                                <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
+                                                <div className="flex items-center w-[80%] border-b border-neutral-800 sm:font-medium sm:text-sm">
                                                     <input
                                                         className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
                                                         id="description"
@@ -164,7 +164,7 @@ export default function MyClasses() {
                                                 </div>
 
                                                 <div className="flex justify-center w-2/5 sm:flex-col-reverse sm:text-xs">
-                                                    <button className="w-full bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" disabled={submitButtonDisabled}>
+                                                    <button className="w-full bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:py-2" disabled={submitButtonDisabled}>
                                                         <span>Criar</span>
                                                     </button>
                                                 </div>
@@ -175,11 +175,11 @@ export default function MyClasses() {
                                                     <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                                 </button>
 
-                                                <div className="text-lg sm:text-sm">
+                                                <div className="text-lg sm:font-normal sm:text-base">
                                                     <span>Editar Turma</span>
                                                 </div>
 
-                                                <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
+                                                <div className="flex items-center w-[80%] border-b border-neutral-800 sm:font-medium sm:text-sm">
                                                     <input
                                                         className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
                                                         id="description"
@@ -195,7 +195,7 @@ export default function MyClasses() {
                                                 </div>
 
                                                 <div className="flex justify-center w-[40%] sm:flex-col-reverse sm:text-xs">
-                                                    <button className="w-full bg-green-600 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
+                                                    <button className="w-full bg-green-600 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
                                                         <span>Editar</span>
                                                     </button>
                                                 </div>
