@@ -69,14 +69,16 @@ export default function Students() {
                             </span>
                         </div>
 
-                        <div className="w-full mb-6">
+                        <div className="flex flex-col w-full mb-6">
                             {loading ? (
                                 <div className="text-center mb-6">
                                     <Loading/>
                                 </div>
                             ) : (
                                 students.length === 0 ? (
-                                    null
+                                    <span className="text-center mb-6">
+                                        Nenhuma Aluno adionado 
+                                    </span>
                                 ) : (
                                     studentsList
                                 )

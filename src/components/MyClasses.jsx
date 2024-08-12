@@ -214,8 +214,7 @@ export default function MyClasses() {
                                                     </button>
                                                 </div>
                                             </form>
-                                        )}
-                                        
+                                        )}   
                                     </div>
                                 ) : (
                                     null

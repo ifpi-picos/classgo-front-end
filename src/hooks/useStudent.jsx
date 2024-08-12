@@ -40,6 +40,8 @@ export default function useStudent() {
     }, [])
 
     const readStudents = useCallback(async () => {
+        setLoading(true)
+        
         await axios
                     .get(readStudentsUrl, {headers: {
                         "Accept": "application/json",

@@ -92,7 +92,9 @@ export default function Diary() {
                             </div>
                         ) : (
                             lessons.length === 0 ? (
-                                null
+                                <span className="text-center mb-6">
+                                    Nenhuma Aula registrada
+                                </span>
                             ) : (
                                 <table className="w-full mb-5 break-all text-neutral-800 rounded-xl">
                                     <thead className="w-full">

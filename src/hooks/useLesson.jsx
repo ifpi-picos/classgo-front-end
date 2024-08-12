@@ -73,7 +73,9 @@ export default function useLesson() {
         setFrequency(frequency)
     }, [frequency])
 
-    const readLessons = useCallback(async () => {
+    const readLessons = useCallback(async () => {  
+        setLoading(true)
+              
         await axios
                     .get(readLessonsUrl, {headers: {
                         "Accept": "application/json",
@@ -82,8 +84,8 @@ export default function useLesson() {
                     }})
                     .then((res) => {
                         if (res.status === 200) {
-                            setLoading(false)
                             setLessons(res.data)
+                            setLoading(false)
                             return
                         }
 
