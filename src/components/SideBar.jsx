@@ -12,7 +12,10 @@ export default function SideBar({myClassesPage, profilePage}) {
             <nav className={`${sideBarIsOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-20 bg-blue-500 text-white shadow-md xl:w-1/4 lg:w-[30%] md:w-2/5 sm:w-1/2 xs:w-4/5" : "hidden"}`}>
                 <div className="flex items-center justify-between w-[90%] h-[75px] p-2">
                     <span className="text-lg">idCurso</span>
-                    <HiX className="text-2xl cursor-pointer" title="Fechar" onClick={disableSideBar}/>
+
+                    <button type="button" onClick={disableSideBar}>
+                        <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                    </button>
                 </div>
 
                 <Link className={`${myClassesPage} flex items-center w-[90%] mb-4 p-2 rounded-xl hover:border active:bg-blue-500`} href="/myclasses">
@@ -31,9 +34,9 @@ export default function SideBar({myClassesPage, profilePage}) {
                 </Link>
             </nav>
             
-            <span className={`${sideBarIsOpen ? "hidden" : "fixed z-20 left-4 top-[18px] text-neutral-800 p-2 cursor-pointer rounded-full hover:bg-neutral-200"}`} onClick={enableSideBar}>
+            <button className={`${sideBarIsOpen ? "hidden" : "fixed z-20 left-4 top-[18px] text-neutral-800 p-2 cursor-pointer rounded-full hover:bg-neutral-200"}`} type="button" onClick={enableSideBar}>
                 <HiMenu className="text-2xl" title="Menu"/>
-            </span>
+            </button>
         </>
     )
 }
