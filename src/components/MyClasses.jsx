@@ -74,7 +74,7 @@ export default function MyClasses() {
 
                             {showClassModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[80%]" onSubmit={createMyClass}>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[85%]" onSubmit={createMyClass}>
                                         <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
                                             <HiX className="text-2xl cursor-pointer"/>
                                         </button>
@@ -115,7 +115,7 @@ export default function MyClasses() {
 
                                 {showConfirmModal ? (
                                     <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                                        <form className="flex flex-col justify-center items-center relative w-[20%] h-[200px] bg-gray-50 rounded-xl xl:w-[30%] lg:w-[40%] md:w-[50%] sm:w-[60%] xs:w-[70%]" onSubmit={deleteMyClass}>
+                                        <form className="flex flex-col justify-center items-center relative w-[20%] h-[200px] bg-gray-50 rounded-xl xl:w-[30%] lg:w-[40%] md:w-[50%] sm:w-[60%] xs:w-[75%]" onSubmit={deleteMyClass}>
                                             <button className="absolute top-0 right-0 m-4" type="button" onClick={closeConfirmModal}>
                                                 <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                             </button>
@@ -140,7 +140,7 @@ export default function MyClasses() {
                                 {showClassModal ? (
                                     <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                         {classModalAction === "Create" ? (
-                                            <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[80%]" onSubmit={createMyClass}>
+                                            <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[85%]" onSubmit={createMyClass}>
                                                 <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
                                                     <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                                 </button>
@@ -170,7 +170,7 @@ export default function MyClasses() {
                                                 </div>
                                             </form>
                                         ) : (
-                                            <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[80%]" onSubmit={updateMyClass}>
+                                            <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[85%]" onSubmit={updateMyClass}>
                                                 <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
                                                     <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                                 </button>
