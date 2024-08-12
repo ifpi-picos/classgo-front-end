@@ -76,9 +76,7 @@ export default function Students() {
                                 </div>
                             ) : (
                                 students.length === 0 ? (
-                                    <span className="text-center mb-6">
-                                        Nenhum Aluno adionado
-                                    </span>
+                                    null
                                 ) : (
                                     studentsList
                                 )

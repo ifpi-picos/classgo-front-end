@@ -68,9 +68,7 @@ export default function Progress() {
                             </div>
                         ) : (
                             progress.length === 0 ? (
-                                <span className="text-center mb-6">
-                                    Nenhum Progresso gerado 
-                                </span>
+                                null
                             ) : (
                                 <table className="w-full mb-6">
                                     <thead className="w-full break-all">

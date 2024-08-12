@@ -9,24 +9,22 @@ export default function useProgress() {
     const {lessons} = useLesson()
     const {students} = useStudent()
 
-    const createProgress = useCallback(async () => {
-        setLoading(true)
-
+    const createProgress = useCallback(() => {
         const newProgress = []
-        
+
         students.map((student) => {
             newProgress.push({
                 name: student.name,
                 absences: lessons.length - student.numberOfPresences,
                 lessons: lessons.length
-                
+
             })
         })
         
         setProgress(newProgress)
         setLoading(false)
     }, [students, lessons])
-    
+
     useEffect(() => {
         createProgress()
     }, [createProgress])

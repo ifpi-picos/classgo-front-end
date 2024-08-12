@@ -73,9 +73,7 @@ export default function useLesson() {
         setFrequency(frequency)
     }, [frequency])
 
-    const readLessons = useCallback(async () => {  
-        setLoading(true)
-              
+    const readLessons = useCallback(async () => {
         await axios
                     .get(readLessonsUrl, {headers: {
                         "Accept": "application/json",
