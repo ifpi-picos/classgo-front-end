@@ -126,8 +126,8 @@ export default function MyClasses() {
                                                 </div>
                                 
                                                 <div className="w-[50%] sm:text-sm">
-                                                    <button className="w-full bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" disabled={submitButtonDisabled}>
-                                                        <span>Confirmar</span>
+                                                    <button className="w-full bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" disabled={submitButtonDisabled}>
+                                                        <span>Excluir</span>
                                                     </button>
                                                 </div>
                                             </div>
