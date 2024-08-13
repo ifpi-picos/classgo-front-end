@@ -12,7 +12,7 @@ export default function useLesson() {
     const [frequencyModalAction, setFrequencyModalAction] = useState("")
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState()
     const [lessons, setLessons] = useState([])
     const [frequency, setFrequency] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
