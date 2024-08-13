@@ -6,7 +6,7 @@ import Main from "@/containers/Main"
 import { MyClassContext } from "@/contexts/MyClassContext"
 import Section from "@/containers/Section"
 import SideBar from "./SideBar"
-import { HiOutlinePencilAlt, HiPlus, HiX } from "react-icons/hi"
+import { HiArrowLeft, HiOutlinePencilAlt, HiPlus, HiX } from "react-icons/hi"
 import { useContext } from "react"
 import useLesson from "@/hooks/useLesson"
 import Loading from "./Loading"
@@ -81,9 +81,9 @@ export default function Diary() {
                                 Aulas
                             </span>
 
-                            <span className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" onClick={createButtonClicked}>
+                            <button className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" type="button" onClick={createButtonClicked}>
                                 <HiPlus className="text-2xl" title="Nova Aula"/>
-                            </span>
+                            </button>
                         </div>
                         
                         {loading ? (
@@ -113,10 +113,10 @@ export default function Diary() {
                         {showLessonModal ? (
                             <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                 {lessonModalAction === "Create" ? (
-                                    <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]">
-                                        <span className="absolute top-0 right-0 m-4" onClick={closeLessonModal}>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]">
+                                        <button className="absolute top-0 right-0 m-4" type="button" onClick={closeLessonModal}>
                                             <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                        </span>
+                                        </button>
 
                                         <div className="text-lg sm:text-sm">
                                             <span>Nova Aula</span>
@@ -145,25 +145,23 @@ export default function Diary() {
                                             />
                                         </div>
 
-                                        <div className="flex justify-end w-[80%] sm:text-xs">
-                                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" type="button" onClick={nextModal}>
-                                                <span>Próximo</span>
-                                            </button>
-                                        </div>
+                                        <button className="w-1/2 bg-blue-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" type="button" onClick={nextModal}>
+                                            <span>Próximo</span>
+                                        </button>
                                     </form>                                    
                                 ) : (
-                                    <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]">
-                                        <span className="absolute top-0 right-0 m-4" onClick={closeLessonModal}>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]">
+                                        <button className="absolute top-0 right-0 m-4" type="button" onClick={closeLessonModal}>
                                             <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                        </span>
+                                        </button>
 
-                                        <div className="text-lg sm:text-sm">
+                                        <div className="text-lg sm:font-medium sm:text-base">
                                             <span>Editar Aula</span>
                                         </div>
 
                                         <div className="flex flex-col w-[80%] sm:text-xs">
                                             <input
-                                                className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                className="w-full bg-transparent mb-4 p-1 border-b border-gray-800 outline-none placeholder:text-gray-500"
                                                 id="description"
                                                 name="description"
                                                 type="text"
@@ -176,7 +174,7 @@ export default function Diary() {
                                             />
 
                                             <input
-                                                className="flex justify-end w-full bg-transparent border-b border-gray-800 p-1 outline-none"
+                                                className="flex justify-end w-full bg-transparent p-1 border-b border-gray-800 outline-none placeholder:text-gray-500"
                                                 id="date"
                                                 name="date"
                                                 type="date"
@@ -186,11 +184,9 @@ export default function Diary() {
                                             />
                                         </div>
 
-                                        <div className="flex justify-end w-[80%] sm:text-xs">
-                                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" type="button" onClick={nextModal}>
-                                                <span>Próximo</span>
-                                            </button>
-                                        </div>
+                                        <button className="w-1/2 bg-blue-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" type="button" onClick={nextModal}>
+                                            <span>Próximo</span>
+                                        </button>
                                     </form>
                                 )}
                             </div>
@@ -201,53 +197,49 @@ export default function Diary() {
                         {showFrequencyModal ? (
                             <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                 {frequencyModalAction === "Create" ? (
-                                    <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createLesson}>
-                                        <span className="absolute top-0 right-0 m-4" onClick={closeFrequencyModal}>
-                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                        </span>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]" onSubmit={createLesson}>
+                                        <button className="absolute top-0 left-0 m-4" type="button" onClick={backModal}>
+                                            <HiArrowLeft className="text-2xl cursor-pointer" title="Fechar"/>
+                                        </button>
 
-                                        <div className="text-lg sm:text-sm">
+                                        <button className="absolute top-0 right-0 m-4" type="button" onClick={closeFrequencyModal}>
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                        </button>
+
+                                        <div className="text-lg sm:font-medium sm:text-sm">
                                             <span>Frequência</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] h-[200px] overflow-x-hidden sm:text-xs">
+                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-xs">
                                             {frequencyList}
                                         </div>
 
-                                        <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                            <button className="w-[40%] bg-gray-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
-                                                <span>Voltar</span>
-                                            </button>
-
-                                            <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
-                                                <span>Registrar</span>
-                                            </button>
-                                        </div>
+                                        <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
+                                            <span>Registrar</span>
+                                        </button>
                                     </form>
                                 ) : (
-                                    <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[400px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateLesson}>
-                                        <span className="absolute top-0 right-0 m-4" onClick={closeFrequencyModal}>
-                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                        </span>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]" onSubmit={updateLesson}>
+                                        <button className="absolute top-0 left-0 m-4" type="button" onClick={backModal}>
+                                            <HiArrowLeft className="text-2xl cursor-pointer" title="Fechar"/>
+                                        </button>
 
-                                        <div className="text-lg sm:text-sm">
+                                        <button className="absolute top-0 right-0 m-4" type="button" onClick={closeFrequencyModal}>
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                        </button>
+
+                                        <div className="text-lg sm:font-medium sm:text-sm">
                                             <span>Frequência</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] sm:text-xs">
+                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-xs">
                                             {frequencyList}
                                         </div>
 
-                                        <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                            <button className="w-[40%] bg-gray-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
-                                                <span>Voltar</span>
-                                            </button>
-
-                                            <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
-                                                <span>Salvar</span>
-                                            </button>
-                                        </div>
-                                    </form> 
+                                        <button className="w-1/2 bg-blue-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
+                                            <span>Salvar</span>
+                                        </button>
+                                    </form>
                                 )}
                             </div>
                         ) : (

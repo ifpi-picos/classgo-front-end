@@ -83,19 +83,17 @@ export default function MyClasses() {
                                             <span>Nova Turma</span>
                                         </div>
 
-                                        <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-sm">
-                                            <input
-                                                className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
-                                                id="description"
-                                                name="description"
-                                                type="text"
-                                                placeholder="Nome da turma"
-                                                minLength="3"
-                                                maxLength="30"
-                                                onChange={(e) => setDescription(e.target.value)}
-                                                required
-                                            />
-                                        </div>
+                                        <input
+                                            className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
+                                            id="description"
+                                            name="description"
+                                            type="text"
+                                            placeholder="Nome da turma"
+                                            minLength="3"
+                                            maxLength="30"
+                                            onChange={(e) => setDescription(e.target.value)}
+                                            required
+                                        />
 
                                         <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                             <span>Criar</span>
@@ -143,19 +141,17 @@ export default function MyClasses() {
                                                     <span>Nova Turma</span>
                                                 </div>
         
-                                                <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-sm">
-                                                    <input
-                                                        className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
-                                                        id="description"
-                                                        name="description"
-                                                        type="text"
-                                                        placeholder="Nome da turma"
-                                                        minLength="3"
-                                                        maxLength="30"
-                                                        onChange={(e) => setDescription(e.target.value)}
-                                                        required
-                                                    />
-                                                </div>
+                                                <input
+                                                    className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
+                                                    id="description"
+                                                    name="description"
+                                                    type="text"
+                                                    placeholder="Nome da turma"
+                                                    minLength="3"
+                                                    maxLength="30"
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    required
+                                                />
         
                                                 <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                                     <span>Criar</span>
@@ -171,20 +167,18 @@ export default function MyClasses() {
                                                     <span>Editar Turma</span>
                                                 </div>
 
-                                                <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-sm">
-                                                    <input
-                                                        className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
-                                                        id="description"
-                                                        name="description"
-                                                        type="text"
-                                                        placeholder="Nome da turma"
-                                                        minLength="3"
-                                                        maxLength="30"
-                                                        value={description}
-                                                        onChange={(e) => setDescription(e.target.value)}
-                                                        required
-                                                    />
-                                                </div>
+                                                <input
+                                                    className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
+                                                    id="description"
+                                                    name="description"
+                                                    type="text"
+                                                    placeholder="Nome da turma"
+                                                    minLength="3"
+                                                    maxLength="30"
+                                                    value={description}
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    required
+                                                />
 
                                                 <button className="w-1/2 bg-green-600 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                                     <span>Editar</span>
