@@ -116,10 +116,10 @@ export default function Students() {
         
                                             <input
                                                 className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
-                                                id="description"
-                                                name="description"
+                                                id="name"
+                                                name="name"
                                                 type="text"
-                                                placeholder="Nome da turma"
+                                                placeholder="Nome do aluno"
                                                 minLength="3"
                                                 maxLength="30"
                                                 onChange={(e) => setName(e.target.value)}
@@ -142,10 +142,10 @@ export default function Students() {
         
                                             <input
                                                 className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
-                                                id="description"
-                                                name="description"
+                                                id="name"
+                                                name="name"
                                                 type="text"
-                                                placeholder="Nome da turma"
+                                                placeholder="Nome do aluno"
                                                 minLength="3"
                                                 maxLength="30"
                                                 value={name}
