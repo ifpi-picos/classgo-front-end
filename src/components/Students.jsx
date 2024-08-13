@@ -64,9 +64,9 @@ export default function Students() {
                                 Alunos
                             </span>
 
-                            <span className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" onClick={createButtonClicked}>
+                            <button className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" type="button" onClick={createButtonClicked}>
                                 <HiPlus className="text-2xl" title="Novo Aluno"/>
-                            </span>
+                            </button>
                         </div>
 
                         <div className="flex flex-col w-full mb-6">
@@ -84,24 +84,18 @@ export default function Students() {
 
                             {showConfirmModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
-                                    <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[200px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-[65%] sm:w-4/5 xs:w-[95%]" onSubmit={deleteStudent}>
-                                            <span className="absolute top-0 right-0 m-4" onClick={closeConfirmModal}>
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                            </span>
-                                            
-                                            <div className="flex justify-center items-center text-lg mt-6 font-medium">
-                                                <span>Excluir esse aluno?</span>
-                                            </div>
-                        
-                                            <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                                <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={closeConfirmModal}>
-                                                    <span>Cancelar</span>
-                                                </button>
+                                    <form className="flex flex-col justify-evenly items-center relative w-[20%] h-[200px] bg-gray-50 rounded-xl xl:w-[30%] lg:w-2/5 md:w-1/2 sm:w-3/5 xs:w-[75%]" onSubmit={deleteStudent}>
+                                        <button className="absolute top-0 right-0 m-4" type="button" onClick={closeConfirmModal}>
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                        </button>
 
-                                                <button className="w-[40%] bg-blue-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
-                                                    <span>Confirmar</span>
-                                                </button>
-                                            </div>
+                                        <div className="text-lg sm:font-medium sm:text-base">
+                                            <span>Excluir Aluno?</span>
+                                        </div>
+                            
+                                        <button className="w-1/2 bg-red-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
+                                            <span>Excluir</span>
+                                        </button>
                                     </form>
                                 </div>
                             ) : (
@@ -111,73 +105,57 @@ export default function Students() {
                             {showStudentModal ? (
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     {studentModalAction === "Create" ? (
-                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={createStudent}>
-                                            <span className="absolute top-0 right-0 m-4" onClick={closeStudentModal}>
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                            </span>
-
-                                            <div className="text-lg sm:text-sm">
+                                        <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]" onSubmit={createStudent}>
+                                            <button className="absolute top-0 right-0 m-4" type="button" onClick={closeStudentModal}>
+                                                <HiX className="text-2xl cursor-pointer"/>
+                                            </button>
+        
+                                            <div className="text-lg sm:font-medium sm:text-base">
                                                 <span>Novo Aluno</span>
                                             </div>
-
-                                            <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-xs">
-                                                <input
-                                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
-                                                    id="name"
-                                                    name="name"
-                                                    type="text"
-                                                    placeholder="Nome do Aluno"
-                                                    minLength="3"
-                                                    maxLength="30"
-                                                    onChange={(e) => setName(e.target.value)}
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                                <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={closeStudentModal}>
-                                                    <span>Cancelar</span>
-                                                </button>
-
-                                                <button className="w-[40%] bg-green-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
-                                                    <span>Criar</span>
-                                                </button>
-                                            </div>
+        
+                                            <input
+                                                className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
+                                                id="description"
+                                                name="description"
+                                                type="text"
+                                                placeholder="Nome da turma"
+                                                minLength="3"
+                                                maxLength="30"
+                                                onChange={(e) => setName(e.target.value)}
+                                                required
+                                            />
+        
+                                            <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
+                                                <span>Adicionar</span>
+                                            </button>
                                         </form>
                                     ) : (
-                                        <form className="flex flex-col justify-evenly items-center relative w-2/5 h-[350px] bg-gray-50 rounded-xl xl:w-1/2 lg:w-3/5 md:w-[70%] sm:w-4/5 xs:w-[95%]" onSubmit={updateStudent}>
-                                            <span className="absolute top-0 right-0 m-4" onClick={closeStudentModal}>
-                                                <HiX className="text-2xl cursor-pointer" title="Fechar"/>
-                                            </span>
-
-                                            <div className="text-lg sm:text-sm">
+                                        <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]" onSubmit={updateStudent}>
+                                            <button className="absolute top-0 right-0 m-4" type="button" onClick={closeStudentModal}>
+                                                <HiX className="text-2xl cursor-pointer"/>
+                                            </button>
+        
+                                            <div className="text-lg sm:font-medium sm:text-base">
                                                 <span>Editar Aluno</span>
                                             </div>
-
-                                            <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-xs">
-                                                <input
-                                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
-                                                    id="name"
-                                                    name="name"
-                                                    type="text"
-                                                    placeholder="Nome do Aluno"
-                                                    minLength="3"
-                                                    maxLength="30"
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)}
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                                <button className="w-[40%] bg-red-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={closeStudentModal}>
-                                                    <span>Cancelar</span>
-                                                </button>
-
-                                                <button className="w-[40%] bg-green-600 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2 sm:mb-4" disabled={submitButtonDisabled}>
-                                                    <span>Editar</span>
-                                                </button>
-                                            </div>
+        
+                                            <input
+                                                className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
+                                                id="description"
+                                                name="description"
+                                                type="text"
+                                                placeholder="Nome da turma"
+                                                minLength="3"
+                                                maxLength="30"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                required
+                                            />
+        
+                                            <button className="w-1/2 bg-green-600 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
+                                                <span>Editar</span>
+                                            </button>
                                         </form>
                                     )}
                                 </div>
