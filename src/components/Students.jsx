@@ -17,17 +17,17 @@ export default function Students() {
     const {loading, showConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
 
     const studentsList = students.map((student) => 
-        <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-neutral-300 rounded-xl cursor-pointer mb-2">
+        <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-gray-300 rounded-xl cursor-pointer mb-2">
             <span className="p-2">
                 {student.name}
             </span>
 
             <div>
-                <button className="text-green-600 cursor-pointer p-2 rounded-full hover:bg-green-100" type="button" onClick={() => editButtonClicked(student)}>
+                <button className="text-green-600 cursor-pointer p-2 rounded-full hover:bg-green-100 active:bg-transparent" type="button" onClick={() => editButtonClicked(student)}>
                     <HiOutlinePencilAlt className="text-xl" title="Editar Aluno"/>
                 </button>
 
-                <button className="text-red-500 cursor-pointer p-2 rounded-full hover:bg-red-100" type="button" onClick={() => deleteButtonClicked(student)}>
+                <button className="text-red-500 cursor-pointer p-2 rounded-full hover:bg-red-100 active:bg-transparent" type="button" onClick={() => deleteButtonClicked(student)}>
                     <HiOutlineTrash className="text-xl" title="Excluir Aluno"/>
                 </button>
             </div>
@@ -43,28 +43,28 @@ export default function Students() {
                     {classDescription}
                 </Header>
 
-                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-neutral-800">
+                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-gray-800">
                     <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/diary`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/diary`}>
                             Diário
                         </Link>
 
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/progress`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/progress`}>
                             Progresso
                         </Link>
 
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${classDescription}/students`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-600 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/students`}>
                             Alunos
                         </Link>
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
+                        <div className="flex justify-between w-full border-b-2 border-gray-300 mb-6 p-1">
                             <span className="text-lg pl-2 pt-2 sm:text-base">
                                 Alunos
                             </span>
 
-                            <span className="text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
+                            <span className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" onClick={createButtonClicked}>
                                 <HiPlus className="text-2xl" title="Novo Aluno"/>
                             </span>
                         </div>
@@ -120,9 +120,9 @@ export default function Students() {
                                                 <span>Novo Aluno</span>
                                             </div>
 
-                                            <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
+                                            <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-xs">
                                                 <input
-                                                    className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
+                                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
                                                     id="name"
                                                     name="name"
                                                     type="text"
@@ -154,9 +154,9 @@ export default function Students() {
                                                 <span>Editar Aluno</span>
                                             </div>
 
-                                            <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-xs">
+                                            <div className="flex items-center w-[80%] border-b border-gray-800 sm:text-xs">
                                                 <input
-                                                    className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
+                                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
                                                     id="name"
                                                     name="name"
                                                     type="text"

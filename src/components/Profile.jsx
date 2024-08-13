@@ -45,15 +45,15 @@ export default function Profile() {
                 {loading ? (
                     <Loading/>
                 ) : (
-                    <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[75px] border border-neutral-300 rounded-xl shadow-md xl:w-[45%] lg:w-[55%] md:w-[65%] sm:w-4/5 sm:text-xs xs:w-full xs:border-none xs:rounded-none xs:shadow-none xs:h-[450px]" onSubmit={updateUser}>
+                    <form className="flex flex-col justify-evenly items-center w-[35%] h-[500px] mt-[75px] border border-gray-300 rounded-xl shadow-md xl:w-[45%] lg:w-[55%] md:w-[65%] sm:w-4/5 sm:text-xs xs:w-full xs:border-none xs:rounded-none xs:shadow-none xs:h-[450px]" onSubmit={updateUser}>
                         <HiUser className="text-8xl"/>
 
                         <div className="flex flex-col items-center w-4/5">
-                            <div className="flex items-center w-full mb-4 border-b border-neutral-800">
+                            <div className="flex items-center w-full mb-4 border-b border-gray-800">
                                 <HiUser className="w-[10%] text-lg"/>
 
                                 <input
-                                    className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
+                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
                                     id="name"
                                     name="name"
                                     type="text"
@@ -67,11 +67,11 @@ export default function Profile() {
                                 />
                             </div>
 
-                            <div className="flex items-center w-full border-b border-neutral-800">
+                            <div className="flex items-center w-full border-b border-gray-800">
                                 <HiMail className="w-[10%] text-lg"/>
 
                                 <input
-                                    className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
+                                    className="w-full bg-transparent placeholder:text-gray-500 p-1 outline-none"
                                     id="email"
                                     name="email"
                                     type="email"

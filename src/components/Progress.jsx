@@ -17,15 +17,15 @@ export default function Progress() {
 
     const progressList = progress.map((data, index) => (
         <tr key={index}>
-            <td className="py-2 px-2 border-2 border-neutral-300">
+            <td className="py-2 px-2 border-2 border-gray-300">
                 {data.name}
             </td>
 
-            <td className="text-center p-1 border-2 border-neutral-300">
+            <td className="text-center p-1 border-2 border-gray-300">
                 {data.absences}
             </td>
 
-            <td className="text-center p-1 border-2 border-neutral-300">
+            <td className="text-center p-1 border-2 border-gray-300">
                 {data.lessons}
             </td>
         </tr>
@@ -40,23 +40,23 @@ export default function Progress() {
                     {classDescription}
                 </Header>
 
-                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-neutral-800">
+                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-gray-800">
                     <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/diary`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/diary`}>
                                 Diário
                             </Link>
 
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${classDescription}/progress`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-600 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/progress`}>
                                 Progresso
                             </Link>
 
-                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/students`}>
+                            <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/students`}>
                                 Alunos
                             </Link>
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 break-all rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
+                        <div className="flex justify-between w-full border-b-2 border-gray-300 mb-6 p-1">
                             <span className="text-lg p-2 sm:text-base">
                                 Progresso
                             </span>
@@ -73,9 +73,9 @@ export default function Progress() {
                                 <table className="w-full mb-6">
                                     <thead className="w-full break-all">
                                         <tr className="w-full">
-                                            <th className="w-3/5 p-2 border-2 border-neutral-300">Aluno</th>
-                                            <th className="w-1/5 p-2 border-2 border-neutral-300">Faltas</th>
-                                            <th className="w-1/5 p-2 border-2 border-neutral-300">Aulas</th>
+                                            <th className="w-3/5 p-2 border-2 border-gray-300">Aluno</th>
+                                            <th className="w-1/5 p-2 border-2 border-gray-300">Faltas</th>
+                                            <th className="w-1/5 p-2 border-2 border-gray-300">Aulas</th>
                                         </tr>
                                     </thead>
                                         

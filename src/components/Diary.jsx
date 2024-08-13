@@ -18,16 +18,16 @@ export default function Diary() {
 
     const lessonsList = lessons.map((lesson) => (
         <tr key={lesson.id}>
-            <td className="text-center p-1 border-2 border-neutral-300">
+            <td className="text-center p-1 border-2 border-gray-300">
                 {lesson.date.replace(/(\d{4})-(\d\d)-(\d\d)/, "$3/$2/$1").toString()}
             </td>
 
-            <td className="px-4 py-1 border-2 border-neutral-300">
+            <td className="px-4 py-1 border-2 border-gray-300">
                 {lesson.description}
             </td>
 
-            <td className="text-center p-1 border-2 border-neutral-300">
-                <button className="text-green-600 cursor-pointer p-2 rounded-full hover:bg-green-100" type="button" onClick={() => editButtonClicked(lesson)}>
+            <td className="text-center p-1 border-2 border-gray-300">
+                <button className="text-green-600 cursor-pointer p-2 rounded-full hover:bg-green-100 active:bg-transparent" type="button" onClick={() => editButtonClicked(lesson)}>
                     <HiOutlinePencilAlt className="text-xl xs:text-base" title="Editar Aula"/>
                 </button>
             </td>
@@ -60,28 +60,28 @@ export default function Diary() {
                     {classDescription}
                 </Header>
 
-                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-neutral-800">
+                <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-gray-800">
                     <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-600 hover:bg-neutral-200" href={`/myclasses/${classDescription}/diary`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-600 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/diary`}>
                             Diário
                         </Link>
 
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/progress`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/progress`}>
                             Progresso
                         </Link>
 
-                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-neutral-300 hover:bg-neutral-200" href={`/myclasses/${classDescription}/students`}>
+                        <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/students`}>
                             Alunos
                         </Link>
                     </div>
 
                     <div className="flex flex-col w-1/2 mt-20 rounded-md xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm xs:text-xs">
-                        <div className="flex justify-between w-full border-b-2 border-neutral-300 mb-6 p-1">
+                        <div className="flex justify-between w-full border-b-2 border-gray-300 mb-6 p-1">
                             <span className="text-lg pl-2 pt-2 sm:text-base">
                                 Aulas
                             </span>
 
-                            <span className="text-neutral-800 cursor-pointer p-2 rounded-full hover:bg-neutral-200" onClick={createButtonClicked}>
+                            <span className="text-gray-800 cursor-pointer p-2 rounded-full hover:bg-gray-200 active:bg-transparent" onClick={createButtonClicked}>
                                 <HiPlus className="text-2xl" title="Nova Aula"/>
                             </span>
                         </div>
@@ -94,12 +94,12 @@ export default function Diary() {
                             lessons.length === 0 ? (
                                 null
                             ) : (
-                                <table className="w-full mb-5 break-all text-neutral-800 rounded-xl">
+                                <table className="w-full mb-5 break-all text-gray-800 rounded-xl">
                                     <thead className="w-full">
                                         <tr className="w-full">
-                                            <th className="w-1/4 p-2 border-2 border-neutral-300">Data</th>
-                                            <th className="w-[55%] p-2 border-2 border-neutral-300">Descrição</th>
-                                            <th className="w-[20%] p-2 border-2 border-neutral-300">Ação</th>
+                                            <th className="w-1/4 p-2 border-2 border-gray-300">Data</th>
+                                            <th className="w-[55%] p-2 border-2 border-gray-300">Descrição</th>
+                                            <th className="w-[20%] p-2 border-2 border-gray-300">Ação</th>
                                         </tr>                            
                                     </thead>
         
@@ -124,7 +124,7 @@ export default function Diary() {
 
                                         <div className="flex flex-col w-[80%] sm:text-xs">
                                             <input
-                                                className="w-full bg-transparent mb-4 border-b border-neutral-800 placeholder:text-neutral-500 p-1 outline-none"
+                                                className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
                                                 id="description"
                                                 name="description"
                                                 type="text"
@@ -136,7 +136,7 @@ export default function Diary() {
                                             />
 
                                             <input
-                                                className="flex justify-end w-full bg-transparent border-b border-neutral-800 p-1 outline-none"
+                                                className="flex justify-end w-full bg-transparent border-b border-gray-800 p-1 outline-none"
                                                 id="date"
                                                 name="date"
                                                 type="date"
@@ -163,7 +163,7 @@ export default function Diary() {
 
                                         <div className="flex flex-col w-[80%] sm:text-xs">
                                             <input
-                                                className="w-full bg-transparent mb-4 border-b border-neutral-800 placeholder:text-neutral-500 p-1 outline-none"
+                                                className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
                                                 id="description"
                                                 name="description"
                                                 type="text"
@@ -176,7 +176,7 @@ export default function Diary() {
                                             />
 
                                             <input
-                                                className="flex justify-end w-full bg-transparent border-b border-neutral-800 p-1 outline-none"
+                                                className="flex justify-end w-full bg-transparent border-b border-gray-800 p-1 outline-none"
                                                 id="date"
                                                 name="date"
                                                 type="date"
@@ -215,7 +215,7 @@ export default function Diary() {
                                         </div>
 
                                         <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                            <button className="w-[40%] bg-neutral-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
+                                            <button className="w-[40%] bg-gray-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
                                                 <span>Voltar</span>
                                             </button>
 
@@ -239,7 +239,7 @@ export default function Diary() {
                                         </div>
 
                                         <div className="flex justify-between w-[80%] sm:flex-col-reverse sm:text-xs">
-                                            <button className="w-[40%] bg-neutral-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
+                                            <button className="w-[40%] bg-gray-500 text-white font-semibold py-1 rounded-xl hover:shadow-xl sm:w-full sm:py-2" type="button" onClick={backModal}>
                                                 <span>Voltar</span>
                                             </button>
 
