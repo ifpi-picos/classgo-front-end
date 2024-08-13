@@ -76,7 +76,7 @@ export default function MyClasses() {
                                 <div className="flex justify-center items-center fixed inset-0 z-20 bg-black bg-opacity-25">
                                     <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[85%]" onSubmit={createMyClass}>
                                         <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
-                                            <HiX className="text-2xl cursor-pointer"/>
+                                            <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                         </button>
 
                                         <div className="text-lg sm:text-base">
@@ -136,13 +136,13 @@ export default function MyClasses() {
                                         {classModalAction === "Create" ? (
                                             <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] xs:w-[85%]" onSubmit={createMyClass}>
                                                 <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
-                                                    <HiX className="text-2xl cursor-pointer" title="Fechar"/>
+                                                    <HiX className="text-2xl cursor-pointer"/>
                                                 </button>
-
+        
                                                 <div className="text-lg sm:text-base">
                                                     <span>Nova Turma</span>
                                                 </div>
-
+        
                                                 <div className="flex items-center w-[80%] border-b border-neutral-800 sm:text-sm">
                                                     <input
                                                         className="w-full bg-transparent placeholder:text-neutral-500 p-1 outline-none"
@@ -156,8 +156,8 @@ export default function MyClasses() {
                                                         required
                                                     />
                                                 </div>
-
-                                                <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none" disabled={submitButtonDisabled}>
+        
+                                                <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                                     <span>Criar</span>
                                                 </button>
                                             </form>
