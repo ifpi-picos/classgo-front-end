@@ -122,7 +122,7 @@ export default function Diary() {
                                             <span>Nova Aula</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] sm:text-xs">
+                                        <div className="flex flex-col w-[80%] sm:text-sm">
                                             <input
                                                 className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
                                                 id="description"
@@ -159,7 +159,7 @@ export default function Diary() {
                                             <span>Editar Aula</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] sm:text-xs">
+                                        <div className="flex flex-col w-[80%] sm:text-sm">
                                             <input
                                                 className="w-full bg-transparent mb-4 p-1 border-b border-gray-800 outline-none placeholder:text-gray-500"
                                                 id="description"
@@ -210,7 +210,7 @@ export default function Diary() {
                                             <span>Frequência</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-xs">
+                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-sm">
                                             {frequencyList}
                                         </div>
 
@@ -232,7 +232,7 @@ export default function Diary() {
                                             <span>Frequência</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-xs">
+                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-sm">
                                             {frequencyList}
                                         </div>
 
