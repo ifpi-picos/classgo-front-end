@@ -9,6 +9,7 @@ export default function useMyClass() {
     const [classModalAction, setClassModalAction] = useState("")
     const [id, setId] = useState(0)
     const [description, setDescription] = useState("")
+    const [numberOfLessons, setNumberOfLessons] = useState(0)
     const [myClasses, setMyClasses] = useState([])
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
@@ -80,7 +81,7 @@ export default function useMyClass() {
         setSubmitButtonDisabled(true)
 
         await axios
-                    .post(createMyclassesUrl, {description}, {headers: {
+                    .post(createMyclassesUrl, {description, numberOfLessons}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -117,7 +118,7 @@ export default function useMyClass() {
                             return
                         }
                     })
-    }, [createMyclassesUrl, description, closeClassModal, readMyClasses, router])
+    }, [createMyclassesUrl, description, numberOfLessons, closeClassModal, readMyClasses, router])
 
     const updateMyClass = useCallback(async (e) => {
         e.preventDefault()
@@ -125,7 +126,7 @@ export default function useMyClass() {
         setSubmitButtonDisabled(true)
 
         await axios
-                    .put(updateMyClassUrl, {description}, {headers: {
+                    .put(updateMyClassUrl, {description, numberOfLessons}, {headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
@@ -162,7 +163,7 @@ export default function useMyClass() {
                             return
                         }
                     })
-    }, [updateMyClassUrl, description, closeClassModal, readMyClasses, router])
+    }, [updateMyClassUrl, description, numberOfLessons, closeClassModal, readMyClasses, router])
 
     const deleteMyClass = useCallback(async (e) => {
         e.preventDefault()
@@ -224,6 +225,7 @@ export default function useMyClass() {
         openClassModal()
         setId(myClass.id)
         setDescription(myClass.description)
+        setNumberOfLessons(myClass.numberOfLessons)
     }, [openClassModal])
 
     const deleteButtonClicked = useCallback((myClass) => {
@@ -241,6 +243,8 @@ export default function useMyClass() {
         classModalAction,
         description,
         setDescription,
+        numberOfLessons,
+        setNumberOfLessons,
         myClasses,
         createMyClass,
         updateMyClass,

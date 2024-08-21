@@ -15,7 +15,7 @@ import useSideBar from "@/hooks/useSideBar"
 export default function MyClasses() {
     const {pageActive} = useSideBar()
 
-    const {loading, showConfirmModal, closeConfirmModal, showClassModal, classModalAction, openClassModal, closeClassModal, myClasses, description, setDescription, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
+    const {loading, showConfirmModal, closeConfirmModal, showClassModal, classModalAction, openClassModal, closeClassModal, myClasses, description, setDescription, numberOfLessons, setNumberOfLessons, createMyClass, updateMyClass, deleteMyClass, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled} = useMyClass()
 
     const myClassesList = myClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-gray-300 rounded-xl shadow-md hover:shadow-xl active:shadow-none">
@@ -83,17 +83,29 @@ export default function MyClasses() {
                                             <span>Nova Turma</span>
                                         </div>
 
-                                        <input
-                                            className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
-                                            id="description"
-                                            name="description"
-                                            type="text"
-                                            placeholder="Nome da turma"
-                                            minLength="3"
-                                            maxLength="30"
-                                            onChange={(e) => setDescription(e.target.value)}
-                                            required
-                                        />
+                                        <div className="flex flex-col w-[80%] sm:text-sm">
+                                            <input
+                                                className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                id="description"
+                                                name="description"
+                                                type="text"
+                                                placeholder="Nome da turma"
+                                                minLength="3"
+                                                maxLength="30"
+                                                onChange={(e) => setDescription(e.target.value)}
+                                                required
+                                            />
+
+                                            <input
+                                                className="w-full bg-transparent border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                id="numberOfLessons"
+                                                name="numberOfLessons"
+                                                type="number"
+                                                placeholder="Total de aulas"
+                                                onChange={(e) => setNumberOfLessons(e.target.value)}
+                                                required
+                                            />
+                                        </div>
 
                                         <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                             <span>Criar</span>
@@ -141,17 +153,29 @@ export default function MyClasses() {
                                                     <span>Nova Turma</span>
                                                 </div>
         
-                                                <input
-                                                    className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
-                                                    id="description"
-                                                    name="description"
-                                                    type="text"
-                                                    placeholder="Nome da turma"
-                                                    minLength="3"
-                                                    maxLength="30"
-                                                    onChange={(e) => setDescription(e.target.value)}
-                                                    required
-                                                />
+                                                <div className="flex flex-col w-[80%] sm:text-sm">
+                                                    <input
+                                                        className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                        id="description"
+                                                        name="description"
+                                                        type="text"
+                                                        placeholder="Nome da turma"
+                                                        minLength="3"
+                                                        maxLength="30"
+                                                        onChange={(e) => setDescription(e.target.value)}
+                                                        required
+                                                    />
+
+                                                    <input
+                                                        className="w-full bg-transparent border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                        id="numberOfLessons"
+                                                        name="numberOfLessons"
+                                                        type="number"
+                                                        placeholder="Total de aulas"
+                                                        onChange={(e) => setNumberOfLessons(e.target.value)}
+                                                        required
+                                                    />
+                                                </div>
         
                                                 <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                                     <span>Criar</span>
@@ -167,18 +191,29 @@ export default function MyClasses() {
                                                     <span>Editar Turma</span>
                                                 </div>
 
-                                                <input
-                                                    className="w-4/5 p-1 bg-transparent border-b border-gray-800 outline-none placeholder:text-gray-500 sm:text-sm"
-                                                    id="description"
-                                                    name="description"
-                                                    type="text"
-                                                    placeholder="Nome da turma"
-                                                    minLength="3"
-                                                    maxLength="30"
-                                                    value={description}
-                                                    onChange={(e) => setDescription(e.target.value)}
-                                                    required
-                                                />
+                                                <div className="flex flex-col w-[80%] sm:text-sm">
+                                                    <input
+                                                        className="w-full bg-transparent mb-4 border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                        id="description"
+                                                        name="description"
+                                                        type="text"
+                                                        placeholder="Nome da turma"
+                                                        minLength="3"
+                                                        maxLength="30"
+                                                        onChange={(e) => setDescription(e.target.value)}
+                                                        required
+                                                    />
+
+                                                    <input
+                                                        className="w-full bg-transparent border-b border-gray-800 placeholder:text-gray-500 p-1 outline-none"
+                                                        id="numberOfLessons"
+                                                        name="numberOfLessons"
+                                                        type="number"
+                                                        placeholder="Total de aulas"
+                                                        onChange={(e) => setNumberOfLessons(e.target.value)}
+                                                        required
+                                                    />
+                                                </div>
 
                                                 <button className="w-1/2 bg-green-600 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                                     <span>Editar</span>
