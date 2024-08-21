@@ -19,7 +19,7 @@ export default function MyClasses() {
 
     const myClassesList = myClasses.map((myClass) => 
         <div key={myClass.id} className="flex flex-col justify-between w-80 h-56 border-2 border-gray-300 rounded-xl shadow-md hover:shadow-xl active:shadow-none">
-            <Link className="flex justify-center items-center w-full border-b-2 border-gray-300"  href={`/myclasses/${myClass.description}/diary`}>
+            <Link className="flex justify-center items-center w-full border-b-2 border-gray-300"  href={`/myclasses/${myClass.description}/lessons`}>
                 <span className="px-2 py-[12px] hover:underline break-words">
                     {myClass.description}
                 </span>
