@@ -6,6 +6,8 @@ export default function useProgress() {
     const [loading, setLoading] = useState(true)
     const [progress, setProgress] = useState([])
 
+    const bgColor = []
+
     const {lessons} = useLesson()
     const {students} = useStudent()
 
@@ -14,10 +16,9 @@ export default function useProgress() {
 
         students.map((student) => {
             newProgress.push({
-                name: student.name,
-                absences: lessons.length - student.numberOfPresences,
-                lessons: lessons.length
-
+                studentName: student.name,
+                frequency: ((student.numberOfPresences / lessons.length) * 100).toFixed(0) + "%",
+                width: ((student.numberOfPresences / lessons.length) * 100).toFixed(0) >= 70 ? `w-[${((student.numberOfPresences / lessons.length) * 100).toFixed(0).toString()}%]` : `w-[${((student.numberOfPresences / lessons.length) * 100).toFixed(0).toString()}%]`
             })
         })
         

@@ -16,19 +16,21 @@ export default function Progress() {
     const {loading, progress} = useProgress()
 
     const progressList = progress.map((data, index) => (
-        <tr key={index}>
-            <td className="py-2 px-2 border-2 border-gray-300">
-                {data.name}
-            </td>
+        <div key={index} className="w-full">
+            <span>
+                {data.studentName}
+            </span>
 
-            <td className="text-center p-1 border-2 border-gray-300">
-                {data.absences}
-            </td>
+            <div className="flex justify-between w-full mt-2">
+                <div className="w-[80%] h-6 border-2 border-gray-300 rounded-xl mb-4">
+                    <div className={`${data.width} h-full bg-green-500 rounded-xl`}></div>
+                </div>
 
-            <td className="text-center p-1 border-2 border-gray-300">
-                {data.lessons}
-            </td>
-        </tr>
+                <span>
+                    {data.frequency}
+                </span>
+            </div>
+        </div>
     ))
 
     return (
@@ -70,19 +72,9 @@ export default function Progress() {
                             progress.length === 0 ? (
                                 null
                             ) : (
-                                <table className="w-full mb-6">
-                                    <thead className="w-full break-all">
-                                        <tr className="w-full">
-                                            <th className="w-3/5 p-2 border-2 border-gray-300">Aluno</th>
-                                            <th className="w-1/5 p-2 border-2 border-gray-300">Faltas</th>
-                                            <th className="w-1/5 p-2 border-2 border-gray-300">Aulas</th>
-                                        </tr>
-                                    </thead>
-                                        
-                                    <tbody className="w-full">
-                                        {progressList}
-                                    </tbody>
-                                </table>
+                                <div className="w-full">
+                                    {progressList}
+                                </div>
                             )
                         )}
                     </div>

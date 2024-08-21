@@ -134,7 +134,7 @@ export default function MyClasses() {
                                         {classModalAction === "Create" ? (
                                             <form className="flex flex-col justify-evenly items-center relative w-[30%] h-[300px] bg-gray-50 rounded-xl xl:w-2/5 lg:w-1/2 md:w-3/5 sm:w-3/4 xs:w-[85%]" onSubmit={createMyClass}>
                                                 <button className="absolute top-0 right-0 m-4" type="button" onClick={closeClassModal}>
-                                                    <HiX className="text-2xl cursor-pointer"/>
+                                                    <HiX className="text-2xl cursor-pointer" title="Fechar"/>
                                                 </button>
         
                                                 <div className="text-lg sm:font-medium sm:text-base">
