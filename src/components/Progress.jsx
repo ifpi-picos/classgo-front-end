@@ -22,7 +22,7 @@ export default function Progress() {
             </span>
 
             <div className="flex justify-between w-full mt-2">
-                <div className="w-[80%] h-6 border-2 border-gray-300 rounded-xl mb-4">
+                <div className="w-[80%] h-6 border-2 border-gray-300 rounded-xl mb-4 hover:shadow-md" title={data.frequency}>
                     <div className={`${data.width} h-full bg-green-500 rounded-xl`}></div>
                 </div>
 

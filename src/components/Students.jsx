@@ -17,7 +17,7 @@ export default function Students() {
     const {loading, showConfirmModal, closeConfirmModal, showStudentModal, closeStudentModal, studentModalAction, name, setName, students, createStudent, updateStudent, deleteStudent, createButtonClicked, editButtonClicked, deleteButtonClicked, submitButtonDisabled}  = useStudent({classDescription})
 
     const studentsList = students.map((student) => 
-        <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-gray-300 rounded-xl cursor-pointer mb-2">
+        <div key={student.id} className="flex justify-between items-center w-full px-2 py-1 border-2 border-gray-300 rounded-xl mb-4 hover:shadow-md">
             <span className="p-2">
                 {student.name}
             </span>
