@@ -10,6 +10,7 @@ export default function MyClassProvider({myClassDescription, children}) {
     const classDescription = myClassDescription.split("%20").join(" ")
     
     const [classId, setClassId] = useState(0)
+    const [numberOfLessons, setNumberOfLessons] = useState(0)
 
     const router = useRouter()
 
@@ -25,6 +26,7 @@ export default function MyClassProvider({myClassDescription, children}) {
                     .then((res) => {
                         if (res.status === 200) {
                             setClassId(res.data.id)
+                            setNumberOfLessons(res.data.numberOfLessons)
                             return
                         }
 
@@ -58,7 +60,7 @@ export default function MyClassProvider({myClassDescription, children}) {
     }, [readMyClass])
 
     return (
-        <MyClassContext.Provider value={{classId, classDescription}}>
+        <MyClassContext.Provider value={{classId, classDescription, numberOfLessons}}>
             {children}
         </MyClassContext.Provider>
     )

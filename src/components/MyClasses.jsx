@@ -200,6 +200,7 @@ export default function MyClasses() {
                                                         placeholder="Nome da turma"
                                                         minLength="3"
                                                         maxLength="30"
+                                                        value={description}
                                                         onChange={(e) => setDescription(e.target.value)}
                                                         required
                                                     />
@@ -210,6 +211,7 @@ export default function MyClasses() {
                                                         name="numberOfLessons"
                                                         type="number"
                                                         placeholder="Total de aulas"
+                                                        value={numberOfLessons}
                                                         onChange={(e) => setNumberOfLessons(e.target.value)}
                                                         required
                                                     />
