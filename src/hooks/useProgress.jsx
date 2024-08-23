@@ -9,7 +9,6 @@ export default function useProgress() {
 
     const {numberOfLessons} = useContext(MyClassContext)
 
-    const {lessons} = useLesson()
     const {students} = useStudent()
 
     const createProgress = useCallback(() => {
@@ -25,7 +24,7 @@ export default function useProgress() {
         
         setProgress(newProgress)
         setLoading(false)
-    }, [students, lessons])
+    }, [students, numberOfLessons])
 
     useEffect(() => {
         createProgress()

@@ -210,9 +210,16 @@ export default function Lesson() {
                                             <span>Frequência</span>
                                         </div>
 
-                                        <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-sm">
-                                            {frequencyList}
-                                        </div>
+                                        {frequency.length === 0 ? (
+                                            <div className="flex justify-center items-center w-[80%] h-[100px]">
+                                                <span>Nenhum aluno adicionado na turma</span>
+                                            </div>
+                                        ) : (
+                                            <div className="flex flex-col w-[80%] h-[100px] overflow-x-hidden sm:text-sm">
+                                                {frequencyList}
+                                            </div>
+                                        )}
+
 
                                         <button className="w-1/2 bg-green-500 text-white font-bold py-1 rounded-xl hover:shadow-xl active:shadow-none sm:text-sm" disabled={submitButtonDisabled}>
                                             <span>Registrar</span>
