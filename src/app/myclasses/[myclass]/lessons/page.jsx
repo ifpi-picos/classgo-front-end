@@ -1,5 +1,5 @@
 import AuthProvider from "@/contexts/AuthContext"
-import Lesson from "@/components/Lesson"
+import Lessons from "@/components/Lessons"
 import MyClassProvider from "@/contexts/MyClassContext"
 
 export const metadata = {
@@ -10,7 +10,7 @@ export default function DiaryPage({params}) {
     return (
         <AuthProvider>
             <MyClassProvider myClassDescription={params.myclass}>
-                <Lesson/>
+                <Lessons/>
             </MyClassProvider>
         </AuthProvider>
     )

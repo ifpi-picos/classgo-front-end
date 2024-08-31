@@ -46,7 +46,7 @@ export default function Students() {
                 <div className="flex flex-col items-center absolute top-[100px] w-full bg-white text-gray-800">
                     <div className="flex justify-evenly items-center w-1/2 xl:w-3/5 lg:w-3/4 md:w-[95%] sm:text-sm">
                         <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/lessons`}>
-                            Diário
+                            Aulas
                         </Link>
 
                         <Link className="flex justify-center w-1/3 p-2 border-b-2 border-gray-300 hover:bg-gray-200 active:bg-transparent" href={`/myclasses/${classDescription}/progress`}>

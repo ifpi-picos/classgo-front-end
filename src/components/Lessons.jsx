@@ -11,7 +11,7 @@ import { useContext } from "react"
 import useLesson from "@/hooks/useLesson"
 import Loading from "./Loading"
 
-export default function Lesson() {
+export default function Lessons() {
     const {classDescription} = useContext(MyClassContext)
 
     const {loading, showLessonModal, lessonModalAction, closeLessonModal, showFrequencyModal, frequencyModalAction, closeFrequencyModal, description, setDescription, date, setDate, frequency, onChangeFrequency, lessons, createLesson, updateLesson, createButtonClicked, editButtonClicked, nextModal, backModal, submitButtonDisabled} = useLesson()
