@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function useUser() {
@@ -13,12 +13,12 @@ export default function useUser() {
 
     const router = useRouter()
 
-    const signUpUrl = `https://idcurso-back-end.vercel.app/users`
-    const signInUrl = `https://idcurso-back-end.vercel.app/users/signin`
-    const readUserUrl = `https://idcurso-back-end.vercel.app/users`
-    const forgotPasswordUrl = `https://idcurso-back-end.vercel.app/users/forgotpassword`
-    const redefinePasswordUrl = `https://idcurso-back-end.vercel.app/users/redefinepassword`
-    const updateUserUrl = `https://idcurso-back-end.vercel.app/users`
+    const signUpUrl = `https://classgo-back-end.vercel.app/users`
+    const signInUrl = `https://classgo-back-end.vercel.app/users/signin`
+    const readUserUrl = `https://classgo-back-end.vercel.app/users`
+    const forgotPasswordUrl = `https://classgo-back-end.vercel.app/users/forgotpassword`
+    const redefinePasswordUrl = `https://classgo-back-end.vercel.app/users/redefinepassword`
+    const updateUserUrl = `https://classgo-back-end.vercel.app/users`
 
     const verifyToken = useCallback(() => {
         const token = localStorage.getItem("token")

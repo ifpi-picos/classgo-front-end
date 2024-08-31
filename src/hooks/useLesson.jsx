@@ -23,9 +23,9 @@ export default function useLesson() {
 
     const router = useRouter()
 
-    const readLessonsUrl = `https://idcurso-back-end.vercel.app/lessons/${classId}`
-    const createLessonUrl = `https://idcurso-back-end.vercel.app/lessons`
-    const updateLessonUrl = `https://idcurso-back-end.vercel.app/lessons/${id}`
+    const readLessonsUrl = `https://classgo-back-end.vercel.app/lessons/${classId}`
+    const createLessonUrl = `https://classgo-back-end.vercel.app/lessons`
+    const updateLessonUrl = `https://classgo-back-end.vercel.app/lessons/${id}`
 
     const createNewFrequency = useCallback(() => {
         const newFrequency = []

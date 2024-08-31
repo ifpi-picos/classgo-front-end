@@ -18,10 +18,10 @@ export default function useStudent() {
 
     const router = useRouter()
 
-    const readStudentsUrl = `https://idcurso-back-end.vercel.app/students/${classId}`
-    const createStudentUrl = `https://idcurso-back-end.vercel.app/students`
-    const updateStudentUrl = `https://idcurso-back-end.vercel.app/students/${id}`
-    const deleteStudentUrl = `https://idcurso-back-end.vercel.app/students/${id}`
+    const readStudentsUrl = `https://classgo-back-end.vercel.app/students/${classId}`
+    const createStudentUrl = `https://classgo-back-end.vercel.app/students`
+    const updateStudentUrl = `https://classgo-back-end.vercel.app/students/${id}`
+    const deleteStudentUrl = `https://classgo-back-end.vercel.app/students/${id}`
 
     const openConfirmModal = useCallback(() => {
         setShowConfirmModal(true)

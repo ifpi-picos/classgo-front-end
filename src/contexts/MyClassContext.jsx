@@ -14,7 +14,7 @@ export default function MyClassProvider({myClassDescription, children}) {
 
     const router = useRouter()
 
-    const readMyClassUrl = `https://idcurso-back-end.vercel.app/classes/${classDescription}`
+    const readMyClassUrl = `https://classgo-back-end.vercel.app/classes/${classDescription}`
 
     const readMyClass = useCallback(async () => {
         await axios
