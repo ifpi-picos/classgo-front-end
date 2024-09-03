@@ -11,7 +11,7 @@ export default function SideBar({myClassesPage, profilePage}) {
         <>
             <nav className={`${sideBarIsOpen ? "flex flex-col items-center fixed left-0 float-left overflow-auto w-1/5 h-screen z-20 bg-blue-500 text-white shadow-md xl:w-1/4 lg:w-[30%] md:w-2/5 sm:w-1/2 xs:w-4/5" : "hidden"}`}>
                 <div className="flex items-center justify-between w-[90%] h-[75px] p-2">
-                    <span className="text-lg">idCurso</span>
+                    <span className="text-lg">Class Go</span>
 
                     <button type="button" onClick={disableSideBar}>
                         <HiX className="text-2xl cursor-pointer" title="Fechar"/>
