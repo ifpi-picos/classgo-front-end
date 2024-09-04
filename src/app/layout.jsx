@@ -4,7 +4,7 @@ import "tailwindcss/tailwind.css"
 const dmSans = DM_Sans({subsets: ["latin"]})
 
 export const metadata = {
-  title: "idCurso",
+  title: "Class Go",
 }
 
 export default function RootLayout({ children }) {
