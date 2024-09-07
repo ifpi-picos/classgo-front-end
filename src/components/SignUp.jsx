@@ -73,9 +73,13 @@ export default function SignUp() {
                             />
                             
                             {!visiblePassword ? (
-                                <HiOutlineEye className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(true)}/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(true)}>
+                                    <HiOutlineEye title="Exibir senha"/>
+                                </button>
                             ) : (
-                                <HiOutlineEyeOff className="w-[10%] text-lg cursor-pointer" onClick={() => setVisblePassword(false)}/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(false)}>
+                                    <HiOutlineEyeOff title="Exibir senha"/>
+                                </button>
                             )}
                         </div>
 
@@ -94,10 +98,14 @@ export default function SignUp() {
                                 required
                             />
                             
-                            {!visibleConfirmPassword ? (
-                                <HiOutlineEye className="w-[10%] text-lg cursor-pointer" onClick={() => setVisbleConfirmPassword(true)}/>
+                            {!visiblePassword ? (
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(true)}>
+                                    <HiOutlineEye title="Exibir senha"/>
+                                </button>
                             ) : (
-                                <HiOutlineEyeOff className="w-[10%] text-lg cursor-pointer" onClick={() => setVisbleConfirmPassword(false)}/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(false)}>
+                                    <HiOutlineEyeOff title="Exibir senha"/>
+                                </button>
                             )}
                         </div>
                     </div>
