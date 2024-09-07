@@ -25,21 +25,14 @@ export default function MyClasses() {
                 </span>
             </Link>
 
-            <div className="flex justify-between items-center w-full">
-                <div className="flex">
-                    <HiUsers className="mt-[2px] ml-4 sm:mt-[3px] xs:mt-[2px]" title="Alunos"/>
-                    <span className="text-sm ml-2 mb-1">{myClass.numberOfStudents}/50</span>
-                </div>
+            <div className="flex justify-end">
+                <button className="mr-2 mb-2 p-2 text-green-600 rounded-full hover:bg-green-100 active:bg-transparent" type="button" onClick={() => editButtonClicked(myClass)}>
+                    <HiOutlinePencilAlt className="text-xl" title="Editar Turma"/>
+                </button>
 
-                <div>
-                    <button className="mr-2 mb-2 p-2 text-green-600 rounded-full hover:bg-green-100 active:bg-transparent" type="button" onClick={() => editButtonClicked(myClass)}>
-                        <HiOutlinePencilAlt className="text-xl" title="Editar Turma"/>
-                    </button>
-
-                    <button className="mr-4 mb-2 p-2 text-red-500 rounded-full hover:bg-red-100 active:bg-transparent" type="button" onClick={() => deleteButtonClicked(myClass)}>
-                        <HiOutlineTrash className="text-xl" title="Excluir Turma"/>
-                    </button>
-                </div>
+                <button className="mr-4 mb-2 p-2 text-red-500 rounded-full hover:bg-red-100 active:bg-transparent" type="button" onClick={() => deleteButtonClicked(myClass)}>
+                    <HiOutlineTrash className="text-xl" title="Excluir Turma"/>
+                </button>
             </div>
         </div>        
     )

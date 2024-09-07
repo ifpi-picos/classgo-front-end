@@ -3,7 +3,7 @@ import Lessons from "@/components/Lessons"
 import MyClassProvider from "@/contexts/MyClassContext"
 
 export const metadata = {
-    title: "Diário"
+    title: "Aulas"
 }
 
 export default function DiaryPage({params}) {
