@@ -53,13 +53,13 @@ export default function SignIn() {
                                 required
                             />
                             
-                            {!visiblePassword ? (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(true)}>
-                                    <HiOutlineEye title="Exibir senha"/>
+                            {visiblePassword ? (
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(false)}>
+                                    <HiOutlineEyeOff title="Não exibir senha"/>
                                 </button>
                             ) : (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(false)}>
-                                    <HiOutlineEyeOff title="Exibir senha"/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(true)}>
+                                    <HiOutlineEye title="Exibir senha"/>
                                 </button>
                             )}
                         </div>

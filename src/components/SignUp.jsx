@@ -72,13 +72,13 @@ export default function SignUp() {
                                 required
                             />
                             
-                            {!visiblePassword ? (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(true)}>
-                                    <HiOutlineEye title="Exibir senha"/>
+                            {visiblePassword ? (
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(false)}>
+                                    <HiOutlineEyeOff title="Não exibir senha"/>
                                 </button>
                             ) : (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(false)}>
-                                    <HiOutlineEyeOff title="Exibir senha"/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisblePassword(true)}>
+                                    <HiOutlineEye title="Exibir senha"/>
                                 </button>
                             )}
                         </div>
@@ -98,13 +98,13 @@ export default function SignUp() {
                                 required
                             />
                             
-                            {!visiblePassword ? (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(true)}>
-                                    <HiOutlineEye title="Exibir senha"/>
+                            {visibleConfirmPassword ? (
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(false)}>
+                                    <HiOutlineEyeOff title="Não exibir confirmar senha"/>
                                 </button>
                             ) : (
-                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(false)}>
-                                    <HiOutlineEyeOff title="Exibir senha"/>
+                                <button className="flex justify-center w-[10%] text-lg cursor-pointer" type="button" onClick={() => setVisbleConfirmPassword(true)}>
+                                    <HiOutlineEye title="Exibir confirmar senha"/>
                                 </button>
                             )}
                         </div>
