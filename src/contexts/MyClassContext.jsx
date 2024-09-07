@@ -11,6 +11,7 @@ export default function MyClassProvider({myClassDescription, children}) {
     
     const [classId, setClassId] = useState(0)
     const [numberOfLessons, setNumberOfLessons] = useState(0)
+    const [numberOfStudents, setNumberOfStudents] = useState(0)
 
     const router = useRouter()
 
@@ -27,6 +28,7 @@ export default function MyClassProvider({myClassDescription, children}) {
                         if (res.status === 200) {
                             setClassId(res.data.id)
                             setNumberOfLessons(res.data.numberOfLessons)
+                            setNumberOfStudents(res.data.numberOfStudents)
                             return
                         }
 
@@ -60,7 +62,7 @@ export default function MyClassProvider({myClassDescription, children}) {
     }, [readMyClass])
 
     return (
-        <MyClassContext.Provider value={{classId, classDescription, numberOfLessons}}>
+        <MyClassContext.Provider value={{classId, classDescription, numberOfLessons, numberOfStudents}}>
             {children}
         </MyClassContext.Provider>
     )
