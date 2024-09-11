@@ -6,16 +6,15 @@ import { useRouter } from "next/navigation"
 
 export const MyClassContext = createContext()
 
-export default function MyClassProvider({myClassDescription, children}) {
-    const classDescription = myClassDescription.split("%20").join(" ")
-    
+export default function MyClassProvider({myClassDescription, children}) {    
     const [classId, setClassId] = useState(0)
+    const [classDescription, setClassDescription] = useState("")
     const [numberOfLessons, setNumberOfLessons] = useState(0)
     const [numberOfStudents, setNumberOfStudents] = useState(0)
-
+    
     const router = useRouter()
 
-    const readMyClassUrl = `https://classgo-back-end.vercel.app/classes/${classDescription}`
+    const readMyClassUrl = `https://classgo-back-end.vercel.app/classes/${myClassDescription}`
 
     const readMyClass = useCallback(async () => {
         await axios
@@ -27,6 +26,7 @@ export default function MyClassProvider({myClassDescription, children}) {
                     .then((res) => {
                         if (res.status === 200) {
                             setClassId(res.data.id)
+                            setClassDescription(res.data.description)
                             setNumberOfLessons(res.data.numberOfLessons)
                             setNumberOfStudents(res.data.numberOfStudents)
                             return

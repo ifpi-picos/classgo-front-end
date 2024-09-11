@@ -2,7 +2,7 @@
 
 import FirstClassImg from "../../assets/FirstClassImg.jpg"
 import Header from "../containers/Header"
-import { HiOutlinePencilAlt, HiOutlineTrash, HiPlus, HiUsers, HiX } from "react-icons/hi"
+import { HiOutlinePencilAlt, HiOutlineTrash, HiPlus, HiX } from "react-icons/hi"
 import Image from "next/image"
 import Link from "next/link"
 import Loading from "./Loading"
